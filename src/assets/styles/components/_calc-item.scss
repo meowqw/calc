@@ -1,0 +1,46 @@
+/* stylelint-disable order/order */
+.calc-item {
+  margin-bottom: 20px;
+
+  &__title {
+    margin-bottom: 15px;
+
+    @include mobile {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__form {
+    display: grid;
+    column-gap: 20px;
+    align-items: end;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 20px;
+
+    @include small-tablet {
+      display: flex;
+    }
+  }
+
+  &__label {
+    grid-column: 6 span;
+    max-width: 525px;
+
+    @include small-tablet {
+      grid-column: 12 span;
+    }
+  }
+
+  &__btn {
+    grid-column: auto;
+    height: max-content;
+
+    @include mobile {
+      grid-column: 6 span;
+    }
+  }
+
+  @include small-tablet {
+    margin-bottom: 15px;
+  }
+}

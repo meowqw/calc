@@ -1,0 +1,31 @@
+.btn {
+  border-radius: $border-radius;
+  padding: 8px 10px;
+  box-shadow: $shadow-btn;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+  text-transform: uppercase;
+  color: $light-color;
+  background-color: $accent-color;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+    background-color: #2d76fd;
+  }
+
+  &:active {
+    box-shadow: $shadow-btn--active;
+  }
+
+  &--mini {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}

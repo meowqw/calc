@@ -1,1 +1,10 @@
-@import "./variables.scss";
+@import "./variables";
+@import "./settings";
+@import "./breakpoint";
+@import "./components/block";
+@import "./components/tooltip";
+@import "./components/title";
+@import "./components/accordion";
+@import "./components/input";
+@import "./components/btn";
+@import "./components/calc-item";

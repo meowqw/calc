@@ -1,0 +1,43 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input {
+  border: 1px solid $dark-color;
+  border-radius: $border-radius;
+  padding: 8px 35px 8px 10px;
+  width: 100%;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: $black-color;
+  background-color: $light-color;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  span {
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  &--mini {
+    width: fit-content;
+  }
+
+  &--counter {
+    margin: 0 10px;
+  }
+}

@@ -1,0 +1,16 @@
+.block {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: $pp;
+  box-shadow: $shadow-block;
+  background-color: $light-color;
+
+  &--no-border {
+    border: none;
+    box-shadow: none;
+  }
+
+  @include small-tablet {
+    padding: 7px 10px;
+  }
+}

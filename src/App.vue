@@ -1,21 +1,31 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <div class="site-container">
+      <main class="main">
+        <calc-header />
+        <calc-main-wrapper />
+      </main>
+    </div>
+  </div>
 </template>
 
 <script>
+import calcHeader from "./components/calc-header.vue";
+import calcMainWrapper from "./components/calc-main-wrapper.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    calcHeader,
+    calcMainWrapper,
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  font-family: $font-family, sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
 </style>
