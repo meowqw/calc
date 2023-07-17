@@ -11,13 +11,17 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 // rich-accordion
 import { useAccordion } from "vue3-rich-accordion";
-import "vue3-rich-accordion/accordion-library-styles.css";
+import "vue3-rich-accordion/accordion-library-styles.scss";
+// tabs-component
+import {Tabs, Tab} from 'vue3-tabs-component';
 
 dom.watch();
 
 library.add(fas, fab, far);
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component('tabs', Tabs)
+  .component('tab', Tab)
   .use(store)
   .use(router)
   .use(useAccordion)

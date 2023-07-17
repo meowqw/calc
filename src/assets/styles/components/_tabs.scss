@@ -1,0 +1,126 @@
+.tabs-component {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.tabs-component-tabs {
+  border: solid 1px #ddd;
+  border-radius: $border-radius;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tabs {
+    border: 0;
+    align-items: stretch;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: -1px;
+    padding: $pp;
+  }
+}
+
+.nav-item {
+    padding: 0;
+}
+
+.tabs-component-tab {
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 0;
+  list-style: none;
+}
+
+.tabs-component-tab:not(:last-child) {
+  border-bottom: dotted 1px #ddd;
+}
+
+.tabs-component-tab:hover {
+  color: #666;
+}
+
+.tabs-component-tab.is-active {
+  color: #000;
+}
+
+.tabs-component-tab.is-disabled * {
+  color: #cdcdcd;
+  cursor: not-allowed !important;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tab {
+    background-color: #fff;
+    border: solid 1px #ddd;
+    border-radius: 3px 3px 0 0;
+    margin-right: 0.5em;
+    transform: translateY(2px);
+    transition: transform 0.3s ease;
+  }
+
+  .tabs-component-tab.is-active {
+    
+  }
+}
+
+.tabs-component-tab-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: $border-radius;
+  padding: 5px 8px;
+  box-shadow: $shadow-btn;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 114%;
+  text-transform: uppercase;
+  color: $light-color;
+  background-color: $accent-color;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+    background-color: #2d76fd;
+  }
+
+  &:active {
+    box-shadow: $shadow-btn--active;
+  }
+}
+
+.tabs-component-panels {
+  padding: 4em 0;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-panels {
+    background-color: $light-color;
+    border: solid 1px $border-color;
+    border-radius: $border-radius;
+    padding: $pp;
+  }
+}
+
+.tabs-component-btn {
+  cursor: pointer;
+  background: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  padding: 4px 8px;
+  color: #39739d;
+}
+
+.tabs-component-btn:hover {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.tabs-component-btn:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}

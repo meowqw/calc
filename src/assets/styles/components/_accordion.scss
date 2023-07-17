@@ -1,9 +1,4 @@
-.accordion {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  grid-column: 7 span;
-  outline: none;
+.accordion-list .accordion-item {
   border: 1px solid $border-color;
   border-radius: 38px;
   padding: 7px 15px 7px 10px;
@@ -18,63 +13,6 @@
   background-color: $light-gray-color;
   transition: 0.4s;
   cursor: pointer;
-
-  &::after {
-    content: "";
-    float: right;
-    margin-left: 5px;
-    width: 10px;
-    height: 10px;
-    // background-image: url("../img/caret-down-solid.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    @include small-tablet {
-      font-size: 10px;
-    }
-  }
-
-  &:hover {
-    box-shadow: none;
-  }
-
-  &:active {
-    background-color: $light-color;
-  }
-
-  &.active {
-    box-shadow: $box-shadow-accordion--active;
-
-    &:hover {
-      box-shadow: none;
-    }
-  }
-
-  &.active::after {
-    // background-image: url("../img/caret-up-solid.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  &--btn {
-    padding: 7px 10px;
-    font-weight: 500;
-    font-size: 14px;
-
-    &::after {
-      //   background-image: url("../img/caret-down-solid.svg");
-    }
-
-    &:hover {
-      box-shadow: none;
-    }
-
-    &.active::after {
-      //   background-image: url("../img/caret-up-solid.svg");
-    }
-  }
 
   @include tablet {
     font-size: 20px;
@@ -104,28 +42,6 @@
   }
 }
 
-.accordion-list .accordion-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  grid-column: 7 span;
-  outline: none;
-  border: 1px solid $border-color;
-  border-radius: 38px;
-  padding: 7px 15px 7px 10px;
-  width: 100%;
-  box-shadow: $box-shadow-accordion;
-  font-family: $font-family;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 117%;
-  text-align: left;
-  color: $black-color;
-  background-color: $light-gray-color;
-  transition: 0.4s;
-  cursor: pointer;
-}
-
 .accordion-list .accordion-item > .accordion-item__summary {
   padding: 0;
 }
@@ -136,10 +52,6 @@
 
 .accordion-item__summary-title {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 117%;
-}
-
-.accordion-list .accordion-item--open > .accordion-item__summary {
-  border-bottom: 0px;
 }

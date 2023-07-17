@@ -1,37 +1,9 @@
 <template>
   <div class="calc-item container block">
     <h2 class="calc-item__title title title--h3">Дополнительные работы</h2>
-    <form action="#" class="form">
-      <button type="button" class="btn-reset accordion accordion--btn">
-        Дополнительные работы
-      </button>
-      <ul class="list-reset calc-item__list panel" id="coefList0" style="">
-        <li class="addition__item">
-          <label class="label addition__label" for="coef2">
-            Алмазное сверление с водосборным кольцом пылесосом
-          </label>
-          <div class="calc">
-            <button class="btn-reset btn calc__btn">
-              <font-awesome-icon :icon="['fas', 'minus']" />
-            </button>
-            <input
-              class="input-reset calc__input input"
-              type="number"
-              pk="2"
-              price="1.1"
-              id="coef2"
-              value="Алмазное сверление с водосборным кольцом пылесосом"
-            />
-            <button class="btn-reset btn calc__btn">
-              <font-awesome-icon :icon="['fas', 'plus']" />
-            </button>
-          </div>
-        </li>
-      </ul>
-    </form>
     <AccordionList>
       <AccordionItem>
-        <template #summary>Item summary</template>
+        <template #summary>Дополнительные работы</template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
@@ -151,6 +123,7 @@ export default {
   &__input {
     margin: 0 10px;
     padding: 10px 12px;
+    width: 40px;
     font-weight: 700;
     font-size: 14px;
     text-align: center;
