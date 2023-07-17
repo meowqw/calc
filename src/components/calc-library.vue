@@ -4,7 +4,8 @@
       <calc-item-result />
     </div>
     <div class="calculator__right">
-      <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged" nav-item-class="nav-item tabs-component-tabs">
+      <!-- tabs -->
+      <tabs :options="{ useUrlFragment: false }" nav-item-class="nav-item tabs-component-tabs">
         <tab name="Бурение">
             1
         </tab>
