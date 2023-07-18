@@ -38,14 +38,6 @@
           >
         </div>
       </div>
-      <div class="result-block__bottom">
-        <button
-          class="btn-reset btn result-block__btn-estimate"
-          data-graph-path="estimate"
-        >
-          Смета
-        </button>
-      </div>
     </div>
   </div>
 </template>

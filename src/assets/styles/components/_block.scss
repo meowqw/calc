@@ -13,4 +13,8 @@
   @include small-tablet {
     padding: 7px 10px;
   }
+
+  &--second {
+    padding: 10px;
+  }
 }

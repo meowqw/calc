@@ -14,6 +14,9 @@ import { useAccordion } from "vue3-rich-accordion";
 import "vue3-rich-accordion/accordion-library-styles.scss";
 // tabs-component
 import {Tabs, Tab} from 'vue3-tabs-component';
+// vue-select
+import Multiselect from '@vueform/multiselect'
+import "@vueform/multiselect/themes/default.scss"
 
 dom.watch();
 
@@ -22,6 +25,7 @@ createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component('tabs', Tabs)
   .component('tab', Tab)
+  .component('Multiselect', Multiselect)
   .use(store)
   .use(router)
   .use(useAccordion)

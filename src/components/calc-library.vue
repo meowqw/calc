@@ -7,13 +7,13 @@
       <!-- tabs -->
       <tabs :options="{ useUrlFragment: false }" nav-item-class="nav-item tabs-component-tabs">
         <tab name="Бурение">
-            1
+          <calc-component-first/>
         </tab>
         <tab name="Периметр">
-           2
+           <calc-component-second/>
         </tab>
         <tab name="Резка" :is-disabled="false">
-            3
+            <calc-component-third/>
         </tab>
     </tabs>
       <calc-item-addition />
@@ -30,6 +30,9 @@ import calcItemAddition from "@/components/calc-library-items/calc-item-addition
 import calcItemDistance from "@/components/calc-library-items/calc-item-distance";
 import calcItemResult from "@/components/calc-library-items/calc-item-result";
 import calcItemSale from "@/components/calc-library-items/calc-item-sale";
+import calcComponentFirst from "@/components/calc-library-component/calc-component-first";
+import calcComponentSecond from "@/components/calc-library-component/calc-component-second";
+import calcComponentThird from "@/components/calc-library-component/calc-component-third";
 
 export default {
   name: "calc-library",
@@ -38,6 +41,9 @@ export default {
     calcItemDistance,
     calcItemResult,
     calcItemSale,
+    calcComponentFirst,
+    calcComponentSecond,
+    calcComponentThird
   },
 };
 </script>
