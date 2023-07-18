@@ -62,7 +62,7 @@
             </button>
           </div>
           <div class="calc-accordion-item__bottom">
-            <calc-item-row-result />
+            <calc-item-row-result style="display: none;" />
           </div>
         </div>
       </AccordionList>

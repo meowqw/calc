@@ -12,7 +12,6 @@
   color: $black-color;
   background-color: $light-gray-color;
   transition: 0.4s;
-  cursor: pointer;
 
   @include tablet {
     font-size: 20px;
@@ -44,6 +43,8 @@
 
 .accordion-list .accordion-item--open {
   border-radius: 20px;
+  background-color: $light-color;
+  box-shadow: none;
 }
 
 .accordion-item__summary-title {
