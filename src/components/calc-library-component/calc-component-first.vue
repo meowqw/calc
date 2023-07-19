@@ -66,6 +66,12 @@
           </div>
         </div>
       </AccordionList>
+      <div class="calc-component__bottom">
+        <button class="btn-reset btn">
+          <font-awesome-icon :icon="['fas', 'plus']" />
+          Добавить отверстие
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -97,6 +103,18 @@ export default {
 .calc-component {
   &__title {
     margin-bottom: 15px;
+
+    @include mobile {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
   }
 }
 .calc-accordion-item {
@@ -108,6 +126,10 @@ export default {
     display: flex;
     align-items: flex-start;
     gap: 10px;
+
+    @include mobile {
+      gap: 5px;
+    }
   }
 
   &__name {
@@ -171,10 +193,6 @@ export default {
 
     @include tablet {
       grid-column: 12 span;
-    }
-
-    @include small-tablet {
-      padding: 10px;
     }
   }
 

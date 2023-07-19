@@ -2,7 +2,7 @@
   <div class="distance calc-item">
     <div class="container calc-item__container block">
       <h2 class="calc-item__title title title--h3">Удаленность от МКАД</h2>
-      <form action="#" class="calc-item__form form">
+      <form action="#" class="calc-item__form distance__form">
         <label class="form__label label calc-item__label">
           <!-- <span>Название НП</span> -->
           <input
@@ -28,4 +28,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.distance {
+  &__form {
+    @include mobile {
+      gap: 10px;
+    }
+  }
+}
+</style>

@@ -21,6 +21,14 @@ input[type="number"] {
   line-height: 16px;
   color: $black-color;
   background-color: $light-color;
+
+  @include small-tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    font-size: 12px;
+  }
 }
 
 .label {

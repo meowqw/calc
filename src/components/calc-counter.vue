@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .counter {
   display: flex;
-  max-width: 160px;
+  max-width: 200px;
 
   &__label {
     margin-right: 10px;
@@ -46,7 +46,7 @@ export default {
   &__input {
     margin: 0 10px;
     padding: 10px 12px;
-    width: 40px;
+    width: 70px;
     font-weight: 700;
     font-size: 14px;
     text-align: center;

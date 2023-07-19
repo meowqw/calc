@@ -37,6 +37,7 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  min-height: 40px;
 
   &__container {
     display: grid;
@@ -58,16 +59,20 @@ export default {
       font-size: 18px;
     }
   }
+
+  @include tablet {
+    margin-bottom: 0;
+  }
 }
 
 .sidebar-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 40px;
+  max-height: 40px;
   font-size: 20px;
   color: $accent-color;
 }

@@ -47,6 +47,7 @@ export default {
 <style lang="scss" scoped>
 /* stylelint-disable value-no-vendor-prefix */
 .sidebar {
+  z-index: 100;
   position: fixed;
   left: -350px;
   bottom: 0;

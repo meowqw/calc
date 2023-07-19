@@ -75,6 +75,7 @@ export default {
       flex-direction: column;
       align-items: center;
       padding: 7px 15px;
+      font-size: 12px;
     }
   }
 

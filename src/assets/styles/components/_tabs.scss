@@ -9,20 +9,22 @@
   margin-bottom: 5px;
 }
 
-@media (min-width: 700px) {
-  .tabs-component-tabs {
-    border: 0;
-    align-items: stretch;
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-bottom: -1px;
-    padding: $pp;
+.tabs-component-tabs {
+  border: 0;
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: -1px;
+  padding: $pp;
+
+  @include mobile {
+    padding: 10px 0;
   }
 }
 
 .nav-item {
-    padding: 0;
+  padding: 0;
 }
 
 .tabs-component-tab {
@@ -61,7 +63,6 @@
   }
 
   .tabs-component-tab.is-active {
-    
   }
 }
 
@@ -93,15 +94,16 @@
 }
 
 .tabs-component-panels {
-  padding: 4em 0;
-}
+  background-color: $light-color;
+  border: solid 1px $border-color;
+  border-radius: $border-radius;
+  padding: $pp;
 
-@media (min-width: 700px) {
-  .tabs-component-panels {
-    background-color: $light-color;
-    border: solid 1px $border-color;
-    border-radius: $border-radius;
-    padding: $pp;
+  @include mobile {
+    border: 0;
+    border-top: 1px solid $border-color;
+    border-radius: 0;
+    padding: 10px 0;
   }
 }
 

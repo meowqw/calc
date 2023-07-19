@@ -50,11 +50,8 @@ export default {
 
 <style lang="scss" scoped>
 .result {
-  margin-top: 0;
-
   &__container {
     padding: 0;
-    padding-bottom: 10px;
   }
 
   &__btn {
@@ -69,7 +66,7 @@ export default {
   }
 
   @include tablet {
-    margin-top: 20px;
+    margin-top: 5px;
   }
 }
 
@@ -135,6 +132,10 @@ export default {
 
     @include small-tablet {
       font-size: 18px;
+    }
+
+    @include mobile {
+      font-size: 16px;
     }
 
     &--total {

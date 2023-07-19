@@ -12,7 +12,7 @@
           type="range"
           value="0"
         />
-        <label class="form__label label calc-item__label" for="amount">
+        <label class="form__label label range__label" for="amount">
           <input
             class="input-reset input calc-item__input form__input range__input"
             id="amount"
@@ -100,7 +100,7 @@ export default {
       }
 
       @include mobile {
-        width: auto;
+        width: 100%;
       }
     }
 
@@ -113,8 +113,14 @@ export default {
     }
   }
 
-  &__input {
-    max-width: 50px;
+  &__label {
+    max-width: 90px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
 </style>

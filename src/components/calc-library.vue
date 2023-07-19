@@ -2,6 +2,12 @@
   <div class="container calculator__container">
     <div class="calculator__left">
       <calc-item-result />
+      <div class="calculator__left-bottom">
+        <button class="btn-reset btn" @click="isModalOpen = true">
+          <font-awesome-icon :icon="['fas', 'file']" />
+          Смета
+        </button>
+      </div>
     </div>
     <div class="calculator__right">
       <!-- tabs -->
@@ -23,6 +29,11 @@
       </div>
     </div>
   </div>
+
+  <calc-modal
+    :is-open="isModalOpen"
+    @close="isModalOpen = false"
+  />
 </template>
 
 <script>
@@ -33,6 +44,7 @@ import calcItemSale from "@/components/calc-library-items/calc-item-sale";
 import calcComponentFirst from "@/components/calc-library-component/calc-component-first";
 import calcComponentSecond from "@/components/calc-library-component/calc-component-second";
 import calcComponentThird from "@/components/calc-library-component/calc-component-third";
+import calcModal from "./calc-modal.vue";
 
 export default {
   name: "calc-library",
@@ -43,7 +55,13 @@ export default {
     calcItemSale,
     calcComponentFirst,
     calcComponentSecond,
-    calcComponentThird
+    calcComponentThird,
+    calcModal
+  },
+  data() {
+    return {
+      isModalOpen: false,
+    };
   },
 };
 </script>
@@ -59,6 +77,15 @@ export default {
       display: flex;
       flex-direction: column-reverse;
       gap: 0;
+    }
+  }
+
+  &__left-bottom {
+    display: flex;
+    justify-content: flex-end;
+
+    @include big-desktop {
+      margin-bottom: 20px;
     }
   }
 

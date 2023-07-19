@@ -76,4 +76,8 @@
   --ms-option-px: 0.75rem;
 
   --ms-empty-color: #4b5563;
+
+  @include mobile {
+    --ms-py: 4px;
+  }
 }

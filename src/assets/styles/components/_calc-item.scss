@@ -17,6 +17,7 @@
 
     @include small-tablet {
       display: flex;
+      align-items: center;
     }
   }
 
@@ -27,6 +28,10 @@
     @include small-tablet {
       grid-column: 12 span;
     }
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__btn {
@@ -36,9 +41,5 @@
     @include mobile {
       grid-column: 6 span;
     }
-  }
-
-  @include small-tablet {
-    margin-bottom: 15px;
   }
 }
