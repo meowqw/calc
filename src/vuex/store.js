@@ -9,7 +9,12 @@ import mutations from "./mutations/mutations";
 const actions = { ...commonActions, ...apiRequests };
 
 const store = createStore({
-  state: {},
+  state: {
+    // список элементов в первом калькуляторе "бурение"
+    accordionListFirst: [],
+     // список элементов во втором калькуляторе "периметр"
+    accordionListSecond: [],
+  },
   mutations,
   actions,
   getters,

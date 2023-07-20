@@ -1,17 +1,16 @@
 <template>
   <div class="counter">
-    <button class="btn-reset btn counter__btn">
+    <button class="btn-reset btn counter__btn" @click.prevent="decrementItem">
       <font-awesome-icon :icon="['fas', 'minus']" />
     </button>
     <input
+      v-model="localQuantity"
       class="input-reset counter__input input"
       type="number"
-      pk="2"
-      price="1.1"
-      id="coef2"
-      value="Алмазное сверление с водосборным кольцом пылесосом"
+      name="quantity"
+      id="localQuantity"
     />
-    <button class="btn-reset btn counter__btn">
+    <button class="btn-reset btn counter__btn" @click.prevent="incrementItem">
       <font-awesome-icon :icon="['fas', 'plus']" />
     </button>
   </div>
@@ -20,6 +19,22 @@
 <script>
 export default {
   name: "calc-counter",
+  data() {
+    return {
+      localQuantity: 1,
+    };
+  },
+  methods: {
+    decrementItem() {
+      if (this.localQuantity > 1) {
+        this.localQuantity--;
+      }
+    },
+
+    incrementItem() {
+      this.localQuantity++;
+    },
+  },
 };
 </script>
 

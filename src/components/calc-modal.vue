@@ -1,5 +1,6 @@
 <template>
   <div :class="['modal', { open: isOpen }]">
+    <div class="close" @click="closeModal"></div>
     <div class="modal__container container">
       <div class="modal__content">
         <div class="modal__top">
@@ -59,6 +60,7 @@ export default {
   }
 
   &__container {
+    z-index: 10;
     position: absolute;
     left: 0;
     right: 0;
@@ -96,6 +98,13 @@ export default {
     .icon {
       font-size: 18px;
     }
+  }
+
+  .close {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

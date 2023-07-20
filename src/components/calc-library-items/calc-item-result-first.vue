@@ -3,15 +3,8 @@
     <div class="container result__container">
       <div class="result-block block">
         <div class="result-block__top">
-          <h3 class="result-block__title">Стоимость бурения</h3>
-          <span class="result-block__price">5000 руб</span>
-        </div>
-        <div class="result-block__top">
-          <h3 class="result-block__title">Стоимость периметра</h3>
-          <span class="result-block__price">5000 руб</span>
-        </div>
-        <div class="result-block__top">
-          <h3 class="result-block__title">Стоимость резки</h3>
+          <h3 class="result-block__title">Стоимость</h3>
+          <span class="result-block__add">Кол-во: <span>2</span></span>
           <span class="result-block__price">5000 руб</span>
         </div>
         <ul class="list-reset result-block__list">
@@ -32,15 +25,6 @@
             <div class="result-item__price">700 руб</div>
           </li>
         </ul>
-        <!-- итоговая стоимость-->
-        <div class="result-block__total">
-          <h3 class="result-block__title result-block__title--total">
-            Итоговая стоимость:
-          </h3>
-          <span class="result-block__price result-block__price--total"
-            >10000 руб</span
-          >
-        </div>
       </div>
     </div>
   </div>

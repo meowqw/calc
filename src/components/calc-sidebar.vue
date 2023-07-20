@@ -15,10 +15,10 @@
     <div class="sidebar__menu menu">
       <ul class="list-reset menu__list">
         <li class="menu__item">
-          <router-link class="menu__link" to="/"> Клиенты </router-link>
+          <router-link class="menu__link" to="/" @click="closeSidebar"> Клиенты </router-link>
         </li>
         <li class="menu__item">
-          <router-link class="menu__link" to="/calc-library">
+          <router-link class="menu__link" to="/calc-library" @click="closeSidebar">
             Калькулятор
           </router-link>
         </li>
