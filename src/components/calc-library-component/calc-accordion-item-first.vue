@@ -24,11 +24,11 @@
               </li>
               <!-- диаметр коронки -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox />
+                <calc-item-checkbox :title="itemCheckboxTitle"/>
               </li>
               <!-- материал стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox />
+                <calc-item-checkbox :title="itemCheckboxTitleSecond"/>
               </li>
               <!-- толщина стены -->
               <li class="calc-accordion-item__item">
@@ -86,6 +86,8 @@ export default {
   },
   data() {
     return {
+        itemCheckboxTitle: "Диаметр коронки",
+        itemCheckboxTitleSecond: "Материал стены",
         isVisible: false,
     }
   },

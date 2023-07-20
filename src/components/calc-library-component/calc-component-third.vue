@@ -17,7 +17,7 @@
             </li>
             <!-- материал стены -->
             <li class="calc-component-content__item">
-              <calc-item-checkbox />
+              <calc-item-checkbox :title="itemCheckboxTitle"/>
             </li>
             <!-- чекбокс для отображения итемов при условии "без зарезов"-->
             <li
@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       isActive: false,
+      itemCheckboxTitle: "Материал стены"
     }
   }
 };

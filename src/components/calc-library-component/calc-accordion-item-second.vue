@@ -22,7 +22,7 @@
               </li>
               <!-- материал стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox />
+                <calc-item-checkbox :title="itemCheckboxTitle"/>
               </li>
             </ul>
           </div>
@@ -58,6 +58,11 @@ export default {
     calcItemCheckbox,
     calcItemValueSlider,
     calcItemInput,
+  },
+  data() {
+    return {
+        itemCheckboxTitle: "Материал стены",
+    }
   },
   props: {
     index: Number,
