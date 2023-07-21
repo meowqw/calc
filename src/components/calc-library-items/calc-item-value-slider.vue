@@ -1,24 +1,20 @@
 <template>
   <div class="calc-item-value-slider calc-item block block--second">
     <h3 class="calc-item__title title title--h3">Толщина стены</h3>
-    <form class="calc-item-value-slider__form form">
+    <form class="calc-item-value-slider__form form" @submit.prevent>
       <div class="range">
         <input
           class="range__slider"
           id="slider"
           max="200"
           min="0"
-          oninput="amount.value=slider.value"
           type="range"
-          value="0"
         />
         <label class="form__label label range__label" for="amount">
           <input
             class="input-reset input calc-item__input form__input range__input"
             id="amount"
-            oninput="slider.value=amount.value"
             type="number"
-            value="0"
           />
           <div class="tooltip">
             <font-awesome-icon class="icon" :icon="['fas', 'circle-info']" />
@@ -33,6 +29,9 @@
 <script>
 export default {
   name: "calc-item-value-slider",
+
+  computed: {},
+  methods: {},
 };
 </script>
 

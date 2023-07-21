@@ -5,4 +5,7 @@ export default {
   ACCORDION_LIST_SECOND(state) {
     return state.accordionListSecond;
   },
+  VALUE_SLIDER_FIRST_CALC(state) {
+    return state.valueSliderFirstCalc;
+  }
 };

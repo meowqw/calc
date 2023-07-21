@@ -35,12 +35,11 @@
                 </td>
                 <td data-label="Заказы">
                   <button
-                    class="btn-reset btn btn--mini"
+                    :class="['btn-reset btn btn--mini', { active: showOrders }]"
                     data-target="order-panel-1"
-                    style="min-width: 90px"
+                    @click.capture="toggleOrders"
                   >
                     Заказы
-                    <font-awesome-icon :icon="['fas', 'caret-down']" />
                   </button>
                 </td>
                 <td>
@@ -50,7 +49,11 @@
                 </td>
               </tr>
               <!-- заказы -->
-              <tr id="order-panel-1" class="table-order-panel">
+              <tr
+                id="order-panel-1"
+                class="table-order-panel"
+                v-if="showOrders"
+              >
                 <td></td>
                 <td data-label="Дата:&nbsp;">23.03.2023</td>
                 <td data-label="Время:&nbsp;">Время</td>
@@ -71,24 +74,27 @@
     </div>
   </section>
 
-  <calc-modal
-    :is-open="isModalOpen"
-    @close="isModalOpen = false"
-  />
+  <calc-modal :is-open="isModalOpen" @close="isModalOpen = false" />
 </template>
 
 <script>
-import calcModal from './calc-modal.vue';
+import calcModal from "./calc-modal.vue";
 
 export default {
   name: "calc-clients",
   components: {
-    calcModal
+    calcModal,
   },
   data() {
     return {
       isModalOpen: false,
+      showOrders: false,
     };
+  },
+  methods: {
+    toggleOrders() {
+      this.showOrders = !this.showOrders;
+    },
   },
 };
 </script>
@@ -142,7 +148,7 @@ table {
   th,
   td {
     border: none;
-    padding: 8px 10px;
+    padding: 10px 5px;
     text-align: left;
   }
 
@@ -242,5 +248,13 @@ table {
       padding: 5px;
     }
   }
+}
+
+.table-order-panel {
+  background-color: $light-gray-color;
+}
+
+.active {
+  box-shadow: $shadow-btn--active;
 }
 </style>

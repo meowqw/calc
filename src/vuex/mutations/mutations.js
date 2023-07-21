@@ -11,8 +11,12 @@ export default {
   ADD_ITEM_SECOND_ACCORDION_LIST(state, item) {
     state.accordionListSecond.push(item);
   },
-  // мутация удаления  элемента в список второго калькулятора
+  // мутация удаления элемента в список второго калькулятора
   REMOVE_ITEM_SECOND_ACCORDION_LIST(state, index) {
     state.accordionListSecond.splice(index, 1);
   },
+  // мутация значения толщины стены в первом калькуляторе
+  SET_VALUE_SLIDER_FIRST_CALC(state, value) {
+    state.valueSliderFirstCalc = value;
+  }
 };

@@ -12,8 +12,10 @@ const store = createStore({
   state: {
     // список элементов в первом калькуляторе "бурение"
     accordionListFirst: [],
-     // список элементов во втором калькуляторе "периметр"
+    // список элементов во втором калькуляторе "периметр"
     accordionListSecond: [],
+    // толщина стены в первом калькуляторе
+    valueSliderFirstCalc: 0,
   },
   mutations,
   actions,
