@@ -52,3 +52,16 @@
   font-size: 14px;
   line-height: 117%;
 }
+
+.accordion-list .accordion-item > .accordion-item__content {
+  padding: 0;
+}
+
+.accordion-list .accordion-item > .accordion-item__summary {
+  padding: 6px;
+}
+
+.accordion-list .accordion-item--open > .accordion-item__summary {
+  border-bottom: none;
+  background: $light-color;
+}

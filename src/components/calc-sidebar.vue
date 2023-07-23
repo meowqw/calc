@@ -1,28 +1,37 @@
 <template>
   <div :class="['sidebar', { open: isOpen }]">
-    <div class="sidebar__top">
-      <h2 class="sidebar__title">Меню</h2>
-      <div class="sidebar__right">
-        <button
-          type="button"
-          class="btn-reset sidebar-btn"
-          @click="closeSidebar"
-        >
-          <font-awesome-icon :icon="['fas', 'xmark']" />
-        </button>
+    <div class="close" @click="closeSidebar"></div>
+    <div class="sidebar__content">
+      <div class="sidebar__top">
+        <h2 class="sidebar__title">Меню</h2>
+        <div class="sidebar__right">
+          <button
+            type="button"
+            class="btn-reset sidebar-btn"
+            @click="closeSidebar"
+          >
+            <font-awesome-icon :icon="['fas', 'xmark']" />
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="sidebar__menu menu">
-      <ul class="list-reset menu__list">
-        <li class="menu__item">
-          <router-link class="menu__link" to="/" @click="closeSidebar"> Клиенты </router-link>
-        </li>
-        <li class="menu__item">
-          <router-link class="menu__link" to="/calc-library" @click="closeSidebar">
-            Калькулятор
-          </router-link>
-        </li>
-      </ul>
+      <div class="sidebar__menu menu">
+        <ul class="list-reset menu__list">
+          <li class="menu__item">
+            <router-link class="menu__link" to="/" @click="closeSidebar">
+              Клиенты
+            </router-link>
+          </li>
+          <li class="menu__item">
+            <router-link
+              class="menu__link"
+              to="/calc-library"
+              @click="closeSidebar"
+            >
+              Калькулятор
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -45,23 +54,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* stylelint-disable value-no-vendor-prefix */
 .sidebar {
   z-index: 100;
   position: fixed;
-  left: -350px;
+  left: -100%;
   bottom: 0;
-  overflow: auto;
-  border: 1px solid $border-color;
-  padding: 20px 0;
   width: 100%;
-  height: -webkit-fill-available;
-  max-width: 320px;
-  background-color: $light-gray-color;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
   transition: left 0.2s ease-in-out;
 
   &.open {
     left: 0;
+  }
+
+  &__content {
+    z-index: 101;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    border: 1px solid $border-color;
+    padding: 20px 0;
+    width: 100%;
+    height: -webkit-fill-available;
+    max-width: 320px;
+    background-color: $light-gray-color;
+
+    @include mobile {
+      height: 100%;
+      max-width: 100%;
+    }
   }
 
   &__top {
@@ -82,14 +105,6 @@ export default {
     font-weight: 500;
     font-size: 16px;
     line-height: 119%;
-  }
-
-  @include mobile {
-    left: -700px;
-    top: 0;
-    border-radius: 0;
-    height: 100%;
-    max-width: 100%;
   }
 
   &--active {
@@ -116,5 +131,12 @@ export default {
       background-color: $border-color;
     }
   }
+}
+
+.close {
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 </style>
