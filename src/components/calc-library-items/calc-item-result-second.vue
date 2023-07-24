@@ -9,17 +9,22 @@
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Дополнительные работы:
-              <span class="result-item__value"
-                >Доставка строительных лесов (1)</span
-              >
+              Периметр проема
+              <span class="result-item__value">{{ inputValue }} см</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Удаленность от МКАД:
-              <span class="result-item__value">50 км</span>
+              Толщина стены
+              <span class="result-item__value">{{ valueSlider }} см</span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Материал стены
+              <span class="result-item__value">{{ selectedCheckbox }}</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
@@ -32,6 +37,24 @@
 <script>
 export default {
   name: "calc-item-result",
+  props: {
+    // периметр проема
+    inputValue: {
+      type: [Number, String],
+      required: true,
+    },
+    // толщина стены
+    valueSlider: {
+      type: Number,
+      required: true,
+      return: 0,
+    },
+    // материал стены
+    selectedCheckbox: {
+      type: String,
+      return: null,
+    },
+  },
 };
 </script>
 

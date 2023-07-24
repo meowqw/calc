@@ -2,7 +2,7 @@
   <div class="calc-item-counter calc-item block block--second">
     <h3 class="calc-item__title title title--h3">Количество отверстий</h3>
     <form class="calc-item__form">
-      <calc-counter/>
+      <calc-counter @quantityChanged="onQuantityChanged"/>
     </form>
   </div>
 </template>
@@ -13,6 +13,18 @@ export default {
   name: "calc-item-counter",
   components: {
     calcCounter
+  },
+  data() {
+    return {
+      quantity: 1,
+    }
+  },
+  methods: {
+    onQuantityChanged(value) {
+      this.quantity = value;
+      // перебрасываем значение родителю
+      this.$emit("quantityUpdate", this.quantity);
+    }
   }
 };
 </script>

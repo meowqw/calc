@@ -9,15 +9,21 @@
           <ul class="list-reset calc-component-content__list">
             <!-- длина реза -->
             <li class="calc-component-content__item">
-              <calc-item-input />
+              <calc-item-input @inputChanged="handleInputChanged" :title="itemInputTilte" />
             </li>
             <!-- толщина стены -->
             <li class="calc-component-content__item">
-              <calc-item-value-slider />
+              <calc-item-value-slider
+                @inputChanged="handleValueSliderChanged"
+              />
             </li>
             <!-- материал стены -->
             <li class="calc-component-content__item">
-              <calc-item-checkbox :title="itemCheckboxTitle"/>
+              <calc-item-checkbox
+                :title="itemCheckboxTitle"
+                :checkboxList="checkboxList"
+                @checkboxSelected="handleCheckboxSelected"
+              />
             </li>
             <!-- чекбокс для отображения итемов при условии "без зарезов"-->
             <li
@@ -37,17 +43,26 @@
             </li>
             <!-- количество отверстий -->
             <li class="calc-accordion-item__item" v-if="isActive">
-              <calc-item-counter />
+              <calc-item-counter @quantityUpdate="onQuantityUpdated" />
             </li>
             <!-- коэффициенты -->
             <li class="calc-accordion-item__item" v-if="isActive">
-              <calc-item-select />
+              <calc-item-select
+                :options="selectOptions"
+                @valueChanged="handleSelecedValues"
+              />
             </li>
           </ul>
         </div>
         <!-- result -->
         <div class="calc-component-content__right">
-          <calc-item-result-third />
+          <calc-item-result-third
+            :inputValue="inputValue"
+            :valueSlider="valueSlider"
+            :selectedCheckbox="selectedCheckbox"
+            :counterValue="counterValue"
+            :selectValues="selectValues"
+          />
         </div>
       </div>
     </div>
@@ -75,9 +90,46 @@ export default {
   data() {
     return {
       isActive: false,
-      itemCheckboxTitle: "Материал стены"
-    }
-  }
+      itemInputTilte: "Длина реза",
+      itemCheckboxTitle: "Материал стены",
+      // переменная для хранения длины реза
+      inputValue: 0,
+      // переменная для хранения значения valueSlider
+      valueSlider: 0,
+      // список для чекбоксов
+      checkboxList: ["Кирпич", "Бетон", "Глина"],
+      // выбранный чекбок для диаметра коронки
+      selectedCheckbox: null,
+      // переменная для хранения значения счетчика
+      counterValue: 1,
+      // переменная для хранения значеня, которые идут в select
+      selectOptions: ["one", "two", "three"],
+      // переменная для хранения значения, которые идту из select
+      selectValues: [],
+    };
+  },
+  methods: {
+    // обработчик события, вызываемый при изменении значения в input (обрабатываем данные из ребенка)
+    handleInputChanged(value) {
+      this.inputValue = value;
+    },
+    // обработчик события, вызываемый при изменении значения valueSlider
+    handleValueSliderChanged(value) {
+      this.valueSlider = value;
+    },
+    // получение выбранного чекбокса материала стены
+    handleCheckboxSelected(item) {
+      this.selectedCheckbox = item;
+    },
+    // получение значения счетчика
+    onQuantityUpdated(value) {
+      this.counterValue = value;
+    },
+    // получение значения select
+    handleSelecedValues(value) {
+      this.selectValues = value;
+    },
+  },
 };
 </script>
 

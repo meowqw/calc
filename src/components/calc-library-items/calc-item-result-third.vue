@@ -9,17 +9,36 @@
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Дополнительные работы:
-              <span class="result-item__value"
-                >Доставка строительных лесов (1)</span
-              >
+              Длина реза:
+              <span class="result-item__value">{{ inputValue }} см</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Удаленность от МКАД:
-              <span class="result-item__value">50 км</span>
+              Толщина стены:
+              <span class="result-item__value">{{ valueSlider }} см</span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Материал стены:
+              <span class="result-item__value">{{ selectedCheckbox }}</span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Количество отверстий:
+              <span class="result-item__value">{{ counterValue }}</span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Коэффициенты:
+              <span class="result-item__value">{{ selectValues }}</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
@@ -32,6 +51,34 @@
 <script>
 export default {
   name: "calc-item-result",
+  props: {
+    // длина реза
+    inputValue: {
+      type: [Number, String],
+      required: true,
+      return: 0,
+    },
+    // толщина стены
+    valueSlider: {
+      type: Number,
+      required: true,
+      return: 0,
+    },
+    // материал стены
+    selectedCheckbox: {
+      type: String,
+      return: null,
+    },
+    // количество отверстий
+    counterValue: {
+      type: Number,
+      required: true,
+    },
+    // коэффициенты
+    selectValues: {
+      type: Array,
+    },
+  },
 };
 </script>
 

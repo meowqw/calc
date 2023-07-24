@@ -7,7 +7,7 @@
             Стоимость: 0
             <span>
               Кол-во:
-              <span>1</span>
+              <span>{{ counterValue }}</span>
             </span>
           </div>
         </template>
@@ -20,33 +20,48 @@
             <ul class="list-reset calc-accordion-item__list">
               <!-- коэффициенты -->
               <li class="calc-accordion-item__item">
-                <calc-item-select />
+                <calc-item-select
+                  :options="selectOptions"
+                  @valueChanged="handleSelecedValues"
+                />
               </li>
               <!-- диаметр коронки -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox :title="itemCheckboxTitle" />
+                <calc-item-checkbox
+                  :title="itemCheckboxTitle"
+                  :checkboxList="checkboxList"
+                  @checkboxSelected="handleCheckboxSelected"
+                />
               </li>
               <!-- материал стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox :title="itemCheckboxTitleSecond" />
+                <calc-item-checkbox
+                  :title="itemCheckboxTitleSecond"
+                  :checkboxList="checkboxListSecond"
+                  @checkboxSelected="handleCheckboxSelectedSecond"
+                />
               </li>
               <!-- толщина стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-value-slider />
+                <calc-item-value-slider
+                  @inputChanged="handleValueSliderChanged"
+                />
               </li>
               <!-- количество отверстий -->
               <li class="calc-accordion-item__item">
-                <calc-item-counter />
-              </li>
-              <!-- длина реза -->
-              <li class="calc-accordion-item__item">
-                <calc-item-input />
+                <calc-item-counter @quantityUpdate="onQuantityUpdated" />
               </li>
             </ul>
           </div>
           <!-- result -->
           <div class="calc-accordion-item__right">
-            <calc-item-result-first />
+            <calc-item-result-first
+              :counterValue="counterValue"
+              :valueSlider="valueSlider"
+              :selectValues="selectValues"
+              :selectedCheckbox="selectedCheckbox"
+              :selectedCheckboxSecond="selectedCheckboxSecond"
+            />
           </div>
         </div>
       </AccordionItem>
@@ -71,7 +86,6 @@ import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
 import calcItemCounter from "../calc-library-items/calc-item-counter";
 import calcItemSelect from "../calc-library-items/calc-item-select";
-import calcItemInput from "../calc-library-items/calc-item-input";
 
 export default {
   name: "calc-accordion-item-first",
@@ -82,22 +96,53 @@ export default {
     calcItemValueSlider,
     calcItemCounter,
     calcItemSelect,
-    calcItemInput,
   },
   data() {
     return {
       itemCheckboxTitle: "Диаметр коронки",
       itemCheckboxTitleSecond: "Материал стены",
-      isVisible: false,
+      // переменная для хранения значения счетчика
+      counterValue: 1,
+      // переменная для хранения значения valueSlider
+      valueSlider: 0,
+      // переменная для хранения значеня, которые идут в select
+      selectOptions: ["one", "two", "three"],
+      // переменная для хранения значения, которые идту из select
+      selectValues: [],
+      // список для чекбоксов
+      checkboxList: ["20 см", "30 см", "40 см"],
+      // cписок для чекбоксов
+      checkboxListSecond: ["Кирпич", "Бетон", "Глина"],
+      // выбранный чекбок для диаметра коронки
+      selectedCheckbox: null,
+      // выбранный чекбок для материала стены
+      selectedCheckboxSecond: null,
     };
   },
   computed: {},
-  props: {
-    index: Number,
-  },
   methods: {
     deleteItem() {
       this.$emit("deleteItem", this.index);
+    },
+    // получение значения счетчика
+    onQuantityUpdated(value) {
+      this.counterValue = value;
+    },
+    // обработчик события, вызываемый при изменении значения valueSlider
+    handleValueSliderChanged(value) {
+      this.valueSlider = value;
+    },
+    // получение значения select
+    handleSelecedValues(value) {
+      this.selectValues = value;
+    },
+    // получение выбранного чекбокса диаметра коронки
+    handleCheckboxSelected(item) {
+      this.selectedCheckbox = item;
+    },
+    // получение выбранного чекбокса материала стены
+    handleCheckboxSelectedSecond(item) {
+      this.selectedCheckboxSecond = item;
     },
   },
 };

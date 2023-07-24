@@ -4,23 +4,41 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость</h3>
-          <span class="result-block__add">Кол-во: <span>2</span></span>
+          <span class="result-block__add"
+            >Кол-во: <span>{{ counterValue }}</span></span
+          >
           <span class="result-block__price">5000 руб</span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Дополнительные работы:
-              <span class="result-item__value"
-                >Доставка строительных лесов (1)</span
-              >
+              Коэффициенты:
+              <span class="result-item__value">{{ selectValues }}</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Удаленность от МКАД:
-              <span class="result-item__value">50 км</span>
+              Диаметр коронки:
+              <span class="result-item__value">
+                {{ selectedCheckbox }}
+              </span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Материал стены:
+              <span class="result-item__value">
+                {{ selectedCheckboxSecond }}
+              </span>
+            </div>
+            <div class="result-item__price">700 руб</div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Толщина стены:
+              <span class="result-item__value">{{ valueSlider }} см</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
@@ -33,6 +51,35 @@
 <script>
 export default {
   name: "calc-item-result",
+  props: {
+    // количество отверстий
+    counterValue: {
+      type: Number,
+      required: true,
+    },
+    // толщина стены
+    valueSlider: {
+      type: Number,
+      required: true,
+      return: 0,
+    },
+    // коэффициенты
+    selectValues: {
+      type: Array,
+      required: true,
+      return: null,
+    },
+    // диаметр коронки
+    selectedCheckbox: {
+      type: String,
+      return: null,
+    },
+    // материал стены
+    selectedCheckboxSecond: {
+      type: String,
+      return: null,
+    },
+  },
 };
 </script>
 

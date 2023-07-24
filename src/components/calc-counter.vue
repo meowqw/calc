@@ -28,11 +28,18 @@ export default {
     decrementItem() {
       if (this.localQuantity > 1) {
         this.localQuantity--;
+        this.emitQuantityChanged();
       }
     },
 
     incrementItem() {
       this.localQuantity++;
+      this.emitQuantityChanged();
+    },
+
+    // пербрасываем значение родителю
+    emitQuantityChanged() {
+      this.$emit("quantityChanged", this.localQuantity);
     },
   },
 };

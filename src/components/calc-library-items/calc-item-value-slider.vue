@@ -9,12 +9,16 @@
           max="200"
           min="0"
           type="range"
+          v-model.number="sliderValue"
+          @input="updateInputValue"
         />
         <label class="form__label label range__label" for="amount">
           <input
             class="input-reset input calc-item__input form__input range__input"
             id="amount"
             type="number"
+            v-model.number="inputValue"
+            @input="updateSliderValue"
           />
           <div class="tooltip">
             <font-awesome-icon class="icon" :icon="['fas', 'circle-info']" />
@@ -29,9 +33,32 @@
 <script>
 export default {
   name: "calc-item-value-slider",
+  data() {
+    return {
+      inputValue: 0, // значение числового инпута
+      sliderValue: 0, // значение слайдера
+    };
+  },
+  methods: {
+    // Метод вызывается при изменении значения числового инпута
+    updateSliderValue() {
+      // Обновление значения слайдера при изменении числового инпута
+      this.sliderValue = parseInt(this.inputValue, 10);
+      this.emitValue(this.sliderValue); // Отправка значения родителю
+    },
 
-  computed: {},
-  methods: {},
+    // Метод вызывается при изменении значения слайдера
+    updateInputValue() {
+      // Обновление значения числового инпута при изменении слайдер
+      this.inputValue = this.sliderValue;
+      this.emitValue(this.sliderValue); // Отправка значения родителяю
+    },
+
+    // Метод, который генерирует событие с передачей значения родителю
+    emitValue(value) {
+      this.$emit("inputChanged", value)
+    }
+  },
 };
 </script>
 

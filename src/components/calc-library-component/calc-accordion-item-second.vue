@@ -14,26 +14,42 @@
             <ul class="list-reset calc-accordion-item__list">
               <!-- периметр проема -->
               <li class="calc-accordion-item__item">
-                <calc-item-input />
+                <calc-item-input
+                  :title="itemInputTitle"
+                  @inputChanged="handleInputChanged"
+                />
               </li>
               <!-- толщина стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-value-slider />
+                <calc-item-value-slider
+                  @inputChanged="handleValueSliderChanged"
+                />
               </li>
               <!-- материал стены -->
               <li class="calc-accordion-item__item">
-                <calc-item-checkbox :title="itemCheckboxTitle"/>
+                <calc-item-checkbox
+                  :title="itemCheckboxTitle"
+                  :checkboxList="checkboxList"
+                  @checkboxSelected="handleCheckboxSelected"
+                />
               </li>
             </ul>
           </div>
           <!-- result -->
           <div class="calc-accordion-item__right">
-            <calc-item-result-second />
+            <calc-item-result-second
+              :inputValue="inputValue"
+              :valueSlider="valueSlider"
+              :selectedCheckbox="selectedCheckbox"
+            />
           </div>
         </div>
       </AccordionItem>
       <!-- btn-delete -->
-      <button class="btn-reset btn btn--mini calc-accordion-item__btn" @click="deleteItem">
+      <button
+        class="btn-reset btn btn--mini calc-accordion-item__btn"
+        @click="deleteItem"
+      >
         <font-awesome-icon :icon="['fa', 'fa-trash']" />
       </button>
     </div>
@@ -61,15 +77,33 @@ export default {
   },
   data() {
     return {
-        itemCheckboxTitle: "Материал стены",
-    }
-  },
-  props: {
-    index: Number,
+      itemInputTitle: "Периметр проема",
+      itemCheckboxTitle: "Материал стены",
+      // переменная для хранения периметра проема
+      inputValue: 0,
+      // переменная для хранения значения valueSlider
+      valueSlider: 0,
+      // список для чекбоксов
+      checkboxList: ["Кирпич", "Бетон", "Глина"],
+      // выбранный чекбок для диаметра коронки
+      selectedCheckbox: null,
+    };
   },
   methods: {
     deleteItem() {
       this.$emit("deleteItem", this.index);
+    },
+    // получение значения инпута от ребенка
+    handleInputChanged(value) {
+      this.inputValue = value;
+    },
+    // обработчик события, вызываемый при изменении значения valueSlider
+    handleValueSliderChanged(value) {
+      this.valueSlider = value;
+    },
+    // получение выбранного чекбокса материала стены
+    handleCheckboxSelected(item) {
+      this.selectedCheckbox = item;
     },
   },
 };

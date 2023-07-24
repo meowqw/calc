@@ -1,7 +1,7 @@
 <template>
   <div class="calc-item container block block--second">
     <h3 class="calc-item__title title title--h3">Коэффициенты</h3>
-    <Multiselect v-model="value" :options="options" mode="tags" />
+    <Multiselect v-model="value" :options="options" mode="tags"/>
   </div>
 </template>
 
@@ -11,9 +11,25 @@ export default {
   data() {
     return {
       value: null,
-      options: ["Один", "Два", "Три"],
     };
   },
+  props: {
+    options: {
+      type: Array,
+    }
+  },
+  methods: {
+    // отправка выбранных значений родителю
+    emitValueToParent() {
+      this.$emit('valueChanged', this.value)
+    }
+  },
+  watch: {
+    // отслеживание изменения значения value
+    value() {
+      this.emitValueToParent();
+    }
+  }
 };
 </script>
 
