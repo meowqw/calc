@@ -22,9 +22,9 @@
             </thead>
             <tbody>
               <!-- item -->
-              <tr>
-                <td data-label="№">1</td>
-                <td data-label="Имя пользователя">Имя пользователя</td>
+              <tr v-for="(client, index) in CLIENTS" :key="index">
+                <td data-label="№">{{ index }}</td>
+                <td data-label="Имя пользователя">{{ client.name }}</td>
                 <td data-label="Почта">
                   <a href="mailto:mail@mail.com" class="table__link"
                     >mail@mail.com</a
@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import calcModal from "./calc-modal.vue";
 
 export default {
@@ -90,6 +91,9 @@ export default {
       isModalOpen: false,
       showOrders: false,
     };
+  },
+  computed: {
+    ...mapGetters(["CLIENTS"]),
   },
   methods: {
     toggleOrders() {

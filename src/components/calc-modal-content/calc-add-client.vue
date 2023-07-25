@@ -1,6 +1,6 @@
 <template>
   <div class="add-client">
-    <form action="#" class="add-client__form form">
+    <form class="add-client__form form" @submit.prevent="addClient">
       <!-- номер телефона -->
       <label class="form__label label">
         <span>Номер телефона</span>
@@ -35,7 +35,7 @@
           name="ФИО"
           class="input-reset input form__input"
           placeholder="Фамилия, Имя, Отчество"
-          id="name"
+          v-model="name"
         />
         <button
           type="button"
@@ -119,14 +119,36 @@
           id="time"
         />
       </label>
-      <button class="btn-reset btn form__btn">Добавить клиента</button>
+      <button class="btn-reset btn form__btn" type="sumbit">
+        Добавить клиента
+      </button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "calc-add-client",
+  data() {
+    return {
+      name: "",
+    };
+  },
+  methods: {
+    ...mapActions(["ADD_CLIENT"]),
+
+    addClient() {
+      const client = { name: this.name };
+      this.ADD_CLIENT(client);
+      this.clearForm();
+    },
+
+    clearForm() {
+      this.name = "";
+    },
+  },
 };
 </script>
 

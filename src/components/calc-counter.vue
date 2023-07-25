@@ -8,7 +8,6 @@
       class="input-reset counter__input input"
       type="number"
       name="quantity"
-      id="localQuantity"
     />
     <button class="btn-reset btn counter__btn" @click.prevent="incrementItem">
       <font-awesome-icon :icon="['fas', 'plus']" />

@@ -7,12 +7,16 @@
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
-        <ul class="list-reset calc-item__list" id="coefList0" style="">
-          <li class="addition__item">
-            <label class="label addition__label" for="coef2">
-              Алмазное сверление с водосборным кольцом пылесосом
-            </label>
-            <calc-counter/>
+        <ul class="list-reset addition__list" id="coefList0">
+          <li
+            v-for="(item, index) in items"
+            :key="index"
+            class="addition__item"
+          >
+            <span class="label addition__label">
+              {{ item }}
+            </span>
+            <calc-counter />
           </li>
         </ul>
       </AccordionItem>
@@ -21,13 +25,18 @@
 </template>
 
 <script>
-import calcCounter from '../calc-counter.vue';
+import calcCounter from "../calc-counter.vue";
 
 export default {
   name: "calc-item-addition",
   components: {
-    calcCounter
-  }
+    calcCounter,
+  },
+  data() {
+    return {
+      items: ["Алмазное покрытие", "Что-то еще", "Что-то еще"],
+    };
+  },
 };
 </script>
 

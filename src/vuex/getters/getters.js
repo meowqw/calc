@@ -9,4 +9,9 @@ export default {
   VALUE_SLIDER_FIRST_CALC(state) {
     return state.valueSliderFirstCalc;
   },
+
+  // клиенты
+  CLIENTS(state) {
+    return state.clients;
+  }
 };

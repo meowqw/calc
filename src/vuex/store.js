@@ -14,8 +14,8 @@ const store = createStore({
     accordionListFirst: [],
     // список элементов во втором калькуляторе "периметр"
     accordionListSecond: [],
-    // толщина стены в первом калькуляторе
-    valueSliderFirstCalc: 0,
+    // список клиентов
+    clients: [],
   },
   mutations,
   actions,

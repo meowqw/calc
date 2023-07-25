@@ -9,7 +9,10 @@
           <ul class="list-reset calc-component-content__list">
             <!-- длина реза -->
             <li class="calc-component-content__item">
-              <calc-item-input @inputChanged="handleInputChanged" :title="itemInputTilte" />
+              <calc-item-input
+                @inputChanged="handleInputChanged"
+                :title="itemInputTilte"
+              />
             </li>
             <!-- толщина стены -->
             <li class="calc-component-content__item">
@@ -57,6 +60,7 @@
         <!-- result -->
         <div class="calc-component-content__right">
           <calc-item-result-third
+            :isActive="isActive"
             :inputValue="inputValue"
             :valueSlider="valueSlider"
             :selectedCheckbox="selectedCheckbox"

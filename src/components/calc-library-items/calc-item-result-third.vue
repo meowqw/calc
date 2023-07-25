@@ -28,14 +28,14 @@
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
-          <li class="result-block__item result-item">
+          <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Количество отверстий:
               <span class="result-item__value">{{ counterValue }}</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
-          <li class="result-block__item result-item">
+          <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Коэффициенты:
               <span class="result-item__value">{{ selectValues }}</span>
@@ -52,6 +52,10 @@
 export default {
   name: "calc-item-result",
   props: {
+    // чекбокс "без зарезов"
+    isActive: {
+      type: Boolean,
+    },
     // длина реза
     inputValue: {
       type: [Number, String],
