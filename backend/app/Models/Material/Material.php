@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Material extends Model
 {
+    use HasFactory;
+
     /**
      * @return int
      */
@@ -42,6 +44,4 @@ class Material extends Model
     {
         $this->name = $name;
     }
-
-    use HasFactory;
 }
