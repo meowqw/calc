@@ -9,12 +9,12 @@
         </template>
         <ul class="list-reset addition__list" id="coefList0">
           <li
-            v-for="(item, index) in items"
-            :key="index"
+            v-for="(item, id) in items"
+            :key="id"
             class="addition__item"
           >
             <span class="label addition__label">
-              {{ item }}
+              {{ item.name }}
             </span>
             <calc-counter />
           </li>
@@ -34,7 +34,18 @@ export default {
   },
   data() {
     return {
-      items: ["Алмазное покрытие", "Что-то еще", "Что-то еще"],
+      items: [
+        {
+          id: 1,
+          name: "Доп работа 1",
+          cost: 1000,
+        },
+        {
+          id: 2,
+          name: "Доп работа 2",
+          cost: 2000,
+        },
+      ],
     };
   },
 };

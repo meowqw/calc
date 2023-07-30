@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import calcCounter from "@/components/calc-counter.vue"
+import calcCounter from "@/components/calc-counter"
 export default {
   name: "calc-item-counter",
   components: {

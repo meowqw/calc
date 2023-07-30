@@ -60,11 +60,11 @@
 </template>
 
 <script>
-import calcItemResultSecond from "../calc-library-items/calc-item-result-second.vue";
-import calcItemRowResult from "../calc-library-items/calc-item-row-result.vue";
-import calcItemCheckbox from "../calc-library-items/calc-item-checkbox.vue";
-import calcItemValueSlider from "../calc-library-items/calc-item-value-slider.vue";
-import calcItemInput from "../calc-library-items/calc-item-input.vue";
+import calcItemResultSecond from "../calc-library-items/calc-item-result-second";
+import calcItemRowResult from "../calc-library-items/calc-item-row-result";
+import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
+import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
+import calcItemInput from "../calc-library-items/calc-item-input";
 
 export default {
   name: "calc-accordion-item-second",

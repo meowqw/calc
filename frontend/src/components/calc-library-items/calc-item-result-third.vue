@@ -4,36 +4,41 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price" v-if="counterValue <= 1"
+            >{{ inputValue * (valueSlider / 100) * 12000 }} руб</span
+          >
+          <span class="result-block__price" v-if="counterValue > 1"
+            >{{ (inputValue * (valueSlider / 100) * 12000) + counterValue * 150 }} руб</span
+          >
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Длина реза:
-              <span class="result-item__value">{{ inputValue }} см</span>
+              <span class="result-item__value"> {{ inputValue }} м</span>
             </div>
-            <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Толщина стены:
-              <span class="result-item__value">{{ valueSlider }} см</span>
+              <span class="result-item__value">{{ valueSlider / 100 }} м</span>
             </div>
-            <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Материал стены:
-              <span class="result-item__value">{{ selectedCheckbox }}</span>
+              Квадратных метров:
+              <span class="result-item__value"
+                >{{ inputValue * (valueSlider / 100) }} м3</span
+              >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">1 м3 = {{ 12000 }} руб</div>
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Количество отверстий:
               <span class="result-item__value">{{ counterValue }}</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ counterValue * 150 }} руб</div>
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
@@ -51,6 +56,9 @@
 <script>
 export default {
   name: "calc-item-result",
+  data() {
+    return {};
+  },
   props: {
     // чекбокс "без зарезов"
     isActive: {
@@ -69,10 +77,10 @@ export default {
       return: 0,
     },
     // материал стены
-    selectedCheckbox: {
-      type: String,
-      return: null,
-    },
+    // selectedCheckbox: {
+    //   type: String,
+    //   return: null,
+    // },
     // количество отверстий
     counterValue: {
       type: Number,

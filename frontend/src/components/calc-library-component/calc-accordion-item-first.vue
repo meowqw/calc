@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="checkboxList"
+                  :checkboxList="checkboxList.data"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -37,7 +37,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitleSecond"
-                  :checkboxList="checkboxListSecond"
+                  :checkboxList="selectedCheckbox.materials"
                   @checkboxSelected="handleCheckboxSelectedSecond"
                 />
               </li>
@@ -80,12 +80,12 @@
 </template>
 
 <script>
-import calcItemResultFirst from "../calc-library-items/calc-item-result-first.vue";
-import calcItemRowResult from "../calc-library-items/calc-item-row-result.vue";
-import calcItemCheckbox from "../calc-library-items/calc-item-checkbox.vue";
-import calcItemValueSlider from "../calc-library-items/calc-item-value-slider.vue";
-import calcItemCounter from "../calc-library-items/calc-item-counter.vue";
-import calcItemSelect from "../calc-library-items/calc-item-select.vue";
+import calcItemResultFirst from "../calc-library-items/calc-item-result-first";
+import calcItemRowResult from "../calc-library-items/calc-item-row-result";
+import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
+import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
+import calcItemCounter from "../calc-library-items/calc-item-counter";
+import calcItemSelect from "../calc-library-items/calc-item-select";
 
 export default {
   name: "calc-accordion-item-first",
@@ -106,17 +106,92 @@ export default {
       // переменная для хранения значения valueSlider
       valueSlider: 0,
       // переменная для хранения значеня, которые идут в select
-      selectOptions: ["one", "two", "three"],
+      selectOptions: [
+        {
+          id: 1,
+          name: "Сверление снизу вверх",
+          value: 1.5,
+          startPrice: 3000,
+        },
+        {
+          id: 2,
+          name: "Сухим способом, кирпич/газоблок",
+          value: 2.5,
+          startPrice: 4000,
+        },
+      ],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
       // список для чекбоксов
-      checkboxList: ["20 см", "30 см", "40 см"],
+      checkboxList: {
+        data: [
+          {
+            id: 1,
+            name: "10-15",
+            materials: [
+              {
+                name: "Кирпич",
+                cost: 25,
+              },
+              {
+                name: "Бетон",
+                cost: 24,
+              },
+            ],
+          },
+          {
+            id: 2,
+            name: "20-25",
+            materials: [
+              {
+                name: "Кирпич",
+                cost: 10,
+              },
+              {
+                name: "Бетон",
+                cost: 23,
+              },
+            ],
+          },
+        ],
+      },
       // cписок для чекбоксов
-      checkboxListSecond: ["Кирпич", "Бетон", "Глина"],
+      checkboxListSecond: {
+        data: [
+          {
+            id: 1,
+            name: "10-15",
+            materials: [
+              {
+                name: "Кирпич",
+                cost: 25,
+              },
+              {
+                name: "Бетон",
+                cost: 24,
+              },
+            ],
+          },
+          {
+            id: 2,
+            name: "20-25",
+            materials: [
+              {
+                name: "Кирпич",
+                cost: 10,
+              },
+              {
+                name: "Бетон",
+                cost: 23,
+              },
+            ],
+          },
+        ],
+      },
       // выбранный чекбок для диаметра коронки
-      selectedCheckbox: null,
+      selectedCheckbox: {},
       // выбранный чекбок для материала стены
-      selectedCheckboxSecond: null,
+      selectedCheckboxSecond: {},
     };
   },
   computed: {},

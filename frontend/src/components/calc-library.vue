@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import calcItemAddition from "@/components/calc-library-items/calc-item-addition.vue";
-import calcItemDistance from "@/components/calc-library-items/calc-item-distance.vue";
-import calcItemResult from "@/components/calc-library-items/calc-item-result.vue";
-import calcItemSale from "@/components/calc-library-items/calc-item-sale.vue";
-import calcComponentFirst from "@/components/calc-library-component/calc-component-first.vue";
-import calcComponentSecond from "@/components/calc-library-component/calc-component-second.vue";
-import calcComponentThird from "@/components/calc-library-component/calc-component-third.vue";
+import calcItemAddition from "@/components/calc-library-items/calc-item-addition";
+import calcItemDistance from "@/components/calc-library-items/calc-item-distance";
+import calcItemResult from "@/components/calc-library-items/calc-item-result";
+import calcItemSale from "@/components/calc-library-items/calc-item-sale";
+import calcComponentFirst from "@/components/calc-library-component/calc-component-first";
+import calcComponentSecond from "@/components/calc-library-component/calc-component-second";
+import calcComponentThird from "@/components/calc-library-component/calc-component-third";
 import calcModal from "./calc-modal.vue";
 
 export default {
