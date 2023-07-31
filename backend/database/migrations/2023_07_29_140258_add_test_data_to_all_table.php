@@ -61,25 +61,21 @@ class AddTestDataToAllTable extends Migration
                 'crown_id' => '1',
                 'material_id' => '1',
                 'cost' => 20,
-                'price' => '100'
             ],
             [
                 'crown_id' => '1',
                 'material_id' => '2',
                 'cost' => 30,
-                'price' => '100'
             ],
             [
                 'crown_id' => '2',
                 'material_id' => '1',
                 'cost' => 25,
-                'price' => '100'
             ],
             [
                 'crown_id' => '2',
                 'material_id' => '2',
                 'cost' => 50,
-                'price' => '100'
             ]
         ]);
     }
