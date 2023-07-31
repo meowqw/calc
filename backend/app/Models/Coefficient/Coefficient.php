@@ -6,12 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property int $id;
  * @property string $name;
  * @property float $value;
  * @property int $start_price;
  */
 class Coefficient extends Model
 {
+    use HasFactory;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     /**
      * @return string
      */
@@ -59,7 +78,4 @@ class Coefficient extends Model
     {
         $this->start_price = $startPrice;
     }
-    use HasFactory;
-
-
 }

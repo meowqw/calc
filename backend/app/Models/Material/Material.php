@@ -2,8 +2,10 @@
 
 namespace App\Models\Material;
 
+use App\Models\Crown\Crown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id;
@@ -11,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Material extends Model
 {
+    use HasFactory;
+
     /**
      * @return int
      */
@@ -43,5 +47,8 @@ class Material extends Model
         $this->name = $name;
     }
 
-    use HasFactory;
+    public function crowns(): BelongsToMany
+    {
+        return $this->belongsToMany(Crown::class);
+    }
 }
