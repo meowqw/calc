@@ -87,8 +87,12 @@ class AddTestDataToAllTable extends Migration
      */
     public function down()
     {
-        Schema::table('all', function (Blueprint $table) {
-            //
-        });
+        DB::table('crown_material')->truncate();
+        DB::table('materials')->truncate();
+        DB::table('crowns')->truncate();
+        DB::table('coefficients')->truncate();
+        DB::table('extra_works')->truncate();
     }
 }
+
+
