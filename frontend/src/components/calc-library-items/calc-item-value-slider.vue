@@ -6,7 +6,7 @@
         <input
           class="range__slider"
           id="slider"
-          max="200"
+          max="2000"
           min="0"
           type="range"
           v-model.number="sliderValue"

@@ -4,15 +4,15 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость бурения</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">{{ resultFirstCalc }} руб</span>
         </div>
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость периметра</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">{{ resultSecondCalc }} руб</span>
         </div>
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость резки</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">{{ resultThirdCalc }} руб</span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
@@ -38,7 +38,7 @@
             Итоговая стоимость:
           </h3>
           <span class="result-block__price result-block__price--total"
-            >10000 руб</span
+            >{{resultFirstCalc + resultSecondCalc + resultThirdCalc}} руб</span
           >
         </div>
       </div>
@@ -47,8 +47,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "calc-item-result",
+  computed: {
+    ...mapGetters([
+      "GET_RESULT_FIRST_CALC",
+      "GET_RESULT_SECOND_CALC",
+      "GET_RESULT_THIRD_CALC",
+    ]),
+    // получение значения первого калькулятора
+    resultFirstCalc() {
+      return this.GET_RESULT_FIRST_CALC;
+    },
+    // получение значения второго калькулятора
+    resultSecondCalc() {
+      return this.GET_RESULT_SECOND_CALC;
+    },
+    // получение значения третьего калькулятора
+    resultThirdCalc() {
+      return this.GET_RESULT_THIRD_CALC;
+    },
+  },
 };
 </script>
 

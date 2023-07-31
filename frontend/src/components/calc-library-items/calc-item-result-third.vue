@@ -4,12 +4,10 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость</h3>
-          <span class="result-block__price" v-if="counterValue <= 1"
-            >{{ inputValue * (valueSlider / 100) * 12000 }} руб</span
-          >
-          <span class="result-block__price" v-if="counterValue > 1"
-            >{{ (inputValue * (valueSlider / 100) * 12000) + counterValue * 150 }} руб</span
-          >
+          <span class="result-block__price">
+            {{ resultThirdCalc }}
+            руб
+          </span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
@@ -28,7 +26,7 @@
             <div class="result-item__name">
               Квадратных метров:
               <span class="result-item__value"
-                >{{ inputValue * (valueSlider / 100) }} м3</span
+                >{{ Math.round(inputValue * (valueSlider / 100)) }} м3</span
               >
             </div>
             <div class="result-item__price">1 м3 = {{ 12000 }} руб</div>
@@ -54,11 +52,10 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "calc-item-result",
-  data() {
-    return {};
-  },
   props: {
     // чекбокс "без зарезов"
     isActive: {
@@ -89,6 +86,36 @@ export default {
     // коэффициенты
     selectValues: {
       type: Array,
+    },
+  },
+  computed: {
+    // логика отправки значения без зарезов, либо с зарезами
+    resultThirdCalc() {
+      if (this.counterValue <= 1) {
+        // формула
+        return Math.round(this.inputValue * (this.valueSlider / 100) * 12000);
+      } else {
+        return (
+          // формула
+          Math.round(
+            this.inputValue * (this.valueSlider / 100) * 12000 +
+              this.counterValue * 150
+          )
+        );
+      }
+    },
+  },
+  methods: {
+    ...mapMutations(["UPDATE_RESULT_THIRD_CALC"]),
+    // отправка значения в мутацию
+    sendResultThirdCalc() {
+      this.UPDATE_RESULT_THIRD_CALC(this.resultThirdCalc);
+    },
+  },
+  watch: {
+    // отслеживание значения в компоненте и обновление в мутации
+    resultThirdCalc() {
+      this.sendResultThirdCalc();
     },
   },
 };
