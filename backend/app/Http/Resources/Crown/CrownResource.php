@@ -22,6 +22,7 @@ class CrownResource extends JsonResource
         return [
             'id' => $this->resource->getId(),
             'name' => $this->resource->getName(),
+            'materials' => CrownMaterialsResource::collection($this->resource->materials)
         ];
     }
 }
