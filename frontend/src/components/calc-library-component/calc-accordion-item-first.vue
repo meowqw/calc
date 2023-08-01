@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="checkboxList.data"
+                  :checkboxList="this.GET_CROWNS"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import calcItemResultFirst from "../calc-library-items/calc-item-result-first";
 import calcItemRowResult from "../calc-library-items/calc-item-row-result";
 import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
@@ -122,79 +123,15 @@ export default {
       ],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
-      // список для чекбоксов
-      checkboxList: {
-        data: [
-          {
-            id: 1,
-            name: "10-15",
-            materials: [
-              {
-                name: "Кирпич",
-                cost: 25,
-              },
-              {
-                name: "Бетон",
-                cost: 24,
-              },
-            ],
-          },
-          {
-            id: 2,
-            name: "20-25",
-            materials: [
-              {
-                name: "Кирпич",
-                cost: 10,
-              },
-              {
-                name: "Бетон",
-                cost: 23,
-              },
-            ],
-          },
-        ],
-      },
-      // cписок для чекбоксов
-      checkboxListSecond: {
-        data: [
-          {
-            id: 1,
-            name: "10-15",
-            materials: [
-              {
-                name: "Кирпич",
-                cost: 25,
-              },
-              {
-                name: "Бетон",
-                cost: 24,
-              },
-            ],
-          },
-          {
-            id: 2,
-            name: "20-25",
-            materials: [
-              {
-                name: "Кирпич",
-                cost: 10,
-              },
-              {
-                name: "Бетон",
-                cost: 23,
-              },
-            ],
-          },
-        ],
-      },
       // выбранный чекбок для диаметра коронки
       selectedCheckbox: {},
       // выбранный чекбок для материала стены
       selectedCheckboxSecond: {},
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["GET_CROWNS"]),
+  },
   methods: {
     deleteItem() {
       this.$emit("deleteItem", this.index);

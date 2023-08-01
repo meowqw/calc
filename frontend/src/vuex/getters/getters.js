@@ -27,4 +27,9 @@ export default {
   GET_RESULT_THIRD_CALC(state) {
     return state.resultThirdCalc;
   },
+
+  // коронки
+  GET_CROWNS(state) {
+    return state.crowns;
+  },
 };

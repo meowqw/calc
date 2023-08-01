@@ -41,9 +41,14 @@
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Коэффициенты:
-              <span class="result-item__value">{{ selectValues }}</span>
+              <span
+                class="result-item__value"
+                v-for="(item, index) in selectValues"
+                :key="index"
+                >{{ item.name }} ({{ item.value }})</span
+              >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ }}</div>
           </li>
         </ul>
       </div>
@@ -293,12 +298,12 @@ export default {
   }
 
   &__value {
-    margin-right: 7px;
+    margin-right: 0px;
     margin-left: 0;
     font-weight: 700;
 
     &:not(:last-child) {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     &:first-child {

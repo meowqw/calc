@@ -33,4 +33,9 @@ export default {
   UPDATE_RESULT_THIRD_CALC(state, value) {
     state.resultThirdCalc = value;
   },
+
+  // обновление состояния коронок
+  SET_CROWNS(state, data) {
+    state.crowns = data;
+  }
 };

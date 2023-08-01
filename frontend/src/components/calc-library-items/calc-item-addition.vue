@@ -7,7 +7,7 @@
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
-        <ul class="list-reset addition__list" id="coefList0">
+        <ul class="list-reset addition__list">
           <li
             v-for="(item, id) in items"
             :key="id"

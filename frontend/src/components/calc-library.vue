@@ -11,17 +11,20 @@
     </div>
     <div class="calculator__right">
       <!-- tabs -->
-      <tabs :options="{ useUrlFragment: false }" nav-item-class="nav-item tabs-component-tabs">
+      <tabs
+        :options="{ useUrlFragment: false }"
+        nav-item-class="nav-item tabs-component-tabs"
+      >
         <tab name="Бурение">
-          <calc-component-first/>
+          <calc-component-first />
         </tab>
         <tab name="Периметр">
-           <calc-component-second/>
+          <calc-component-second />
         </tab>
         <tab name="Резка" :is-disabled="false">
-            <calc-component-third/>
+          <calc-component-third />
         </tab>
-    </tabs>
+      </tabs>
       <calc-item-addition />
       <div class="calculator__right-bottom">
         <calc-item-sale />
@@ -30,13 +33,11 @@
     </div>
   </div>
 
-  <calc-modal
-    :is-open="isModalOpen"
-    @close="isModalOpen = false"
-  />
+  <calc-modal :is-open="isModalOpen" @close="isModalOpen = false" />
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import calcItemAddition from "@/components/calc-library-items/calc-item-addition";
 import calcItemDistance from "@/components/calc-library-items/calc-item-distance";
 import calcItemResult from "@/components/calc-library-items/calc-item-result";
@@ -56,12 +57,18 @@ export default {
     calcComponentFirst,
     calcComponentSecond,
     calcComponentThird,
-    calcModal
+    calcModal,
   },
   data() {
     return {
       isModalOpen: false,
     };
+  },
+  methods: {
+    ...mapActions(["FETCH_CROWNS"]),
+  },
+  mounted() {
+    this.FETCH_CROWNS();
   },
 };
 </script>
