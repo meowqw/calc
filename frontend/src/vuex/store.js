@@ -29,6 +29,8 @@ const store = createStore({
     materials: [],
     // коэффициенты через API
     coefficients: [],
+    // дополнительные работы через API
+    extraWorks: [],
   },
   mutations,
   actions,
