@@ -2,12 +2,16 @@
 
 namespace App\Models\Crown;
 
+use App\Models\Material\Material;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id;
  * @property string $name;
+ *
+ * @property-read BelongsToMany $materials
  */
 class Crown extends Model
 {
@@ -43,5 +47,10 @@ class Crown extends Model
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function materials(): BelongsToMany
+    {
+        return $this->belongsToMany(Material::class)->withPivot('cost');
     }
 }
