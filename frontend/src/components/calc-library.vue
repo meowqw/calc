@@ -65,10 +65,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["FETCH_CROWNS"]),
+    ...mapActions([
+      "FETCH_CROWNS",
+      "FETCH_MATERIALS",
+      "FETCH_COEFFICIENTS",
+      "FETCH_EXTRA_WORKS",
+    ]),
   },
   mounted() {
     this.FETCH_CROWNS();
+    this.FETCH_MATERIALS();
+    this.FETCH_COEFFICIENTS();
+    this.FETCH_EXTRA_WORKS();
   },
 };
 </script>

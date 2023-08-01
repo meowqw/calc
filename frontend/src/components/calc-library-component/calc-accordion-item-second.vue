@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="checkboxList"
+                  :checkboxList="this.GET_MATERIALS"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import calcItemResultSecond from "../calc-library-items/calc-item-result-second";
 import calcItemRowResult from "../calc-library-items/calc-item-row-result";
 import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
@@ -83,11 +84,12 @@ export default {
       inputValue: 0,
       // переменная для хранения значения valueSlider
       valueSlider: 0,
-      // список для чекбоксов
-      checkboxList: ["Кирпич", "Бетон", "Глина"],
       // выбранный чекбок для диаметра коронки
-      selectedCheckbox: null,
+      selectedCheckbox: {},
     };
+  },
+  computed: {
+    ...mapGetters(["GET_CROWNS", "GET_MATERIALS"]),
   },
   methods: {
     deleteItem() {

@@ -9,7 +9,7 @@
         </template>
         <ul class="list-reset addition__list">
           <li
-            v-for="(item, id) in items"
+            v-for="(item, id) in this.GET_EXTRA_WORKS"
             :key="id"
             class="addition__item"
           >
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import calcCounter from "../calc-counter.vue";
 
 export default {
@@ -32,21 +33,8 @@ export default {
   components: {
     calcCounter,
   },
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          name: "Доп работа 1",
-          cost: 1000,
-        },
-        {
-          id: 2,
-          name: "Доп работа 2",
-          cost: 2000,
-        },
-      ],
-    };
+  computed: {
+    ...mapGetters(["GET_EXTRA_WORKS"]),
   },
 };
 </script>

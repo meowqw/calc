@@ -24,7 +24,7 @@
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Материал стены
-              <span class="result-item__value">{{ selectedCheckbox }}</span>
+              <span class="result-item__value">{{ selectedCheckbox.name }}</span>
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
@@ -51,8 +51,8 @@ export default {
     },
     // материал стены
     selectedCheckbox: {
-      type: String,
-      return: null,
+      type: Object,
+      return: {},
     },
   },
 };

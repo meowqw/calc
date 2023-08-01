@@ -37,5 +37,17 @@ export default {
   // обновление состояния коронок
   SET_CROWNS(state, data) {
     state.crowns = data;
+  },
+  // обновление состояния материалов
+  SET_MATERIALS(state, data) {
+    state.materials = data;
+  },
+  // обновление состояния коэффициентов
+  SET_COEFFICIENTS(state, data) {
+    state.coefficients = data;
+  },
+  // обновление состояния дополнительных работ
+  SET_EXTRA_WORKS(state, data) {
+    state.extraWorks = data;
   }
 };

@@ -32,4 +32,16 @@ export default {
   GET_CROWNS(state) {
     return state.crowns;
   },
+  // материалы стены
+  GET_MATERIALS(state) {
+    return state.materials;
+  },
+  // коэффициенты
+  GET_COEFFICIENTS(state) {
+    return state.coefficients;
+  },
+  // дополнительные работы
+  GET_EXTRA_WORKS(state) {
+    return state.extraWorks;
+  }
 };

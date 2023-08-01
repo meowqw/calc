@@ -25,6 +25,10 @@ const store = createStore({
 
     // коронки через API
     crowns: [],
+    // материалы через API
+    materials: [],
+    // коэффициенты через API
+    coefficients: [],
   },
   mutations,
   actions,

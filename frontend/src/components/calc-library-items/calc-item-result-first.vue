@@ -13,7 +13,12 @@
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Коэффициенты:
-              <span class="result-item__value">{{ selectValues }}</span>
+              <span
+                class="result-item__value"
+                v-for="(item, index) in selectValues"
+                :key="index"
+                >{{ item.name }} ({{ item.value }})</span
+              >
             </div>
             <div class="result-item__price">700 руб</div>
           </li>
@@ -21,7 +26,7 @@
             <div class="result-item__name">
               Диаметр коронки:
               <span class="result-item__value">
-                {{ selectedCheckbox }}
+                {{ selectedCheckbox.name }}
               </span>
             </div>
             <div class="result-item__price">700 руб</div>
@@ -30,7 +35,9 @@
             <div class="result-item__name">
               Материал стены:
               <span class="result-item__value">
-                {{ selectedCheckboxSecond }}
+                {{ selectedCheckboxSecond.name }} ({{
+                  selectedCheckboxSecond.cost
+                }})
               </span>
             </div>
             <div class="result-item__price">700 руб</div>
@@ -66,18 +73,16 @@ export default {
     // коэффициенты
     selectValues: {
       type: Array,
-      required: true,
-      return: null,
     },
     // диаметр коронки
     selectedCheckbox: {
-      type: String,
-      return: null,
+      type: Object,
+      return: {},
     },
     // материал стены
     selectedCheckboxSecond: {
-      type: String,
-      return: null,
+      type: Object,
+      return: {},
     },
   },
 };
