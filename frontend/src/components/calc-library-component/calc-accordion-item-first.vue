@@ -21,7 +21,7 @@
               <!-- коэффициенты -->
               <li class="calc-accordion-item__item">
                 <calc-item-select
-                  :options="selectOptions"
+                  :options="this.GET_COEFFICIENTS"
                   @valueChanged="handleSelecedValues"
                 />
               </li>
@@ -106,27 +106,6 @@ export default {
       counterValue: 1,
       // переменная для хранения значения valueSlider
       valueSlider: 0,
-      // переменная для хранения значеня, которые идут в select
-      selectOptions: [
-        {
-          id: 1,
-          name: "Сверление снизу вверх",
-          value: {
-            name: "Сверление снизу вверх",
-            startPrice: 3000,
-            value: 1.5,
-          },
-        },
-        {
-          id: 2,
-          name: "Сухим способом, кирпич,газоблок",
-          value: {
-            name: "Сухим способом, кирпич,газоблок",
-            startPrice: 3000,
-            value: 1.5,
-          },
-        },
-      ],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
       // выбранный чекбок для диаметра коронки
@@ -136,7 +115,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["GET_CROWNS"]),
+    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS"]),
   },
   methods: {
     deleteItem() {

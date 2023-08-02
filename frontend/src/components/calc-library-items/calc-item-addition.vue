@@ -16,7 +16,7 @@
             <span class="label addition__label">
               {{ item.name }}
             </span>
-            <calc-counter />
+            <calc-counter/>
           </li>
         </ul>
       </AccordionItem>
@@ -30,11 +30,18 @@ import calcCounter from "../calc-counter.vue";
 
 export default {
   name: "calc-item-addition",
+  data() {
+    return {
+      quantity: 0,
+    }
+  },
   components: {
     calcCounter,
   },
   computed: {
     ...mapGetters(["GET_EXTRA_WORKS"]),
+  },
+  methods: {
   },
 };
 </script>

@@ -51,7 +51,7 @@
             <!-- коэффициенты -->
             <li class="calc-accordion-item__item" v-if="isActive">
               <calc-item-select
-                :options="selectOptions"
+                :options="this.GET_COEFFICIENTS"
                 @valueChanged="handleSelecedValues"
               />
             </li>
@@ -74,6 +74,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import calcItemResultThird from "../calc-library-items/calc-item-result-third";
 // import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
@@ -117,30 +119,12 @@ export default {
       selectedCheckbox: {},
       // переменная для хранения значения счетчика
       counterValue: 1,
-      // переменная для хранения значеня, которые идут в select
-      selectOptions: [
-        {
-          id: 1,
-          name: "Сверление снизу вверх",
-          value: {
-            name: "Сверление снизу вверх",
-            startPrice: 3000,
-            value: 1.5,
-          }
-        },
-        {
-          id: 2,
-          name: "Сухим способом, кирпич,газоблок",
-          value: {
-            name: "Сухим способом, кирпич,газоблок",
-            startPrice: 3000,
-            value: 1.5,
-          }
-        },
-      ],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
     };
+  },
+  computed: {
+    ...mapGetters(["GET_COEFFICIENTS"])
   },
   methods: {
     // обработчик события, вызываемый при изменении значения в input (обрабатываем данные из ребенка)

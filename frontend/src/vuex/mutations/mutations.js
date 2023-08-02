@@ -49,5 +49,13 @@ export default {
   // обновление состояния дополнительных работ
   SET_EXTRA_WORKS(state, data) {
     state.extraWorks = data;
+  },
+
+  UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS(state, payload) {
+    const {id, value} = payload;
+    const item = state.extraWorks.find((item) => item.id === id);
+    if (item) {
+      item.quantity = value;
+    }
   }
 };
