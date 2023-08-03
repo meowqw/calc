@@ -53,9 +53,6 @@ export default {
 
   UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS(state, payload) {
     const {id, value} = payload;
-    const item = state.extraWorks.find((item) => item.id === id);
-    if (item) {
-      item.quantity = value;
-    }
+    state.extraWorks[id].quantity = value;
   }
 };

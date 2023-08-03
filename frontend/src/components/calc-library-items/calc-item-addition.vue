@@ -16,7 +16,10 @@
             <span class="label addition__label">
               {{ item.name }}
             </span>
-            <calc-counter/>
+            <calc-counter
+              :quantity="item.quantity"
+              @quantityChanged="onQuantityChanged(id, $event)"
+            />
           </li>
         </ul>
       </AccordionItem>
@@ -31,9 +34,7 @@ import calcCounter from "../calc-counter.vue";
 export default {
   name: "calc-item-addition",
   data() {
-    return {
-      quantity: 0,
-    }
+    return {};
   },
   components: {
     calcCounter,
@@ -42,6 +43,9 @@ export default {
     ...mapGetters(["GET_EXTRA_WORKS"]),
   },
   methods: {
+    onQuantityChanged(id, newQuantity) {
+      this.GET_EXTRA_WORKS[id].quantity = newQuantity;
+    }
   },
 };
 </script>
