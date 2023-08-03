@@ -2,7 +2,7 @@
   <div class="calc-item-counter calc-item block block--second">
     <h3 class="calc-item__title title title--h3">Количество отверстий</h3>
     <form class="calc-item__form">
-      <calc-counter @quantityChanged="onQuantityChanged"/>
+      <calc-counter @quantityChanged="onQuantityChanged" :quantity="this.quantity"/>
     </form>
   </div>
 </template>

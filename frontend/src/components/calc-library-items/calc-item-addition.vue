@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     onQuantityChanged(id, newQuantity) {
-      this.GET_EXTRA_WORKS[id].quantity = newQuantity;
+      this.$store.commit("UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS", { id, newQuantity });
     }
   },
 };

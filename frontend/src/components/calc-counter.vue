@@ -50,7 +50,7 @@ export default {
     },
   },
   watch: {
-    quantity(newQuantity) {
+    localQuantity(newQuantity) {
       this.localQuantity = newQuantity;
     }
   }

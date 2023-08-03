@@ -18,11 +18,14 @@
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Дополнительные работы:
-              <span class="result-item__value"
-                >Доставка строительных лесов (1)</span
+              <span
+                class="result-item__value"
+                v-for="(item, id) in getExtraWorks"
+                :key="id"
+                >{{ item.name }} ({{ item.quantity }})</span
               >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ totalCostExtraWorks }} руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -38,7 +41,13 @@
             Итоговая стоимость:
           </h3>
           <span class="result-block__price result-block__price--total"
-            >{{resultFirstCalc + resultSecondCalc + resultThirdCalc}} руб</span
+            >{{
+              resultFirstCalc +
+              resultSecondCalc +
+              resultThirdCalc +
+              totalCostExtraWorks
+            }}
+            руб</span
           >
         </div>
       </div>
@@ -56,6 +65,7 @@ export default {
       "GET_RESULT_FIRST_CALC",
       "GET_RESULT_SECOND_CALC",
       "GET_RESULT_THIRD_CALC",
+      "GET_EXTRA_WORKS",
     ]),
     // получение значения первого калькулятора
     resultFirstCalc() {
@@ -68,6 +78,17 @@ export default {
     // получение значения третьего калькулятора
     resultThirdCalc() {
       return this.GET_RESULT_THIRD_CALC;
+    },
+    // получаем элементы массива доп.работ, количество которых > 0
+    getExtraWorks() {
+      return this.GET_EXTRA_WORKS.filter((item) => item.quantity > 0);
+    },
+    // вычисляем общую стоимость дополнительных работ
+    totalCostExtraWorks() {
+      return this.getExtraWorks.reduce(
+        (total, item) => total + item.cost * item.quantity,
+        0
+      );
     },
   },
 };

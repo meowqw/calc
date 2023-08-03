@@ -52,7 +52,7 @@ export default {
   },
 
   UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS(state, payload) {
-    const {id, value} = payload;
-    state.extraWorks[id].quantity = value;
+    const {id, newQuantity} = payload;
+    state.extraWorks[id].quantity = newQuantity;
   }
 };
