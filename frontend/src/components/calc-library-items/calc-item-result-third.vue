@@ -48,7 +48,7 @@
                 >{{ item.name }} ({{ item.value }})</span
               >
             </div>
-            <div class="result-item__price">{{ }}</div>
+            <div class="result-item__price">{{ totalPriceSelectValues }} руб</div>
           </li>
         </ul>
       </div>
@@ -94,17 +94,28 @@ export default {
     },
   },
   computed: {
+    // получаем стоимость доэффициентов
+    totalPriceSelectValues() {
+      return this.selectValues.reduce(
+        (total, item) => total + item.startPrice,
+        0
+      );
+    },
     // логика отправки значения без зарезов, либо с зарезами
     resultThirdCalc() {
       if (this.counterValue <= 1) {
         // формула
-        return Math.round(this.inputValue * (this.valueSlider / 100) * 12000);
+        return Math.round(
+          this.inputValue * (this.valueSlider / 100) * 12000 +
+            this.totalPriceSelectValues
+        );
       } else {
         return (
           // формула
           Math.round(
             this.inputValue * (this.valueSlider / 100) * 12000 +
-              this.counterValue * 150
+              this.counterValue * 150 +
+              this.totalPriceSelectValues
           )
         );
       }

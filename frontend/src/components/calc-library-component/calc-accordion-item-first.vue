@@ -4,7 +4,7 @@
       <AccordionItem>
         <template #summary
           ><div class="calc-accordion-item__name">
-            Стоимость: 0
+            Стоимость: {{ this.GET_RESULT_FIRST_CALC }}
             <span>
               Кол-во:
               <span>{{ counterValue }}</span>
@@ -115,7 +115,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS"]),
+    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),
   },
   methods: {
     deleteItem() {

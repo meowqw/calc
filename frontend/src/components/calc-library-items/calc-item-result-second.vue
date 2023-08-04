@@ -4,7 +4,7 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">{{ resultSecondCalc }} руб</span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
@@ -12,21 +12,25 @@
               Периметр проема
               <span class="result-item__value">{{ inputValue }} см</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ inputValue * 2 }} руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Толщина стены
               <span class="result-item__value">{{ valueSlider }} см</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ valueSlider + 3 }} руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Материал стены
-              <span class="result-item__value">{{ selectedCheckbox.name }}</span>
+              <span class="result-item__value">{{
+                selectedCheckbox.name
+              }}</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">
+              {{ selectedCheckbox.id * 100 }} руб
+            </div>
           </li>
         </ul>
       </div>
@@ -35,6 +39,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: "calc-item-result",
   props: {
@@ -53,6 +59,29 @@ export default {
     selectedCheckbox: {
       type: Object,
       return: {},
+    },
+  },
+  computed: {
+    resultSecondCalc() {
+      // формула
+      return Math.round(
+        this.inputValue * 2 +
+          this.valueSlider * 3 +
+          this.selectedCheckbox.id * 3
+      );
+    },
+  },
+  methods: {
+    ...mapMutations(["UPDATE_RESULT_SECOND_CALC"]),
+    // отправка значения в мутацию
+    sendResultSecondCalc() {
+      this.UPDATE_RESULT_SECOND_CALC(this.resultSecondCalc);
+    },
+  },
+  watch: {
+    // отслеживание значения в компоненте и обновление в мутации
+    resultSecondCalc() {
+      this.sendResultSecondCalc();
     },
   },
 };

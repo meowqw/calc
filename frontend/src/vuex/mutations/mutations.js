@@ -26,7 +26,7 @@ export default {
     state.resultFirstCalc = value;
   },
   // мутация добавления данных второго калькулятора
-  UPDATE_RESULT_SECOND(state, value) {
+  UPDATE_RESULT_SECOND_CALC(state, value) {
     state.resultSecondCalc = value;
   },
   // мутация добавления данных третьего калькулятора

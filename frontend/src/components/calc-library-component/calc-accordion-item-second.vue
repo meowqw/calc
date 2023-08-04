@@ -3,7 +3,7 @@
     <div class="calc-accordion-item__top">
       <AccordionItem>
         <template #summary
-          ><div class="calc-accordion-item__name">Стоимость: 0</div>
+          ><div class="calc-accordion-item__name">Стоимость: {{ this.GET_RESULT_SECOND_CALC }}</div>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -89,7 +89,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["GET_CROWNS", "GET_MATERIALS"]),
+    ...mapGetters(["GET_CROWNS", "GET_MATERIALS", "GET_RESULT_SECOND_CALC"]),
   },
   methods: {
     deleteItem() {

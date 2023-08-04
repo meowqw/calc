@@ -7,7 +7,7 @@
           <span class="result-block__add"
             >Кол-во: <span>{{ counterValue }}</span></span
           >
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">{{ resultFirstCalc }} руб</span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
@@ -20,7 +20,9 @@
                 >{{ item.name }} ({{ item.value }})</span
               >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">
+              {{ totalPriceSelectValues }} руб
+            </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -29,7 +31,9 @@
                 {{ selectedCheckbox.name }}
               </span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">
+              {{ selectedCheckboxSecond.cost }} руб
+            </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -40,14 +44,16 @@
                 }})
               </span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">
+              {{ selectedCheckboxSecond.cost }} руб
+            </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Толщина стены:
               <span class="result-item__value">{{ valueSlider }} см</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ valueSlider * 3 }} руб</div>
           </li>
         </ul>
       </div>
@@ -56,6 +62,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "calc-item-result",
   props: {
@@ -83,6 +91,33 @@ export default {
     selectedCheckboxSecond: {
       type: Object,
       return: {},
+    },
+  },
+  computed: {
+    // получаем стоимость доэффициентов
+    totalPriceSelectValues() {
+      return this.selectValues.reduce(
+        (total, item) => total + item.startPrice,
+        0
+      );
+    },
+    // получаем общую стоимость первого калькулятора
+    resultFirstCalc() {
+      // формула
+      return Math.round((this.totalPriceSelectValues + (this.valueSlider * 3) + this.selectedCheckboxSecond.cost) * this.counterValue);
+    },
+  },
+  methods: {
+    ...mapMutations(["UPDATE_RESULT_FIRST_CALC"]),
+    // отправка значения в мутацию
+    sendResultFirstCalc() {
+      this.UPDATE_RESULT_FIRST_CALC(this.resultFirstCalc);
+    },
+  },
+  watch: {
+    // отслеживание значения в компоненте и обновление в мутации
+    resultFirstCalc() {
+      this.sendResultFirstCalc();
     },
   },
 };
