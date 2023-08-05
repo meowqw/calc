@@ -112,6 +112,7 @@ export default {
     // отправка значения в мутацию
     sendResultFirstCalc() {
       this.UPDATE_RESULT_FIRST_CALC(this.resultFirstCalc);
+      
     },
   },
   watch: {

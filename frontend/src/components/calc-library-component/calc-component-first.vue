@@ -32,11 +32,10 @@ export default {
     calcAccordionItemFirst,
   },
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(["ACCORDION_LIST_FIRST"]),
+    ...mapGetters(["ACCORDION_LIST_FIRST", "GET_RESULT_FIRST_CALC"]),
   },
   methods: {
     ...mapMutations([
@@ -45,9 +44,7 @@ export default {
     ]),
     // функция добавления нового элемента в список
     addNewAccordionItem() {
-      const newItem = {
-        // логика
-      };
+      const newItem = {};
       this.ADD_ITEM_FIRST_ACCORDION_LIST(newItem);
     },
     // логика удаления элемента из списка
