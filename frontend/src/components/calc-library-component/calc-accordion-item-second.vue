@@ -3,7 +3,7 @@
     <div class="calc-accordion-item__top">
       <AccordionItem>
         <template #summary
-          ><div class="calc-accordion-item__name">Стоимость: 0</div>
+          ><div class="calc-accordion-item__name">Стоимость: {{ this.GET_RESULT_SECOND_CALC }}</div>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="checkboxList"
+                  :checkboxList="this.GET_MATERIALS"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -60,11 +60,12 @@
 </template>
 
 <script>
-import calcItemResultSecond from "../calc-library-items/calc-item-result-second.vue";
-import calcItemRowResult from "../calc-library-items/calc-item-row-result.vue";
-import calcItemCheckbox from "../calc-library-items/calc-item-checkbox.vue";
-import calcItemValueSlider from "../calc-library-items/calc-item-value-slider.vue";
-import calcItemInput from "../calc-library-items/calc-item-input.vue";
+import { mapGetters } from "vuex";
+import calcItemResultSecond from "../calc-library-items/calc-item-result-second";
+import calcItemRowResult from "../calc-library-items/calc-item-row-result";
+import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
+import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
+import calcItemInput from "../calc-library-items/calc-item-input";
 
 export default {
   name: "calc-accordion-item-second",
@@ -83,11 +84,12 @@ export default {
       inputValue: 0,
       // переменная для хранения значения valueSlider
       valueSlider: 0,
-      // список для чекбоксов
-      checkboxList: ["Кирпич", "Бетон", "Глина"],
       // выбранный чекбок для диаметра коронки
-      selectedCheckbox: null,
+      selectedCheckbox: {},
     };
+  },
+  computed: {
+    ...mapGetters(["GET_CROWNS", "GET_MATERIALS", "GET_RESULT_SECOND_CALC"]),
   },
   methods: {
     deleteItem() {

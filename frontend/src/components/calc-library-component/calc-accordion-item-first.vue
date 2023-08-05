@@ -4,7 +4,7 @@
       <AccordionItem>
         <template #summary
           ><div class="calc-accordion-item__name">
-            Стоимость: 0
+            Стоимость: {{ this.GET_RESULT_FIRST_CALC }}
             <span>
               Кол-во:
               <span>{{ counterValue }}</span>
@@ -21,7 +21,7 @@
               <!-- коэффициенты -->
               <li class="calc-accordion-item__item">
                 <calc-item-select
-                  :options="selectOptions"
+                  :options="this.GET_COEFFICIENTS"
                   @valueChanged="handleSelecedValues"
                 />
               </li>
@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="checkboxList"
+                  :checkboxList="this.GET_CROWNS"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -37,7 +37,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitleSecond"
-                  :checkboxList="checkboxListSecond"
+                  :checkboxList="selectedCheckbox.materials"
                   @checkboxSelected="handleCheckboxSelectedSecond"
                 />
               </li>
@@ -80,12 +80,13 @@
 </template>
 
 <script>
-import calcItemResultFirst from "../calc-library-items/calc-item-result-first.vue";
-import calcItemRowResult from "../calc-library-items/calc-item-row-result.vue";
-import calcItemCheckbox from "../calc-library-items/calc-item-checkbox.vue";
-import calcItemValueSlider from "../calc-library-items/calc-item-value-slider.vue";
-import calcItemCounter from "../calc-library-items/calc-item-counter.vue";
-import calcItemSelect from "../calc-library-items/calc-item-select.vue";
+import { mapGetters } from "vuex";
+import calcItemResultFirst from "../calc-library-items/calc-item-result-first";
+import calcItemRowResult from "../calc-library-items/calc-item-row-result";
+import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
+import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
+import calcItemCounter from "../calc-library-items/calc-item-counter";
+import calcItemSelect from "../calc-library-items/calc-item-select";
 
 export default {
   name: "calc-accordion-item-first",
@@ -105,21 +106,17 @@ export default {
       counterValue: 1,
       // переменная для хранения значения valueSlider
       valueSlider: 0,
-      // переменная для хранения значеня, которые идут в select
-      selectOptions: ["one", "two", "three"],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
-      // список для чекбоксов
-      checkboxList: ["20 см", "30 см", "40 см"],
-      // cписок для чекбоксов
-      checkboxListSecond: ["Кирпич", "Бетон", "Глина"],
       // выбранный чекбок для диаметра коронки
-      selectedCheckbox: null,
+      selectedCheckbox: {},
       // выбранный чекбок для материала стены
-      selectedCheckboxSecond: null,
+      selectedCheckboxSecond: {},
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),
+  },
   methods: {
     deleteItem() {
       this.$emit("deleteItem", this.index);

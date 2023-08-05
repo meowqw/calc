@@ -11,12 +11,48 @@ export default {
   ADD_ITEM_SECOND_ACCORDION_LIST(state, item) {
     state.accordionListSecond.push(item);
   },
-  // мутация удаления элемента в список второго калькулятора
+  // мутация удаления элемента из списка второго калькулятора
   REMOVE_ITEM_SECOND_ACCORDION_LIST(state, index) {
     state.accordionListSecond.splice(index, 1);
   },
+
   // мутация добавления клиента
   ADD_CLIENT(state, client) {
     state.clients.push(client);
   },
+
+  // мутация добавления данных первого калькулятора
+  UPDATE_RESULT_FIRST_CALC(state, value) {
+    state.resultFirstCalc = value;
+  },
+  // мутация добавления данных второго калькулятора
+  UPDATE_RESULT_SECOND_CALC(state, value) {
+    state.resultSecondCalc = value;
+  },
+  // мутация добавления данных третьего калькулятора
+  UPDATE_RESULT_THIRD_CALC(state, value) {
+    state.resultThirdCalc = value;
+  },
+
+  // обновление состояния коронок
+  SET_CROWNS(state, data) {
+    state.crowns = data;
+  },
+  // обновление состояния материалов
+  SET_MATERIALS(state, data) {
+    state.materials = data;
+  },
+  // обновление состояния коэффициентов
+  SET_COEFFICIENTS(state, data) {
+    state.coefficients = data;
+  },
+  // обновление состояния дополнительных работ
+  SET_EXTRA_WORKS(state, data) {
+    state.extraWorks = data;
+  },
+
+  UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS(state, payload) {
+    const {id, newQuantity} = payload;
+    state.extraWorks[id].quantity = newQuantity;
+  }
 };

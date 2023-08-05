@@ -11,17 +11,20 @@
     </div>
     <div class="calculator__right">
       <!-- tabs -->
-      <tabs :options="{ useUrlFragment: false }" nav-item-class="nav-item tabs-component-tabs">
+      <tabs
+        :options="{ useUrlFragment: false }"
+        nav-item-class="nav-item tabs-component-tabs"
+      >
         <tab name="Бурение">
-          <calc-component-first/>
+          <calc-component-first />
         </tab>
         <tab name="Периметр">
-           <calc-component-second/>
+          <calc-component-second />
         </tab>
         <tab name="Резка" :is-disabled="false">
-            <calc-component-third/>
+          <calc-component-third />
         </tab>
-    </tabs>
+      </tabs>
       <calc-item-addition />
       <div class="calculator__right-bottom">
         <calc-item-sale />
@@ -30,20 +33,18 @@
     </div>
   </div>
 
-  <calc-modal
-    :is-open="isModalOpen"
-    @close="isModalOpen = false"
-  />
+  <calc-modal :is-open="isModalOpen" @close="isModalOpen = false" />
 </template>
 
 <script>
-import calcItemAddition from "@/components/calc-library-items/calc-item-addition.vue";
-import calcItemDistance from "@/components/calc-library-items/calc-item-distance.vue";
-import calcItemResult from "@/components/calc-library-items/calc-item-result.vue";
-import calcItemSale from "@/components/calc-library-items/calc-item-sale.vue";
-import calcComponentFirst from "@/components/calc-library-component/calc-component-first.vue";
-import calcComponentSecond from "@/components/calc-library-component/calc-component-second.vue";
-import calcComponentThird from "@/components/calc-library-component/calc-component-third.vue";
+import { mapActions } from "vuex";
+import calcItemAddition from "@/components/calc-library-items/calc-item-addition";
+import calcItemDistance from "@/components/calc-library-items/calc-item-distance";
+import calcItemResult from "@/components/calc-library-items/calc-item-result";
+import calcItemSale from "@/components/calc-library-items/calc-item-sale";
+import calcComponentFirst from "@/components/calc-library-component/calc-component-first";
+import calcComponentSecond from "@/components/calc-library-component/calc-component-second";
+import calcComponentThird from "@/components/calc-library-component/calc-component-third";
 import calcModal from "./calc-modal.vue";
 
 export default {
@@ -56,12 +57,26 @@ export default {
     calcComponentFirst,
     calcComponentSecond,
     calcComponentThird,
-    calcModal
+    calcModal,
   },
   data() {
     return {
       isModalOpen: false,
     };
+  },
+  methods: {
+    ...mapActions([
+      "FETCH_CROWNS",
+      "FETCH_MATERIALS",
+      "FETCH_COEFFICIENTS",
+      "FETCH_EXTRA_WORKS",
+    ]),
+  },
+  mounted() {
+    this.FETCH_CROWNS();
+    this.FETCH_MATERIALS();
+    this.FETCH_COEFFICIENTS();
+    this.FETCH_EXTRA_WORKS();
   },
 };
 </script>

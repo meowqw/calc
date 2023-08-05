@@ -4,43 +4,51 @@
       <div class="result-block block">
         <div class="result-block__top">
           <h3 class="result-block__title">Стоимость</h3>
-          <span class="result-block__price">5000 руб</span>
+          <span class="result-block__price">
+            {{ resultThirdCalc }}
+            руб
+          </span>
         </div>
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Длина реза:
-              <span class="result-item__value">{{ inputValue }} см</span>
+              <span class="result-item__value"> {{ inputValue }} м</span>
             </div>
-            <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Толщина стены:
-              <span class="result-item__value">{{ valueSlider }} см</span>
+              <span class="result-item__value">{{ valueSlider / 100 }} м</span>
             </div>
-            <div class="result-item__price">700 руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Материал стены:
-              <span class="result-item__value">{{ selectedCheckbox }}</span>
+              Квадратных метров:
+              <span class="result-item__value"
+                >{{ Math.round(inputValue * (valueSlider / 100)) }} м3</span
+              >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">1 м3 = {{ 12000 }} руб</div>
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Количество отверстий:
               <span class="result-item__value">{{ counterValue }}</span>
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ counterValue * 150 }} руб</div>
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
               Коэффициенты:
-              <span class="result-item__value">{{ selectValues }}</span>
+              <span
+                class="result-item__value"
+                v-for="(item, index) in selectValues"
+                :key="index"
+                >{{ item.name }} ({{ item.value }})</span
+              >
             </div>
-            <div class="result-item__price">700 руб</div>
+            <div class="result-item__price">{{ totalPriceSelectValues }} руб</div>
           </li>
         </ul>
       </div>
@@ -49,6 +57,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "calc-item-result",
   props: {
@@ -69,10 +79,10 @@ export default {
       return: 0,
     },
     // материал стены
-    selectedCheckbox: {
-      type: String,
-      return: null,
-    },
+    // selectedCheckbox: {
+    //   type: String,
+    //   return: null,
+    // },
     // количество отверстий
     counterValue: {
       type: Number,
@@ -81,6 +91,47 @@ export default {
     // коэффициенты
     selectValues: {
       type: Array,
+    },
+  },
+  computed: {
+    // получаем стоимость доэффициентов
+    totalPriceSelectValues() {
+      return this.selectValues.reduce(
+        (total, item) => total + item.startPrice,
+        0
+      );
+    },
+    // логика отправки значения без зарезов, либо с зарезами
+    resultThirdCalc() {
+      if (this.counterValue <= 1) {
+        // формула
+        return Math.round(
+          this.inputValue * (this.valueSlider / 100) * 12000 +
+            this.totalPriceSelectValues
+        );
+      } else {
+        return (
+          // формула
+          Math.round(
+            this.inputValue * (this.valueSlider / 100) * 12000 +
+              this.counterValue * 150 +
+              this.totalPriceSelectValues
+          )
+        );
+      }
+    },
+  },
+  methods: {
+    ...mapMutations(["UPDATE_RESULT_THIRD_CALC"]),
+    // отправка значения в мутацию
+    sendResultThirdCalc() {
+      this.UPDATE_RESULT_THIRD_CALC(this.resultThirdCalc);
+    },
+  },
+  watch: {
+    // отслеживание значения в компоненте и обновление в мутации
+    resultThirdCalc() {
+      this.sendResultThirdCalc();
     },
   },
 };
@@ -258,12 +309,12 @@ export default {
   }
 
   &__value {
-    margin-right: 7px;
+    margin-right: 0px;
     margin-left: 0;
     font-weight: 700;
 
     &:not(:last-child) {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     &:first-child {

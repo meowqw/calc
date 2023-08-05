@@ -7,16 +7,19 @@
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
-        <ul class="list-reset addition__list" id="coefList0">
+        <ul class="list-reset addition__list">
           <li
-            v-for="(item, index) in items"
-            :key="index"
+            v-for="(item, id) in this.GET_EXTRA_WORKS"
+            :key="id"
             class="addition__item"
           >
             <span class="label addition__label">
-              {{ item }}
+              {{ item.name }}
             </span>
-            <calc-counter />
+            <calc-counter
+              :quantity="item.quantity"
+              @quantityChanged="onQuantityChanged(id, $event)"
+            />
           </li>
         </ul>
       </AccordionItem>
@@ -25,17 +28,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import calcCounter from "../calc-counter.vue";
 
 export default {
   name: "calc-item-addition",
+  data() {
+    return {};
+  },
   components: {
     calcCounter,
   },
-  data() {
-    return {
-      items: ["Алмазное покрытие", "Что-то еще", "Что-то еще"],
-    };
+  computed: {
+    ...mapGetters(["GET_EXTRA_WORKS"]),
+  },
+  methods: {
+    onQuantityChanged(id, newQuantity) {
+      this.$store.commit("UPDATE_QUANTITY_COUNTER_FOR_EXTRA_WORKS", { id, newQuantity });
+    }
   },
 };
 </script>

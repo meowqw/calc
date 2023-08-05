@@ -4,13 +4,13 @@
     <form action="#" class="form calc-item-checkbox__form">
       <!-- v-for для генерации списка чекбоксов -->
       <label
-        v-for="(item, index) in checkboxList"
-        :key="index"
+        v-for="(item, id) in checkboxList"
+        :key="id"
         class="custom-checkbox calc-item__form-item"
       >
         <input
           type="radio"
-          :name="title"
+          :name="checkboxList"
           class="custom-checkbox__field"
           :value="item"
           @change="handleCheckboxChange(item)"
@@ -18,7 +18,7 @@
         <span
           class="custom-checkbox__content custom-checkbox__content--radio"
         ></span>
-        {{ item }}
+        {{ item.name }}
       </label>
     </form>
   </div>

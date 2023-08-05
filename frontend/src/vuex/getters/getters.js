@@ -13,5 +13,35 @@ export default {
   // клиенты
   CLIENTS(state) {
     return state.clients;
+  },
+
+  // результат первого калькулятора
+  GET_RESULT_FIRST_CALC(state) {
+    return state.resultFirstCalc;
+  },
+  // результат второго калькулятора
+  GET_RESULT_SECOND_CALC(state) {
+    return state.resultSecondCalc;
+  },
+  // результат третьего калькулятора
+  GET_RESULT_THIRD_CALC(state) {
+    return state.resultThirdCalc;
+  },
+
+  // коронки
+  GET_CROWNS(state) {
+    return state.crowns;
+  },
+  // материалы стены
+  GET_MATERIALS(state) {
+    return state.materials;
+  },
+  // коэффициенты
+  GET_COEFFICIENTS(state) {
+    return state.coefficients;
+  },
+  // дополнительные работы
+  GET_EXTRA_WORKS(state) {
+    return state.extraWorks;
   }
 };

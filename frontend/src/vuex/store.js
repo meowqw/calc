@@ -16,6 +16,21 @@ const store = createStore({
     accordionListSecond: [],
     // список клиентов
     clients: [],
+    // результат первого калькулятор
+    resultFirstCalc: 0,
+    // результат второго калькулятор
+    resultSecondCalc: 0,
+    // результат третьего калькулятор
+    resultThirdCalc: 0,
+
+    // коронки через API
+    crowns: [],
+    // материалы через API
+    materials: [],
+    // коэффициенты через API
+    coefficients: [],
+    // дополнительные работы через API
+    extraWorks: [],
   },
   mutations,
   actions,

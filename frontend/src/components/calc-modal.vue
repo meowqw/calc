@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import calcAddClient from "@/components/calc-modal-content/calc-add-client.vue";
-import calcTableEstimate from "@/components/calc-modal-content/calc-table-estimate.vue";
+import calcAddClient from "@/components/calc-modal-content/calc-add-client";
+import calcTableEstimate from "@/components/calc-modal-content/calc-table-estimate";
 
 export default {
   name: "calc-modal",

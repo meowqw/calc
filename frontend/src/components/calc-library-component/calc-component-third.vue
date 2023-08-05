@@ -21,13 +21,13 @@
               />
             </li>
             <!-- материал стены -->
-            <li class="calc-component-content__item">
+            <!-- <li class="calc-component-content__item">
               <calc-item-checkbox
                 :title="itemCheckboxTitle"
                 :checkboxList="checkboxList"
                 @checkboxSelected="handleCheckboxSelected"
               />
-            </li>
+            </li> -->
             <!-- чекбокс для отображения итемов при условии "без зарезов"-->
             <li
               class="calc-component-content__item"
@@ -51,7 +51,7 @@
             <!-- коэффициенты -->
             <li class="calc-accordion-item__item" v-if="isActive">
               <calc-item-select
-                :options="selectOptions"
+                :options="this.GET_COEFFICIENTS"
                 @valueChanged="handleSelecedValues"
               />
             </li>
@@ -74,10 +74,12 @@
 </template>
 
 <script>
-import calcItemResultThird from "../calc-library-items/calc-item-result-third.vue";
-import calcItemCheckbox from "../calc-library-items/calc-item-checkbox.vue";
-import calcItemValueSlider from "../calc-library-items/calc-item-value-slider.vue";
-import calcItemInput from "../calc-library-items/calc-item-input.vue";
+import { mapGetters } from "vuex";
+
+import calcItemResultThird from "../calc-library-items/calc-item-result-third";
+// import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
+import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
+import calcItemInput from "../calc-library-items/calc-item-input";
 import calcItemCounter from "../calc-library-items/calc-item-counter.vue";
 import calcItemSelect from "../calc-library-items/calc-item-select.vue";
 
@@ -85,7 +87,7 @@ export default {
   name: "calc-component-third",
   components: {
     calcItemResultThird,
-    calcItemCheckbox,
+    // calcItemCheckbox,
     calcItemValueSlider,
     calcItemInput,
     calcItemCounter,
@@ -101,16 +103,28 @@ export default {
       // переменная для хранения значения valueSlider
       valueSlider: 0,
       // список для чекбоксов
-      checkboxList: ["Кирпич", "Бетон", "Глина"],
+      // checkboxList: [
+      //   {
+      //     id: 1,
+      //     name: "Кирпич",
+      //     cost: 35,
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Бетон",
+      //     cost: 350,
+      //   },
+      // ],
       // выбранный чекбок для диаметра коронки
-      selectedCheckbox: null,
+      selectedCheckbox: {},
       // переменная для хранения значения счетчика
       counterValue: 1,
-      // переменная для хранения значеня, которые идут в select
-      selectOptions: ["one", "two", "three"],
       // переменная для хранения значения, которые идту из select
       selectValues: [],
     };
+  },
+  computed: {
+    ...mapGetters(["GET_COEFFICIENTS"])
   },
   methods: {
     // обработчик события, вызываемый при изменении значения в input (обрабатываем данные из ребенка)
@@ -122,9 +136,9 @@ export default {
       this.valueSlider = value;
     },
     // получение выбранного чекбокса материала стены
-    handleCheckboxSelected(item) {
-      this.selectedCheckbox = item;
-    },
+    // handleCheckboxSelected(item) {
+    //   this.selectedCheckbox = item;
+    // },
     // получение значения счетчика
     onQuantityUpdated(value) {
       this.counterValue = value;

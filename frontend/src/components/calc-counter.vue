@@ -20,8 +20,16 @@ export default {
   name: "calc-counter",
   data() {
     return {
-      localQuantity: 1,
+      localQuantity: this.quantity,
     };
+  },
+  props: {
+    quantity: {
+      type: Number,
+      required: true,
+    }
+  },
+  computed: {
   },
   methods: {
     decrementItem() {
@@ -41,6 +49,11 @@ export default {
       this.$emit("quantityChanged", this.localQuantity);
     },
   },
+  watch: {
+    localQuantity(newQuantity) {
+      this.localQuantity = newQuantity;
+    }
+  }
 };
 </script>
 

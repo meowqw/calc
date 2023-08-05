@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
-import calcLibrary from "@/components/calc-library.vue";
-import calcClients from "@/components/calc-clients.vue";
+import calcLibrary from "@/components/calc-library";
+import calcClients from "@/components/calc-clients";
 
 const router = createRouter({
   history: createWebHistory(),
