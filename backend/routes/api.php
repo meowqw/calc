@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Coefficient\CoefficientController;
 use App\Http\Controllers\Api\Crown\CrownController;
 use App\Http\Controllers\Api\ExtraWork\ExtraWorkController;
 use App\Http\Controllers\Api\Material\MaterialController;
+use App\Http\Controllers\Api\Settings\SettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,8 @@ Route::prefix('coefficients')->group(function () {
 
 Route::prefix('crowns')->group(function () {
     Route::get('/', [CrownController::class, 'index']);
+});
+
+Route::prefix('settings')->group(function () {
+    Route::get('/', [SettingsController::class, 'index']);
 });
