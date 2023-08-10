@@ -156,8 +156,6 @@ export default {
     // получение данных результата
     receiveResult(value) {
       this.result = value;
-
-      this.$emit("update:result", value);
     },
   },
 };
