@@ -22,6 +22,8 @@ const store = createStore({
     resultSecondCalc: 0,
     // результат третьего калькулятор
     resultThirdCalc: 0,
+    // результаты всех отверстий
+    firstCalcResults: {},
 
     // коронки через API
     crowns: [],

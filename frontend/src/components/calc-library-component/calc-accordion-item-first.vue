@@ -59,6 +59,7 @@
           <!-- result -->
           <div class="calc-accordion-item__right">
             <calc-item-result-first
+                    :index="index"
               :counterValue="counterValue"
               :valueSlider="valueSlider"
               :selectValues="selectValues"

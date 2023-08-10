@@ -8,6 +8,7 @@
         <calc-accordion-item-first
           v-for="(item, index) in ACCORDION_LIST_FIRST"
           :key="index"
+          :index="index"
           @deleteItem="deleteItem(index)"
           @addNewItem="addNewAccordionItem()"
         />

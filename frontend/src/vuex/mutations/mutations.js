@@ -5,7 +5,9 @@ export default {
   },
   // мутация удаления  элемента в список первого калькулятора
   REMOVE_ITEM_FIRST_ACCORDION_LIST(state, index) {
+    delete state.firstCalcResults[index];
     state.accordionListFirst.splice(index, 1);
+    state.resultFirstCalc = Object.values(state.firstCalcResults).reduce((partialSum, a) => partialSum + a, 0);
   },
   // мутация добавления нового элемента в список второго калькулятора
   ADD_ITEM_SECOND_ACCORDION_LIST(state, item) {
@@ -23,7 +25,9 @@ export default {
 
   // мутация добавления данных первого калькулятора
   UPDATE_RESULT_FIRST_CALC(state, value) {
-    state.resultFirstCalc = value;
+    let key = Object.keys(value)[0];
+    state.firstCalcResults[key] = value[key];
+    state.resultFirstCalc = Object.values(state.firstCalcResults).reduce((partialSum, a) => partialSum + a, 0);
   },
   // мутация добавления данных второго калькулятора
   UPDATE_RESULT_SECOND_CALC(state, value) {
