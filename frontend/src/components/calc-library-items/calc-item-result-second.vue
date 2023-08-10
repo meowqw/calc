@@ -12,7 +12,6 @@
               Периметр проема
               <span class="result-item__value">{{ inputValue }} см</span>
             </div>
-            <div class="result-item__price">{{ inputValue * 2 }} руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -32,6 +31,13 @@
               {{ selectedCheckbox.id * 100 }} руб
             </div>
           </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Количество проемов
+              <span class="result-item__value">{{ counterValue }} см</span>
+            </div>
+            <div class="result-item__price">{{ counterValue}} руб</div>
+          </li>
         </ul>
       </div>
     </div>
@@ -39,7 +45,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
   name: "calc-item-result",
@@ -59,6 +65,11 @@ export default {
     selectedCheckbox: {
       type: Object,
       return: {},
+    },
+    // количество проемов
+    counterValue: {
+      type: Number,
+      required: true,
     },
   },
   computed: {

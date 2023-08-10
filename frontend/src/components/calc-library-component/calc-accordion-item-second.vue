@@ -3,7 +3,9 @@
     <div class="calc-accordion-item__top">
       <AccordionItem>
         <template #summary
-          ><div class="calc-accordion-item__name">Стоимость: {{ this.GET_RESULT_SECOND_CALC }}</div>
+          ><div class="calc-accordion-item__name">
+            Стоимость: {{ this.GET_RESULT_SECOND_CALC }}
+          </div>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -33,6 +35,13 @@
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
+              <!-- количество проемов -->
+              <li class="calc-accordion-item__item">
+                <calc-item-counter
+                  :title="itemCouterTitle"
+                  @quantityUpdate="onQuantityUpdated"
+                />
+              </li>
             </ul>
           </div>
           <!-- result -->
@@ -41,6 +50,7 @@
               :inputValue="inputValue"
               :valueSlider="valueSlider"
               :selectedCheckbox="selectedCheckbox"
+              :counterValue="counterValue"
             />
           </div>
         </div>
@@ -66,6 +76,7 @@ import calcItemRowResult from "../calc-library-items/calc-item-row-result";
 import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
 import calcItemInput from "../calc-library-items/calc-item-input";
+import calcItemCounter from "../calc-library-items/calc-item-counter.vue";
 
 export default {
   name: "calc-accordion-item-second",
@@ -75,11 +86,15 @@ export default {
     calcItemCheckbox,
     calcItemValueSlider,
     calcItemInput,
+    calcItemCounter,
   },
   data() {
     return {
+      itemCouterTitle: "Количество проемов",
       itemInputTitle: "Периметр проема",
       itemCheckboxTitle: "Материал стены",
+      // переменная для хранения значения счетчика
+      counterValue: 1,
       // переменная для хранения периметра проема
       inputValue: 0,
       // переменная для хранения значения valueSlider
@@ -106,6 +121,10 @@ export default {
     // получение выбранного чекбокса материала стены
     handleCheckboxSelected(item) {
       this.selectedCheckbox = item;
+    },
+    // получение значения счетчика
+    onQuantityUpdated(value) {
+      this.counterValue = value;
     },
   },
 };

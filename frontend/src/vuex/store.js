@@ -31,6 +31,8 @@ const store = createStore({
     coefficients: [],
     // дополнительные работы через API
     extraWorks: [],
+    // настройки
+    settings: [],
   },
   mutations,
   actions,

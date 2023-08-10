@@ -4,7 +4,7 @@
       <AccordionItem>
         <template #summary
           ><div class="calc-accordion-item__name">
-            Стоимость: {{ this.GET_RESULT_FIRST_CALC }}
+            Стоимость: {{ result }}
             <span>
               Кол-во:
               <span>{{ counterValue }}</span>
@@ -49,7 +49,10 @@
               </li>
               <!-- количество отверстий -->
               <li class="calc-accordion-item__item">
-                <calc-item-counter @quantityUpdate="onQuantityUpdated" />
+                <calc-item-counter
+                  :title="itemCouterTitle"
+                  @quantityUpdate="onQuantityUpdated"
+                />
               </li>
             </ul>
           </div>
@@ -61,6 +64,7 @@
               :selectValues="selectValues"
               :selectedCheckbox="selectedCheckbox"
               :selectedCheckboxSecond="selectedCheckboxSecond"
+              @sendResult="receiveResult"
             />
           </div>
         </div>
@@ -100,6 +104,7 @@ export default {
   },
   data() {
     return {
+      itemCouterTitle: "Количество отверстий",
       itemCheckboxTitle: "Диаметр коронки",
       itemCheckboxTitleSecond: "Материал стены",
       // переменная для хранения значения счетчика
@@ -112,7 +117,14 @@ export default {
       selectedCheckbox: {},
       // выбранный чекбок для материала стены
       selectedCheckboxSecond: {},
+      // результат
+      result: 0,
     };
+  },
+  props: {
+    index: {
+      type: Number,
+    },
   },
   computed: {
     ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),
@@ -140,6 +152,12 @@ export default {
     // получение выбранного чекбокса материала стены
     handleCheckboxSelectedSecond(item) {
       this.selectedCheckboxSecond = item;
+    },
+    // получение данных результата
+    receiveResult(value) {
+      this.result = value;
+
+      this.$emit("update:result", value);
     },
   },
 };

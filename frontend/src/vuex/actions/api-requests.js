@@ -82,4 +82,21 @@ export default {
       console.log(error);
     }
   },
+
+  // получаем стартовые настройки
+  async FETCH_SETTINGS({ commit }) {
+    try {
+      const settings = await axios(
+        "http://37.46.134.113:2041/api/v1/settings",
+        {
+          methods: "GET",
+          headers: {},
+        }
+      );
+
+      commit("SET_SETTINGS", settings.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

@@ -8,12 +8,12 @@
         <calc-accordion-item-first
           v-for="(item, index) in ACCORDION_LIST_FIRST"
           :key="index"
-          :index="index"
           @deleteItem="deleteItem(index)"
+          @addNewItem="addNewAccordionItem()"
         />
       </AccordionList>
       <div class="calc-component__bottom">
-        <button class="btn-reset btn" @click="addNewAccordionItem">
+        <button class="btn-reset btn" @click="addNewAccordionItem()">
           <font-awesome-icon :icon="['fas', 'plus']" />
           Добавить отверстие
         </button>
@@ -44,8 +44,7 @@ export default {
     ]),
     // функция добавления нового элемента в список
     addNewAccordionItem() {
-      const newItem = {};
-      this.ADD_ITEM_FIRST_ACCORDION_LIST(newItem);
+      this.ADD_ITEM_FIRST_ACCORDION_LIST();
     },
     // логика удаления элемента из списка
     deleteItem(index) {

@@ -41,13 +41,7 @@
             Итоговая стоимость:
           </h3>
           <span class="result-block__price result-block__price--total"
-            >{{
-              resultFirstCalc +
-              resultSecondCalc +
-              resultThirdCalc +
-              totalCostExtraWorks
-            }}
-            руб</span
+            >{{ finalResult }} руб</span
           >
         </div>
       </div>
@@ -66,6 +60,7 @@ export default {
       "GET_RESULT_SECOND_CALC",
       "GET_RESULT_THIRD_CALC",
       "GET_EXTRA_WORKS",
+      "GET_SETTINGS"
     ]),
     // получение значения первого калькулятора
     resultFirstCalc() {
@@ -89,6 +84,21 @@ export default {
         (total, item) => total + item.cost * item.quantity,
         0
       );
+    },
+    // вычисляем итоговую стоимость с учетом минимального значения
+    finalResult() {
+      const rawResult =
+        this.resultFirstCalc +
+        this.resultSecondCalc +
+        this.resultThirdCalc +
+        this.totalCostExtraWorks;
+
+      // Минимальное значение для итога
+      const minResult = this.GET_SETTINGS.startPrice;
+
+      // Если суммарная стоимость меньше минимальной, вернем минимальную стоимость, 
+      // иначе вернем суммарную стоимость
+      return rawResult < minResult ? minResult : rawResult;
     },
   },
 };

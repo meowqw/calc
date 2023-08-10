@@ -43,5 +43,8 @@ export default {
   // дополнительные работы
   GET_EXTRA_WORKS(state) {
     return state.extraWorks;
-  }
+  },
+  GET_SETTINGS(state) {
+    return state.settings;
+  },
 };

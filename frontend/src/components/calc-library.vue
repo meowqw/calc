@@ -70,6 +70,7 @@ export default {
       "FETCH_MATERIALS",
       "FETCH_COEFFICIENTS",
       "FETCH_EXTRA_WORKS",
+      "FETCH_SETTINGS",
     ]),
   },
   mounted() {
@@ -77,6 +78,7 @@ export default {
     this.FETCH_MATERIALS();
     this.FETCH_COEFFICIENTS();
     this.FETCH_EXTRA_WORKS();
+    this.FETCH_SETTINGS();
   },
 };
 </script>

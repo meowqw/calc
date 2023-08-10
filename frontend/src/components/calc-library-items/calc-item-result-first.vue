@@ -21,7 +21,7 @@
               >
             </div>
             <div class="result-item__price">
-              {{ totalPriceSelectValues }} руб
+              {{ valueSelectValues }}
             </div>
           </li>
           <li class="result-block__item result-item">
@@ -53,7 +53,9 @@
               Толщина стены:
               <span class="result-item__value">{{ valueSlider }} см</span>
             </div>
-            <div class="result-item__price">{{ valueSlider * 3 }} руб</div>
+            <div class="result-item__price">
+              {{ valueSlider * selectedCheckboxSecond.cost }} руб
+            </div>
           </li>
         </ul>
       </div>
@@ -67,6 +69,9 @@ import { mapMutations } from "vuex";
 export default {
   name: "calc-item-result",
   props: {
+    index: {
+      type: Number
+    },
     // количество отверстий
     counterValue: {
       type: Number,
@@ -94,25 +99,28 @@ export default {
     },
   },
   computed: {
-    // получаем стоимость доэффициентов
-    totalPriceSelectValues() {
+    // получаем наибольший коэффициент
+    valueSelectValues() {
       return this.selectValues.reduce(
-        (total, item) => total + item.startPrice,
+        (value, item) => Math.max(value, item.value),
         0
       );
     },
     // получаем общую стоимость первого калькулятора
     resultFirstCalc() {
       // формула
-      return Math.round((this.totalPriceSelectValues + (this.valueSlider * 3) + this.selectedCheckboxSecond.cost) * this.counterValue);
+      return Math.round(
+        this.valueSlider * this.selectedCheckboxSecond.cost * this.counterValue
+      );
     },
   },
   methods: {
     ...mapMutations(["UPDATE_RESULT_FIRST_CALC"]),
     // отправка значения в мутацию
     sendResultFirstCalc() {
+      this.$emit("sendResult", this.index, this.resultFirstCalc);
+
       this.UPDATE_RESULT_FIRST_CALC(this.resultFirstCalc);
-      
     },
   },
   watch: {
