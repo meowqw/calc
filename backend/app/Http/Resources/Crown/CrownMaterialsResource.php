@@ -18,7 +18,7 @@ class CrownMaterialsResource extends JsonResource
     {
         return [
             'name' => $this->resource->name,
-            'cost' => $this->resource->pivot->cost
+            'cost' => $this->resource->pivot->cost,
         ];
     }
 }

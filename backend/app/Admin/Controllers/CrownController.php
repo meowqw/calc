@@ -7,8 +7,11 @@ use App\Models\Material\Material;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CrownController extends AdminController
 {
@@ -40,9 +43,9 @@ class CrownController extends AdminController
      * @param mixed $id
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
-        $show = new Show(Crown::findOrFail($id));
+        $show = new Show(Crown::query()->findOrFail($id));
 
         $show->field('id', __('ID'));
         $show->field('name', __('Наименование'));
@@ -71,10 +74,11 @@ class CrownController extends AdminController
         return $form;
     }
 
-    public function update($id)
+    public function update($id): Response|RedirectResponse
     {
-        $crown = Crown::findOrFail($id);
-        $crown->name = request('name');
+        /** @var Crown $crown */
+        $crown = Crown::query()->findOrFail($id);
+        $crown->setName(request('name'));
         $crown->save();
 
         $selectedMaterials = request('materials', []);
@@ -82,11 +86,31 @@ class CrownController extends AdminController
         foreach ($selectedMaterials as $materialId => $materialData) {
             $cost = $materialData['pivot']['cost'];
 
-            $crown->materials()->syncWithoutDetaching([$materialId => ['cost' => $cost]]);
+            $crown->materials()->syncWithoutDetaching([$materialId + 1 => ['cost' => $cost]]);
         }
 
         admin_toastr(trans('admin.update_succeeded'));
 
-        return redirect()->route('crown.index');
+        return redirect()->back();
+    }
+
+    public function store()
+    {
+        $crown = new Crown();
+        $crown->setName(request('name'));
+        $crown->save();
+
+        $selectedMaterials = request('materials', []);
+
+        foreach ($selectedMaterials as $materialId => $materialData) {
+            $cost = $materialData['pivot']['cost'];
+
+            $crown->materials()->syncWithoutDetaching([$materialId + 1 => ['cost' => $cost]]);
+        }
+
+        admin_toastr(trans('admin.save_succeeded'));
+
+        return redirect()->route('admin.crowns');
+
     }
 }
