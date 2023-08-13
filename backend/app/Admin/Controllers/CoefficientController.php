@@ -27,11 +27,9 @@ class CoefficientController extends AdminController
         $grid = new Grid(new Coefficient());
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('name', __('Name'))->sortable();
-        $grid->column('value', __('Value'))->sortable();
-        $grid->column('start_price', __('StartPrice'))->sortable();
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('name', __('Наименование'))->sortable();
+        $grid->column('value', __('Значение'))->sortable();
+        $grid->column('start_price', __('Начальная цена'))->sortable();
 
         return $grid;
     }
@@ -47,11 +45,9 @@ class CoefficientController extends AdminController
         $show = new Show(Coefficient::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('name', __('Name'));
-        $show->field('value', __('Value'));
-        $show->field('start_price', __('StartPrice'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('name', __('Наименование'));
+        $show->field('value', __('Значение'));
+        $show->field('start_price', __('Начальная цена'));
 
         return $show;
     }
@@ -66,11 +62,9 @@ class CoefficientController extends AdminController
         $form = new Form(new Coefficient());
 
         $form->display('id', __('ID'));
-        $form->text('name', __('Name'));
-        $form->text('value', __('Value'));
-        $form->text('start_price', __('StartPrice'));
-        $form->display('created_at', __('Created At'));
-        $form->display('updated_at', __('Updated At'));
+        $form->text('name', __('Наименование'));
+        $form->text('value', __('Значение'));
+        $form->text('start_price', __('Начальная цена'));
 
         return $form;
     }

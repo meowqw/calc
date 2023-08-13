@@ -46,4 +46,12 @@ Route::group([
         $router->post('/', 'CrownController@store')->name('crowns-store');
         $router->put('/{id}', 'CrownController@update')->name('crowns-update');
     });
+
+    Route::prefix('settings')->group(function () use ($router) {
+        $router->get('/', 'SettingsController@index')->name('settings');
+        $router->get('/create', 'SettingsController@create')->name('settings-create');
+        $router->get('/{id}/edit', 'SettingsController@edit')->name('settings-edit');
+        $router->post('/', 'SettingsController@store')->name('settings-store');
+        $router->put('/{id}', 'SettingsController@update')->name('settings-update');
+    });
 });

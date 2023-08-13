@@ -27,9 +27,7 @@ class MaterialController extends AdminController
         $grid = new Grid(new Material());
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('name', __('Name'))->sortable();
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('name', __('Наименование'))->sortable();
 
         return $grid;
     }
@@ -45,9 +43,7 @@ class MaterialController extends AdminController
         $show = new Show(Material::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('name', __('Name'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('name', __('Наименование'));
 
         return $show;
     }
@@ -62,9 +58,7 @@ class MaterialController extends AdminController
         $form = new Form(new Material());
 
         $form->display('id', __('ID'));
-        $form->text('name', __('Name'));
-        $form->display('created_at', __('Created At'));
-        $form->display('updated_at', __('Updated At'));
+        $form->text('name', __('Наименование'));
 
         $form->saving(function (Form $form) {});
 

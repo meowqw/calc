@@ -3,10 +3,12 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Crown\Crown;
+use App\Models\Material\Material;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class CrownController extends AdminController
 {
@@ -27,9 +29,7 @@ class CrownController extends AdminController
         $grid = new Grid(new Crown());
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('name', __('Name'))->sortable();
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('name', __('Наименование'))->sortable();
 
         return $grid;
     }
@@ -37,7 +37,7 @@ class CrownController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed   $id
+     * @param mixed $id
      * @return Show
      */
     protected function detail($id): Show
@@ -45,9 +45,7 @@ class CrownController extends AdminController
         $show = new Show(Crown::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('name', __('Name'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('name', __('Наименование'));
 
         return $show;
     }
@@ -62,10 +60,33 @@ class CrownController extends AdminController
         $form = new Form(new Crown());
 
         $form->display('id', __('ID'));
-        $form->text('name', __('Name'));
-        $form->display('created_at', __('Created At'));
-        $form->display('updated_at', __('Updated At'));
+        $form->text('name', __('Наименование'));
+
+        $materials = Material::all();
+
+        foreach ($materials as $index => $material) {
+            $form->text("materials.{$index}.pivot.cost", "Цена для {$material->getName()}");
+        }
 
         return $form;
+    }
+
+    public function update($id)
+    {
+        $crown = Crown::findOrFail($id);
+        $crown->name = request('name');
+        $crown->save();
+
+        $selectedMaterials = request('materials', []);
+
+        foreach ($selectedMaterials as $materialId => $materialData) {
+            $cost = $materialData['pivot']['cost'];
+
+            $crown->materials()->syncWithoutDetaching([$materialId => ['cost' => $cost]]);
+        }
+
+        admin_toastr(trans('admin.update_succeeded'));
+
+        return redirect()->route('crown.index');
     }
 }

@@ -2,21 +2,21 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\ExtraWork\ExtraWork;
 use App\Models\Material\Material;
+use App\Models\Settings\Settings;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class ExtraWorkController extends AdminController
+class SettingsController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Дополнительные работы';
+    protected $title = 'Настройки';
 
     /**
      * Make a grid builder.
@@ -25,11 +25,11 @@ class ExtraWorkController extends AdminController
      */
     protected function grid(): Grid
     {
-        $grid = new Grid(new ExtraWork());
+        $grid = new Grid(new Settings());
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('name', __('Наименование'))->sortable();
-        $grid->column('cost', __('Цена'))->sortable();
+        $grid->column('start_price', __('Начальная цена'))->sortable();
+        $grid->column('logistic_price', __('Логистика'))->sortable();
 
         return $grid;
     }
@@ -42,11 +42,11 @@ class ExtraWorkController extends AdminController
      */
     protected function detail($id): Show
     {
-        $show = new Show(ExtraWork::findOrFail($id));
+        $show = new Show(Settings::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('name', __('Наименование'));
-        $show->field('cost', __('Цена'));
+        $show->field('start_price', __('Начальная цена'));
+        $show->field('logistic_price', __('Логистика'));
 
         return $show;
     }
@@ -58,11 +58,13 @@ class ExtraWorkController extends AdminController
      */
     protected function form(): Form
     {
-        $form = new Form(new ExtraWork());
+        $form = new Form(new Settings());
 
         $form->display('id', __('ID'));
-        $form->text('name', __('Наименование'));
-        $form->text('cost', __('Цена'));
+        $form->number('start_price', __('Начальная цена'));
+        $form->number('logistic_price', __('Логистика'));
+
+        $form->saving(function (Form $form) {});
 
         return $form;
     }
