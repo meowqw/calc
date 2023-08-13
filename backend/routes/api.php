@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Coefficient\CoefficientController;
 use App\Http\Controllers\Api\Crown\CrownController;
 use App\Http\Controllers\Api\ExtraWork\ExtraWorkController;
+use App\Http\Controllers\Api\Logistic\LogisticController;
 use App\Http\Controllers\Api\Material\MaterialController;
 use App\Http\Controllers\Api\Settings\SettingsController;
 use Illuminate\Http\Request;
@@ -41,4 +42,8 @@ Route::prefix('crowns')->group(function () {
 
 Route::prefix('settings')->group(function () {
     Route::get('/', [SettingsController::class, 'index']);
+});
+
+Route::prefix('logistic')->group(function () {
+    Route::post('calculate', [LogisticController::class, 'calculatePrice']);
 });
