@@ -32,11 +32,8 @@ export default {
   components: {
     calcAccordionItemFirst,
   },
-  data() {
-    return {};
-  },
   computed: {
-    ...mapGetters(["ACCORDION_LIST_FIRST", "GET_RESULT_FIRST_CALC"]),
+    ...mapGetters(["ACCORDION_LIST_FIRST"]),
   },
   methods: {
     ...mapMutations([

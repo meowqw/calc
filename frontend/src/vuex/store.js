@@ -24,6 +24,8 @@ const store = createStore({
     resultThirdCalc: 0,
     // результаты всех отверстий
     firstCalcResults: {},
+    // результат всех периметров
+    secondCalcResults: {},
 
     // коронки через API
     crowns: [],

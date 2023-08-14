@@ -59,7 +59,7 @@
           <!-- result -->
           <div class="calc-accordion-item__right">
             <calc-item-result-first
-                    :index="index"
+              :index="index"
               :counterValue="counterValue"
               :valueSlider="valueSlider"
               :selectValues="selectValues"
@@ -155,7 +155,7 @@ export default {
       this.selectedCheckboxSecond = item;
     },
     // получение данных результата
-    receiveResult(value) {
+    receiveResult(index, value) {
       this.result = value;
     },
   },

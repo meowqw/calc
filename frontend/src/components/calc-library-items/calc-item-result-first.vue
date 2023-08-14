@@ -64,13 +64,13 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "calc-item-result",
   props: {
     index: {
-      type: Number
+      type: Number,
     },
     // количество отверстий
     counterValue: {
@@ -97,13 +97,12 @@ export default {
       type: Object,
       return: {},
     },
-
   },
-    data() {
-      return {
-          id: this.index,
-      }
-    },
+  data() {
+    return {
+      id: this.index,
+    };
+  },
   computed: {
     // получаем наибольший коэффициент
     valueSelectValues() {
@@ -125,8 +124,8 @@ export default {
     // отправка значения в мутацию
     sendResultFirstCalc() {
       this.$emit("sendResult", this.index, this.resultFirstCalc);
-        let itemResultObject = {};
-        itemResultObject[this.id] = this.resultFirstCalc;
+      let itemResultObject = {};
+      itemResultObject[this.id] = this.resultFirstCalc;
       this.UPDATE_RESULT_FIRST_CALC(itemResultObject);
     },
   },

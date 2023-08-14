@@ -8,6 +8,7 @@
           :index="index"
           :key="index"
           @deleteItem="deleteItem(index)"
+          @addNewItem="addNewAccordionItem()"
         />
       </AccordionList>
       <div class="calc-component__bottom">
@@ -29,10 +30,6 @@ export default {
   components: {
     calcAccordionItemSecond
   },
-  data() {
-    return {
-    }
-  },
   computed: {
     ...mapGetters(["ACCORDION_LIST_SECOND"]),
   },
@@ -43,10 +40,7 @@ export default {
     ]),
     // функция добавления нового элемента в список
     addNewAccordionItem() {
-      const newItem = {
-        // логика
-      };
-      this.ADD_ITEM_SECOND_ACCORDION_LIST(newItem);
+      this.ADD_ITEM_SECOND_ACCORDION_LIST();
     },
     // логика удаления элемента из списка
     deleteItem(index) {

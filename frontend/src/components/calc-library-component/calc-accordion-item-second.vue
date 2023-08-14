@@ -3,9 +3,7 @@
     <div class="calc-accordion-item__top">
       <AccordionItem>
         <template #summary
-          ><div class="calc-accordion-item__name">
-            Стоимость: {{ this.GET_RESULT_SECOND_CALC }}
-          </div>
+          ><div class="calc-accordion-item__name">Стоимость: {{ result }}</div>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -47,10 +45,12 @@
           <!-- result -->
           <div class="calc-accordion-item__right">
             <calc-item-result-second
+              :index="index"
               :inputValue="inputValue"
               :valueSlider="valueSlider"
               :selectedCheckbox="selectedCheckbox"
               :counterValue="counterValue"
+              @sendResult="receiveResult"
             />
           </div>
         </div>
@@ -101,7 +101,14 @@ export default {
       valueSlider: 0,
       // выбранный чекбок для диаметра коронки
       selectedCheckbox: {},
+      // результат
+      result: 0,
     };
+  },
+  props: {
+    index: {
+      type: Number,
+    },
   },
   computed: {
     ...mapGetters(["GET_CROWNS", "GET_MATERIALS", "GET_RESULT_SECOND_CALC"]),
@@ -125,6 +132,10 @@ export default {
     // получение значения счетчика
     onQuantityUpdated(value) {
       this.counterValue = value;
+    },
+    // получение данных результата
+    receiveResult(index, value) {
+      this.result = value;
     },
   },
 };

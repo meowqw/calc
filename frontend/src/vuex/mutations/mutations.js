@@ -15,7 +15,9 @@ export default {
   },
   // мутация удаления элемента из списка второго калькулятора
   REMOVE_ITEM_SECOND_ACCORDION_LIST(state, index) {
+    delete state.secondCalcResults[index];
     state.accordionListSecond.splice(index, 1);
+    state.resultSecondCalc = Object.values(state.secondCalcResults).reduce((partialSum, a) => partialSum + a, 0);
   },
 
   // мутация добавления клиента
@@ -31,7 +33,9 @@ export default {
   },
   // мутация добавления данных второго калькулятора
   UPDATE_RESULT_SECOND_CALC(state, value) {
-    state.resultSecondCalc = value;
+    let key = Object.keys(value)[0];
+    state.secondCalcResults[key] = value[key];
+    state.resultSecondCalc = Object.values(state.secondCalcResults).reduce((partialSum, a) => partialSum + a, 0);
   },
   // мутация добавления данных третьего калькулятора
   UPDATE_RESULT_THIRD_CALC(state, value) {

@@ -36,7 +36,7 @@
               Количество проемов
               <span class="result-item__value">{{ counterValue }} см</span>
             </div>
-            <div class="result-item__price">{{ counterValue}} руб</div>
+            <div class="result-item__price">{{ counterValue }} руб</div>
           </li>
         </ul>
       </div>
@@ -50,6 +50,9 @@ import { mapMutations } from "vuex";
 export default {
   name: "calc-item-result",
   props: {
+    index: {
+      type: Number,
+    },
     // периметр проема
     inputValue: {
       type: [Number, String],
@@ -72,6 +75,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      id: this.index,
+    };
+  },
   computed: {
     resultSecondCalc() {
       // формула
@@ -86,7 +94,10 @@ export default {
     ...mapMutations(["UPDATE_RESULT_SECOND_CALC"]),
     // отправка значения в мутацию
     sendResultSecondCalc() {
-      this.UPDATE_RESULT_SECOND_CALC(this.resultSecondCalc);
+      this.$emit("sendResult", this.index, this.resultSecondCalc);
+      let itemResultObject = {};
+      itemResultObject[this.id] = this.resultSecondCalc;
+      this.UPDATE_RESULT_SECOND_CALC(itemResultObject);
     },
   },
   watch: {
