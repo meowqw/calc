@@ -98,7 +98,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   &__right {

@@ -5,8 +5,9 @@ import commonActions from "./actions/actions";
 import apiRequests from "./actions/api-requests";
 import getters from "./getters/getters";
 import mutations from "./mutations/mutations";
+import apiResponse from "./actions/api-response";
 
-const actions = { ...commonActions, ...apiRequests };
+const actions = { ...commonActions, ...apiRequests, ...apiResponse };
 
 const store = createStore({
   state: {

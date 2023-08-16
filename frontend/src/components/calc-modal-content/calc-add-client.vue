@@ -10,11 +10,11 @@
           class="input-reset input form__input"
           placeholder="Номер телефона"
           id="tel"
+          v-model="formData.tel"
         />
         <button
           type="button"
           class="btn-reset form__btn-clean"
-          onclick="document.getElementById('tel').value = ''"
           style="display: none"
           id="tel-btn"
         >
@@ -22,11 +22,11 @@
         </button>
       </label>
       <!-- элемент для номера телефона, отображающий возможные номера-->
-      <div class="form-tel">
+      <!-- <div class="form-tel">
         <ul class="list-reset form-tel__list">
           <li>+7(929)346-85-81</li>
         </ul>
-      </div>
+      </div> -->
       <!-- фио клиента -->
       <label class="form__label label">
         <span>ФИО клиента</span>
@@ -35,12 +35,11 @@
           name="ФИО"
           class="input-reset input form__input"
           placeholder="Фамилия, Имя, Отчество"
-          v-model="name"
+          v-model="formData.name"
         />
         <button
           type="button"
           class="btn-reset form__btn-clean"
-          onclick="document.getElementById('name').value = ''"
           style="display: none"
           id="name-btn"
         >
@@ -56,11 +55,11 @@
           class="input-reset input form__input"
           placeholder="Почта"
           id="mail"
+          v-model="formData.mail"
         />
         <button
           type="button"
           class="btn-reset form__btn-clean"
-          onclick="document.getElementById('mail').value = ''"
           style="display: none"
           id="mail-btn"
         >
@@ -75,11 +74,11 @@
           name="notes"
           id="notes"
           placeholder="Подробности"
+          v-model="formData.notes"
         ></textarea>
         <button
           type="button"
           class="btn-reset form__btn-clean"
-          onclick="document.getElementById('notes').value = ''"
           style="display: none"
           id="notes-btn"
         >
@@ -95,6 +94,7 @@
           class="input-reset input form__input"
           placeholder="Адрес"
           id="address"
+          v-model="formData.address"
         />
       </label>
       <!-- дата -->
@@ -106,6 +106,7 @@
           class="input-reset input form__input"
           placeholder="Дата"
           id="date"
+          v-model="formData.date"
         />
       </label>
       <!-- время -->
@@ -117,6 +118,7 @@
           class="input-reset input form__input"
           placeholder="Время"
           id="time"
+          v-model="formData.time"
         />
       </label>
       <button class="btn-reset btn form__btn" type="sumbit">
@@ -133,16 +135,28 @@ export default {
   name: "calc-add-client",
   data() {
     return {
-      name: "",
+      formData: {
+        name: "",
+        tel: "",
+        mail: "",
+        notes: "",
+        address: "",
+        date: "",
+        time: "",
+      },
     };
   },
   methods: {
-    ...mapActions(["ADD_CLIENT"]),
+    ...mapActions(["ADD_CLIENT", "SUBMIT_NEW_USER"]),
 
-    addClient() {
-      const client = { name: this.name };
+    async addClient(event) {
+      event.preventDefault();
+
+      const client = { name: this.formData.name };
       this.ADD_CLIENT(client);
       this.clearForm();
+
+      await this.SUBMIT_NEW_USER(this.formData);
     },
 
     clearForm() {

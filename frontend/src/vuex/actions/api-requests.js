@@ -99,4 +99,21 @@ export default {
       console.log(error);
     }
   },
+
+  // получаем клиентов
+  async FETCH_CLIENTS({ commit }) {
+    try {
+      const clients = await axios(
+        "",
+        {
+          methods: "GET",
+          headers: {},
+        }
+      );
+
+      commit("CLIENTS", clients);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

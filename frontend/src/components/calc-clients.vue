@@ -2,7 +2,11 @@
   <section class="clients">
     <div class="clients__container container">
       <div class="clients__top">
-        <button class="btn-reset btn" @click="isModalOpen = true" style="display: none;">
+        <button
+          class="btn-reset btn"
+          @click="isModalOpen = true"
+          style="display: none"
+        >
           <font-awesome-icon :icon="['fas', 'plus']" />
           Добавить клиента
         </button>
@@ -22,51 +26,58 @@
             </thead>
             <tbody>
               <!-- item -->
-              <tr v-for="(client, index) in CLIENTS" :key="index">
-                <td data-label="№">{{ index }}</td>
-                <td data-label="Имя пользователя">{{ client.name }}</td>
-                <td data-label="Почта">
-                  <a href="mailto:mail@mail.com" class="table__link"
-                    >mail@mail.com</a
-                  >
-                </td>
-                <td data-label="Номер телефона">
-                  <a href="tel:89234583593" class="table__link">89235622848</a>
-                </td>
-                <td data-label="Заказы">
-                  <button
-                    :class="['btn-reset btn btn--mini', { active: showOrders }]"
-                    data-target="order-panel-1"
-                    @click.capture="toggleOrders"
-                  >
-                    Заказы
-                  </button>
-                </td>
-                <td>
-                  <button class="btn-reset btn btn--mini">
-                    <font-awesome-icon :icon="['fas', 'xmark']" />
-                  </button>
-                </td>
-              </tr>
-              <!-- заказы -->
-              <tr
-                id="order-panel-1"
-                class="table-order-panel"
-                v-if="showOrders"
-              >
-                <td></td>
-                <td data-label="Дата:&nbsp;">23.03.2023</td>
-                <td data-label="Время:&nbsp;">Время</td>
-                <td data-label="Адрес:&nbsp;">Малахова 32</td>
-                <td data-label="">
-                  <button class="btn-reset btn btn--mini">Калькулятор</button>
-                </td>
-                <td>
-                  <button class="btn-reset btn btn--mini">
-                    <font-awesome-icon :icon="['fas', 'xmark']" />
-                  </button>
-                </td>
-              </tr>
+              <template v-for="(client, index) in CLIENTS" :key="index">
+                <tr>
+                  <td data-label="№">{{ index }}</td>
+                  <td data-label="Имя пользователя">{{ client.name }}</td>
+                  <td data-label="Почта">
+                    <a href="mailto:mail@mail.com" class="table__link">{{
+                      client.mail
+                    }}</a>
+                  </td>
+                  <td data-label="Номер телефона">
+                    <a href="tel:${89234583593}" class="table__link">{{
+                      client.tel
+                    }}</a>
+                  </td>
+                  <td data-label="Заказы">
+                    <button
+                      :class="[
+                        'btn-reset btn btn--mini',
+                        { active: showOrders },
+                      ]"
+                      data-target="order-panel-1"
+                      @click.capture="toggleOrders"
+                    >
+                      Заказы
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn-reset btn btn--mini">
+                      <font-awesome-icon :icon="['fas', 'xmark']" />
+                    </button>
+                  </td>
+                </tr>
+                <!-- заказы -->
+                <tr
+                  id="order-panel-1"
+                  class="table-order-panel"
+                  v-if="showOrders"
+                >
+                  <td></td>
+                  <td data-label="Дата:&nbsp;">{{ client.date }}</td>
+                  <td data-label="Время:&nbsp;">{{ client.time }}</td>
+                  <td data-label="Адрес:&nbsp;">{{ client.address }}</td>
+                  <td data-label="">
+                    <button class="btn-reset btn btn--mini">Калькулятор</button>
+                  </td>
+                  <td>
+                    <button class="btn-reset btn btn--mini">
+                      <font-awesome-icon :icon="['fas', 'xmark']" />
+                    </button>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
