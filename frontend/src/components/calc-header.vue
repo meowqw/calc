@@ -1,9 +1,17 @@
 <template>
   <header class="header">
     <div class="container-fluid header__container">
-      <button class="btn-reset sidebar-btn" @click="isSidebarOpen = true">
-        <font-awesome-icon :icon="['fas', 'bars']" />
-      </button>
+      <div class="header__btns">
+        <button class="btn-reset header-btn" @click="openSidebar('menu')">
+          <font-awesome-icon :icon="['fas', 'bars']" />
+        </button>
+        <button
+          class="btn-reset header-btn header-btn--user"
+          @click="openSidebar('user')"
+        >
+          <font-awesome-icon :icon="['fas', 'user-plus']" />
+        </button>
+      </div>
       <div v-if="$route.path === '/'">
         <h1 class="header__title title title--h1">Список клиентов</h1>
       </div>
@@ -13,7 +21,11 @@
     </div>
   </header>
 
-  <calc-sidebar :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
+  <calc-sidebar
+    :is-open="isSidebarOpen"
+    :activePanel="activePanel"
+    @close="closeSidebar"
+  />
 </template>
 
 <script>
@@ -21,13 +33,24 @@ import calcSidebar from "./calc-sidebar.vue";
 
 export default {
   name: "v-calc-header",
+  components: {
+    calcSidebar,
+  },
   data() {
     return {
       isSidebarOpen: false,
+      activePanel: null,
     };
   },
-  components: {
-    calcSidebar,
+  methods: {
+    openSidebar(panel) {
+      this.isSidebarOpen = true;
+      this.activePanel = panel;
+    },
+    closeSidebar() {
+      this.isSidebarOpen = false;
+      this.activePanel = null;
+    },
   },
 };
 </script>
@@ -51,6 +74,15 @@ export default {
     }
   }
 
+  &__btns {
+    display: flex;
+    align-items: flex-start;
+
+    @include mobile {
+      gap: 15px;
+    }
+  }
+
   &__title {
     font-size: 20px;
     text-align: center;
@@ -65,15 +97,19 @@ export default {
   }
 }
 
-.sidebar-btn {
+.header-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   height: 100%;
   max-width: 40px;
   max-height: 40px;
   font-size: 20px;
   color: $accent-color;
+
+  &--user {
+    font-size: 18px;
+  }
 }
 </style>

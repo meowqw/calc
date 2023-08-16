@@ -28,6 +28,11 @@ export default {
     return state.resultThirdCalc;
   },
 
+  // скидка
+  GET_SALE(state) {
+    return state.sale;
+  },
+
   // коронки
   GET_CROWNS(state) {
     return state.crowns;

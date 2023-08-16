@@ -2,7 +2,7 @@
   <section class="clients">
     <div class="clients__container container">
       <div class="clients__top">
-        <button class="btn-reset btn" @click="isModalOpen = true">
+        <button class="btn-reset btn" @click="isModalOpen = true" style="display: none;">
           <font-awesome-icon :icon="['fas', 'plus']" />
           Добавить клиента
         </button>

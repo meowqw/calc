@@ -3,7 +3,12 @@
     <div class="close" @click="closeSidebar"></div>
     <div class="sidebar__content">
       <div class="sidebar__top">
-        <h2 class="sidebar__title">Меню</h2>
+        <h2 class="sidebar__title">
+          <template v-if="activePanel === 'menu'"> Меню </template>
+          <template v-else-if="activePanel === 'user'">
+            Добавление клиента
+          </template>
+        </h2>
         <div class="sidebar__right">
           <button
             type="button"
@@ -14,35 +19,36 @@
           </button>
         </div>
       </div>
-      <div class="sidebar__menu menu">
-        <ul class="list-reset menu__list">
-          <li class="menu__item">
-            <router-link class="menu__link" to="/" @click="closeSidebar">
-              Клиенты
-            </router-link>
-          </li>
-          <li class="menu__item">
-            <router-link
-              class="menu__link"
-              to="/calc-library"
-              @click="closeSidebar"
-            >
-              Калькулятор
-            </router-link>
-          </li>
-        </ul>
+      <div class="sidebar__body">
+        <template v-if="activePanel === 'menu'">
+          <calc-sidebar-menu :close-sidebar="closeSidebar" />
+        </template>
+        <template v-else-if="activePanel === 'user'">
+          <calc-add-client />
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import calcSidebarMenu from "./calc-sidebar-menu.vue";
+import calcAddClient from "./calc-modal-content/calc-add-client.vue";
+
 export default {
   name: "calc-sidebar",
+  components: {
+    calcSidebarMenu,
+    calcAddClient,
+  },
   props: {
     isOpen: {
       type: Boolean,
       default: false,
+    },
+    activePanel: {
+      type: String,
+      default: null,
     },
   },
   methods: {
@@ -109,27 +115,6 @@ export default {
 
   &--active {
     left: 0;
-  }
-}
-
-.menu {
-  &__list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__link {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid $border-color;
-    padding: 0 20px;
-    height: 55px;
-    color: $dark-color;
-    transition: background-color 0.05s ease-in-out;
-
-    &:hover {
-      background-color: $border-color;
-    }
   }
 }
 

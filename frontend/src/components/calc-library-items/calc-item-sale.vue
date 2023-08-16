@@ -5,10 +5,12 @@
       <form action="#" class="calc-item__form form">
         <label class="form__label label calc-item__label">
           <input
-            type="text"
+            type="number"
+            min="0"
             name="название"
             class="input-reset input calc-item__input form__input"
             placeholder="Процент скидки"
+            v-model="sale"
           />
           <div class="tooltip">
             <font-awesome-icon class="icon" :icon="['fas', 'circle-info']" />
@@ -21,13 +23,28 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "calc-item-sale",
   data() {
     return {
-      type: "number",
+      sale: 0,
     };
   },
+  methods: {
+    ...mapMutations(["UPDATE_SALE"]),
+
+    // отправка значения в мутацию
+    sendSale() {
+      this.UPDATE_SALE(this.sale);
+    },
+  },
+  watch: {
+    sale(newValue) {
+      this.sendSale(newValue);
+    }
+  }
 };
 </script>
 

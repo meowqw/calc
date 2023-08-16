@@ -154,10 +154,11 @@ export default {
 
 <style lang="scss" scoped>
 .add-client {
-  width: 500px;
+  padding: 0 10px;
+  width: 100%;
 
   @include mobile {
-    width: 290px;
+    // width: 290px;
   }
 
   &__form {

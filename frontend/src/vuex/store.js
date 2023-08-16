@@ -26,6 +26,8 @@ const store = createStore({
     firstCalcResults: {},
     // результат всех периметров
     secondCalcResults: {},
+    // процент скидки
+    sale: 0,
 
     // коронки через API
     crowns: [],

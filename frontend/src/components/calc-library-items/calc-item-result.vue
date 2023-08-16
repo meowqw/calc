@@ -40,7 +40,10 @@
           <h3 class="result-block__title result-block__title--total">
             Итоговая стоимость:
           </h3>
-          <span class="result-block__price result-block__price--total"
+          <span class="result-block__price result-block__price--total" v-if="this.GET_SALE > 0"
+            >{{ Math.round(finalResult / this.GET_SALE) }} руб</span
+          >
+          <span class="result-block__price result-block__price--total" v-else
             >{{ finalResult }} руб</span
           >
         </div>
@@ -60,7 +63,8 @@ export default {
       "GET_RESULT_SECOND_CALC",
       "GET_RESULT_THIRD_CALC",
       "GET_EXTRA_WORKS",
-      "GET_SETTINGS"
+      "GET_SETTINGS",
+      "GET_SALE"
     ]),
     // получение значения первого калькулятора
     resultFirstCalc() {
