@@ -49,7 +49,12 @@ export default {
   GET_EXTRA_WORKS(state) {
     return state.extraWorks;
   },
+  // получаем настройки
   GET_SETTINGS(state) {
     return state.settings;
+  },
+  // максимальный коэффициент
+  GET_MAX_COEF(state) {
+    return state.maxCoef;
   },
 };

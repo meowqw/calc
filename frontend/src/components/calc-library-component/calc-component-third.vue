@@ -46,7 +46,7 @@
             </li>
             <!-- количество отверстий -->
             <li class="calc-accordion-item__item" v-if="isActive">
-              <calc-item-counter @quantityUpdate="onQuantityUpdated" />
+              <calc-item-counter @quantityUpdate="onQuantityUpdated" :title="itemCounterTitle" />
             </li>
             <!-- коэффициенты -->
             <li class="calc-accordion-item__item" v-if="isActive">
@@ -98,6 +98,7 @@ export default {
       isActive: false,
       itemInputTilte: "Длина реза",
       itemCheckboxTitle: "Материал стены",
+      itemCounterTitle: "Количество отверстий",
       // переменная для хранения длины реза
       inputValue: 0,
       // переменная для хранения значения valueSlider
@@ -111,7 +112,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["GET_COEFFICIENTS"])
+    ...mapGetters(["GET_COEFFICIENTS"]),
   },
   methods: {
     // обработчик события, вызываемый при изменении значения в input (обрабатываем данные из ребенка)

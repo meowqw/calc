@@ -21,7 +21,7 @@
               >
             </div>
             <div class="result-item__price">
-              {{ valueSelectValues }}
+              {{ sumValueSelectValues }}
             </div>
           </li>
           <li class="result-block__item result-item">
@@ -105,22 +105,29 @@ export default {
   },
   computed: {
     // получаем наибольший коэффициент
-    valueSelectValues() {
+    maxStartPriceSelectValues() {
       return this.selectValues.reduce(
-        (value, item) => Math.max(value, item.value),
+        (startPrice, item) => Math.max(startPrice, item.startPrice),
         0
       );
+    },
+    // получаем сумму value всех коэффициентов
+    sumValueSelectValues() {
+      return this.selectValues.reduce((sum, item) => sum + item.value, 0);
     },
     // получаем общую стоимость первого калькулятора
     resultFirstCalc() {
       // формула
       return Math.round(
-        this.valueSlider * this.selectedCheckboxSecond.cost * this.counterValue
+        this.valueSlider *
+          this.selectedCheckboxSecond.cost *
+          this.sumValueSelectValues *
+          this.counterValue
       );
     },
   },
   methods: {
-    ...mapMutations(["UPDATE_RESULT_FIRST_CALC"]),
+    ...mapMutations(["UPDATE_RESULT_FIRST_CALC", "UPDATE_MAX_COEF"]),
     // отправка значения в мутацию
     sendResultFirstCalc() {
       this.$emit("sendResult", this.index, this.resultFirstCalc);
@@ -128,6 +135,7 @@ export default {
       itemResultObject[this.id] = this.resultFirstCalc;
       this.UPDATE_RESULT_FIRST_CALC(itemResultObject);
     },
+    // отправка максимального коэффициента в мутацию
   },
   watch: {
     // отслеживание значения в компоненте и обновление в мутации

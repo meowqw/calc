@@ -48,7 +48,9 @@
                 >{{ item.name }} ({{ item.value }})</span
               >
             </div>
-            <div class="result-item__price">{{ totalPriceSelectValues }} руб</div>
+            <div class="result-item__price">
+              {{ sumValueSelectValues }} 
+            </div>
           </li>
         </ul>
       </div>
@@ -94,28 +96,31 @@ export default {
     },
   },
   computed: {
-    // получаем стоимость доэффициентов
-    totalPriceSelectValues() {
+    // получаем наибольший коэффициент
+    maxStartPriceSelectValues() {
       return this.selectValues.reduce(
-        (total, item) => total + item.startPrice,
+        (startPrice, item) => Math.max(startPrice, item.startPrice),
         0
       );
+    },
+    // получаем сумму value всех коэффициентов
+    sumValueSelectValues() {
+      return this.selectValues.reduce((sum, item) => sum + item.value, 0);
     },
     // логика отправки значения без зарезов, либо с зарезами
     resultThirdCalc() {
       if (this.counterValue <= 1) {
         // формула
-        return Math.round(
-          this.inputValue * (this.valueSlider / 100) * 12000 +
-            this.totalPriceSelectValues
-        );
+        return Math.round(this.inputValue * (this.valueSlider / 100) * 12000);
       } else {
         return (
           // формула
           Math.round(
-            this.inputValue * (this.valueSlider / 100) * 12000 +
-              this.counterValue * 150 +
-              this.totalPriceSelectValues
+            this.inputValue *
+              (this.valueSlider / 100) *
+              12000 *
+              this.counterValue *
+              this.sumValueSelectValues
           )
         );
       }

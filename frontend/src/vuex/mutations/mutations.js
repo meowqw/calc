@@ -75,14 +75,16 @@ export default {
     const { id, newQuantity } = payload;
     state.extraWorks[id].quantity = newQuantity;
   },
-
   // обновление состояния настроек
   SET_SETTINGS(state, data) {
     state.settings = data;
   },
-
   // обновление скидки
   UPDATE_SALE(state, value) {
     state.sale = value;
+  },
+  // обновление максимального коэффициента
+  UPDATE_MAX_COEF(state, value) {
+    state.maxCoef = value;
   },
 };

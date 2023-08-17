@@ -29,6 +29,8 @@ const store = createStore({
     secondCalcResults: {},
     // процент скидки
     sale: 0,
+    // максимальный коэффициент
+    maxCoef: 0,
 
     // коронки через API
     crowns: [],

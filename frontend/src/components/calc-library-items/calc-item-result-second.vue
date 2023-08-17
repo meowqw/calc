@@ -9,26 +9,34 @@
         <ul class="list-reset result-block__list">
           <li class="result-block__item result-item">
             <div class="result-item__name">
+              Кол-во отверстий
+              <span class="result-item__value">{{ quantityHoles }}</span>
+            </div>
+            <div class="result-item__price">
+              отверстие: {{ quantityHoles / 100 }} руб
+            </div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
               Периметр проема
               <span class="result-item__value">{{ inputValue }} см</span>
             </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Толщина стены
-              <span class="result-item__value">{{ valueSlider }} см</span>
+              Материал стены
+              <span class="result-item__value">
+                {{ selectedCheckbox.name }}
+              </span>
             </div>
-            <div class="result-item__price">{{ valueSlider + 3 }} руб</div>
+            <div class="result-item__price">{{ selectedCheckbox.id }} руб</div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
-              Материал стены
-              <span class="result-item__value">{{
-                selectedCheckbox.name
-              }}</span>
-            </div>
-            <div class="result-item__price">
-              {{ selectedCheckbox.id * 100 }} руб
+              Толщина стены
+              <span class="result-item__value">
+                {{ valueSlider }}
+              </span>
             </div>
           </li>
           <li class="result-block__item result-item">
@@ -36,7 +44,6 @@
               Количество проемов
               <span class="result-item__value">{{ counterValue }} см</span>
             </div>
-            <div class="result-item__price">{{ counterValue }} руб</div>
           </li>
         </ul>
       </div>
@@ -84,10 +91,16 @@ export default {
     resultSecondCalc() {
       // формула
       return Math.round(
-        this.inputValue * 2 +
-          this.valueSlider * 3 +
-          this.selectedCheckbox.id * 3
+        this.quantityHoles *
+          this.valueSlider *
+          this.selectedCheckbox.id *
+          this.counterValue
       );
+    },
+
+    // количество отверстий
+    quantityHoles() {
+      return this.inputValue / (100 / 10);
     },
   },
   methods: {
