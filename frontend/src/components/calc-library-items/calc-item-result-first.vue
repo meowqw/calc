@@ -135,12 +135,18 @@ export default {
       itemResultObject[this.id] = this.resultFirstCalc;
       this.UPDATE_RESULT_FIRST_CALC(itemResultObject);
     },
-    // отправка максимального коэффициента в мутацию
   },
   watch: {
     // отслеживание значения в компоненте и обновление в мутации
     resultFirstCalc() {
       this.sendResultFirstCalc();
+    },
+    // обновляем данные отслеживая изменения в массиве
+    selectValues: {
+      deep: true, // Глубокое наблюдение за изменением в массиве
+      handler() {
+        this.UPDATE_MAX_COEF(this.maxStartPriceSelectValues);
+      },
     },
   },
 };

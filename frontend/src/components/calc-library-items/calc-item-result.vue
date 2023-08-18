@@ -64,7 +64,8 @@ export default {
       "GET_RESULT_THIRD_CALC",
       "GET_EXTRA_WORKS",
       "GET_SETTINGS",
-      "GET_SALE"
+      "GET_SALE",
+      "GET_MAX_COEF"
     ]),
     // получение значения первого калькулятора
     resultFirstCalc() {
@@ -100,9 +101,18 @@ export default {
       // Минимальное значение для итога
       const minResult = this.GET_SETTINGS.startPrice;
 
+      // Максимальный выбранный коеффициент
+      const maxCoef = this.GET_MAX_COEF;
+
+
+      // Если максимальный коэф. больше, чем минимальная стоимость, возвращаем макс.коеф + результат
+      if (maxCoef > minResult) {
+        return maxCoef + rawResult;
+      } else {
       // Если суммарная стоимость меньше минимальной, вернем минимальную стоимость, 
       // иначе вернем суммарную стоимость
-      return rawResult < minResult ? minResult : rawResult;
+        return rawResult < minResult ? minResult : rawResult;
+      }
     },
   },
 };

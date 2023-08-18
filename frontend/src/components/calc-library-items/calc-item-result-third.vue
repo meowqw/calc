@@ -49,7 +49,7 @@
               >
             </div>
             <div class="result-item__price">
-              {{ sumValueSelectValues }} 
+              {{ sumValueSelectValues }}
             </div>
           </li>
         </ul>
@@ -103,10 +103,12 @@ export default {
         0
       );
     },
+
     // получаем сумму value всех коэффициентов
     sumValueSelectValues() {
       return this.selectValues.reduce((sum, item) => sum + item.value, 0);
     },
+
     // логика отправки значения без зарезов, либо с зарезами
     resultThirdCalc() {
       if (this.counterValue <= 1) {
@@ -127,7 +129,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["UPDATE_RESULT_THIRD_CALC"]),
+    ...mapMutations(["UPDATE_RESULT_THIRD_CALC", "UPDATE_MAX_COEF"]),
+
     // отправка значения в мутацию
     sendResultThirdCalc() {
       this.UPDATE_RESULT_THIRD_CALC(this.resultThirdCalc);
@@ -138,6 +141,13 @@ export default {
     resultThirdCalc() {
       this.sendResultThirdCalc();
     },
+    // обновляем данные отслеживая изменения в массиве
+    selectValues: {
+      deep: true, // Глубокое наблюдение за изменением в массиве
+      handler() {
+        this.UPDATE_MAX_COEF(this.maxStartPriceSelectValues);
+      }
+    }
   },
 };
 </script>
