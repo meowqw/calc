@@ -6,6 +6,7 @@ use App\Models\Client\Client;
 use App\Services\Api\Order\DTO\CreateOrderDTO;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Mockery\Exception;
 
 class ClientService
@@ -25,7 +26,7 @@ class ClientService
                 [
                     'email' => $createOrderDTO->getEmail(),
                     'full_name' => $createOrderDTO->getFullName()]
-            )->first();
+            );
 
         return $client->getId();
     }
@@ -55,16 +56,16 @@ class ClientService
      * Получить коиента по id
      *
      * @param int $id
-     * @return Client
+     * @return Model|Builder|Builder[]|Collection
      */
-    public function getClient(int $id): Client
+    public function getClient(int $id): Builder|array|Collection|Model
     {
         $client = Client::query()->find($id);
 
         if (is_null($client)) {
             throw new Exception('Клиента с таким id нет');
         }
-        return $client->first();
+        return $client;
     }
 
     /**
