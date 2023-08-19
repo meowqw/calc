@@ -38,6 +38,7 @@ Route::prefix('coefficients')->group(function () {
 
 Route::prefix('crowns')->group(function () {
     Route::get('/', [CrownController::class, 'index']);
+    Route::get('/two', [CrownController::class, 'getCrownTwoCalc']);
 });
 
 Route::prefix('settings')->group(function () {
@@ -47,3 +48,18 @@ Route::prefix('settings')->group(function () {
 Route::prefix('logistic')->group(function () {
     Route::post('calculate', [LogisticController::class, 'calculatePrice']);
 });
+
+Route::prefix('clients')->group(function () {
+    Route::post('/', [\App\Http\Controllers\Api\Client\ClientController::class, 'store']);
+    Route::get('/', [\App\Http\Controllers\Api\Client\ClientController::class, 'index']);
+    Route::delete('/{id}', [\App\Http\Controllers\Api\Client\ClientController::class, 'destroy']);
+    Route::get('/{id}', [\App\Http\Controllers\Api\Client\ClientController::class, 'show']);
+
+    Route::get('/phone/{phone}', [\App\Http\Controllers\Api\Client\ClientController::class, 'getPhone']);
+});
+
+Route::prefix('orders')->group(function () {
+    Route::post('/', [\App\Http\Controllers\Api\Order\OrderController::class, 'store']);
+    Route::delete('/{id}', [\App\Http\Controllers\Api\Order\OrderController::class, 'destroy']);
+});
+

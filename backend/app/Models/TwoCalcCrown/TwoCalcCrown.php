@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Models\Crown;
+namespace App\Models\TwoCalcCrown;
 
 use App\Models\Material\Material;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id;
- * @property string $name;
+ * @property int $size;
  *
  * @property-read BelongsToMany $materials
  */
-class Crown extends Model
+class TwoCalcCrown extends Model
 {
-    use HasFactory;
-
     /**
      * @return int
      */
@@ -34,19 +31,19 @@ class Crown extends Model
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName(): string
+    public function getSize(): int
     {
-        return $this->name;
+        return $this->size;
     }
 
     /**
-     * @param string $name
+     * @param int $size
      */
-    public function setName(string $name): void
+    public function setSize(int $size): void
     {
-        $this->name = $name;
+        $this->size = $size;
     }
 
     /**

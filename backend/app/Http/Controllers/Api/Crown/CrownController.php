@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Crown;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Crown\CrownResource;
+use App\Http\Resources\Crown\CrownTwoCalcResource;
 use App\Services\Api\Crown\CrownService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -19,5 +20,16 @@ class CrownController extends Controller
     {
         $data = $crownService->getCrownList();
         return CrownResource::collection($data);
+    }
+
+    /**
+     * Получить коронку для второго калькулятора
+     *
+     * @param CrownService $crownService
+     * @return CrownTwoCalcResource
+     */
+    public function getCrownTwoCalc(CrownService $crownService): CrownTwoCalcResource
+    {
+        return new CrownTwoCalcResource(1);
     }
 }

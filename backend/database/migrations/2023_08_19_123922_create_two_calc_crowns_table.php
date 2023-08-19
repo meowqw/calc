@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateTwoCalcCrownsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateOrdersTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('two_calc_crowns', function (Blueprint $table) {
             $table->id();
-            $table->text('note')->nullable();
-            $table->string('address')->nullable();
-            $table->date('date');
-            $table->time('time');
-            $table->unsignedBigInteger('client_id');
+            $table->integer('size');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateOrdersTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('two_calc_crowns');
     }
 }

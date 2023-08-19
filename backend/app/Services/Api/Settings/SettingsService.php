@@ -3,6 +3,7 @@
 namespace App\Services\Api\Settings;
 
 use App\Models\Settings\Settings;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class SettingsService
@@ -10,11 +11,11 @@ class SettingsService
     /**
      * Получить натсройки
      *
-     * @return Settings[]|Collection
+     * @return object
      */
-    public function getSettings(): Collection|array
+    public function getSettings(): object
     {
-        return Settings::all();
+        return Settings::query()->first();
     }
 
 }

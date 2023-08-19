@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Resources\Settings;
+namespace App\Http\Resources\Client;
 
-use App\Models\Settings\Settings;
+use App\Models\Client\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SettingsResource extends JsonResource
+class ClientPhoneResource extends JsonResource
 {
-    /** @var Settings $resource */
+    /** @var Client $resource */
     public $resource;
-
     /**
      * Transform the resource into an array.
      *
@@ -20,8 +19,8 @@ class SettingsResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'startPrice' => $this->resource->getStartPrice(),
-            'logisticPrice' => $this->resource->getLogisticPrice()
+            'id' => $this->resource->getId(),
+            'phone' => $this->resource->getPhone()
         ];
     }
 }
