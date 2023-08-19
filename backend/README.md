@@ -58,6 +58,7 @@
 "address": "адрес",
 "fullName": "алексей",
 "date": "21.10.2023",
-"time": "21:21"
+"time": "21:21",
+"note": "some text"
 }
 ````
