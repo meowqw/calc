@@ -134,18 +134,18 @@ class CreateOrderDTO
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      * @return CreateOrderDTO
      */
-    public function setEmail(string $email): CreateOrderDTO
+    public function setEmail(?string $email): CreateOrderDTO
     {
         $this->email = $email;
         return $this;
