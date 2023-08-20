@@ -6,8 +6,14 @@ import apiRequests from "./actions/api-requests";
 import getters from "./getters/getters";
 import mutations from "./mutations/mutations";
 import apiResponse from "./actions/api-response";
+import apiDelete from "./actions/api-delete";
 
-const actions = { ...commonActions, ...apiRequests, ...apiResponse };
+const actions = {
+  ...commonActions,
+  ...apiRequests,
+  ...apiResponse,
+  ...apiDelete,
+};
 
 const store = createStore({
   state: {
@@ -34,6 +40,8 @@ const store = createStore({
 
     // коронки через API
     crowns: [],
+    // коронки через API для второго калькулятора
+    crownsTwo: [],
     // материалы через API
     materials: [],
     // коэффициенты через API

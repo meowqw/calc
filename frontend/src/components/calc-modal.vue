@@ -4,13 +4,51 @@
     <div class="modal__container container">
       <div class="modal__content">
         <div class="modal__top">
-          <h2 class="title title--h2 modal__title">Добавление клиента</h2>
+          <!-- <h2 class="title title--h2 modal__title">Добавление клиента</h2> -->
           <button class="btn-reset modal__btn" @click="closeModal">
             <font-awesome-icon class="icon" :icon="['fas', 'xmark']" />
           </button>
         </div>
-        <div v-if="$route.path === '/'">
-          <calc-add-client />
+        <!-- заказы выбранного клиента -->
+        <div v-if="selectedClient" class="modal-orders">
+          <h3>Заказы клиента: {{ selectedClient.fullName }}</h3>
+          <table>
+              <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Дата заказа</th>
+                <th scope="col">Время заказа</th>
+                <th scope="col">Заметка</th>
+                <th scope="col">Адрес</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(order, index) in selectedClient.orders" :key="index">
+                <td></td>
+                <td data-label="Дата:&nbsp;">
+                  {{ order.date }}
+                </td>
+                <td data-label="Время:&nbsp;">
+                  {{ order.time }}
+                </td>
+                <td data-label="Заметка:&nbsp;">
+                  {{ order.note }}
+                </td>
+                <td data-label="Адрес:&nbsp;">
+                  {{ order.address }}
+                </td>
+                <td data-label="">
+                  <button class="btn-reset btn btn--mini">Калькулятор</button>
+                </td>
+                <td>
+                  <button class="btn-reset btn btn--mini">
+                    <font-awesome-icon :icon="['fas', 'xmark']" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div v-if="$route.path === '/calc-library'">
           <calc-table-estimate />
@@ -21,13 +59,11 @@
 </template>
 
 <script>
-import calcAddClient from "@/components/calc-modal-content/calc-add-client";
 import calcTableEstimate from "@/components/calc-modal-content/calc-table-estimate";
 
 export default {
   name: "calc-modal",
   components: {
-    calcAddClient,
     calcTableEstimate,
   },
   props: {
@@ -35,6 +71,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    selectedClient: Object,
   },
   methods: {
     closeModal() {
@@ -70,7 +107,7 @@ export default {
     align-items: flex-start;
     justify-content: center;
     border-radius: $border-radius $border-radius 0 0;
-    width: min-content;
+    width: 100%;
     height: auto;
     box-shadow: $box-shadow;
     background-color: $light-color;
@@ -84,6 +121,7 @@ export default {
   }
 
   &__content {
+    width: 100%;
     margin-top: 15px;
     margin-bottom: 30px;
   }
@@ -106,5 +144,9 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+
+.modal-orders {
+  width: 100%;
 }
 </style>

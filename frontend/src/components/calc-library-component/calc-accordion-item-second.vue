@@ -29,7 +29,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-checkbox
                   :title="itemCheckboxTitle"
-                  :checkboxList="this.GET_MATERIALS"
+                  :checkboxList="this.GET_CROWNS_TWO.materials"
                   @checkboxSelected="handleCheckboxSelected"
                 />
               </li>
@@ -111,7 +111,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["GET_CROWNS", "GET_MATERIALS", "GET_RESULT_SECOND_CALC"]),
+    ...mapGetters(["GET_CROWNS_TWO", "GET_RESULT_SECOND_CALC"]),
   },
   methods: {
     deleteItem() {

@@ -67,6 +67,7 @@ export default {
   methods: {
     ...mapActions([
       "FETCH_CROWNS",
+      "FETCH_CROWNS_TWO",
       "FETCH_MATERIALS",
       "FETCH_COEFFICIENTS",
       "FETCH_EXTRA_WORKS",
@@ -75,6 +76,7 @@ export default {
   },
   mounted() {
     this.FETCH_CROWNS();
+    this.FETCH_CROWNS_TWO();
     this.FETCH_MATERIALS();
     this.FETCH_COEFFICIENTS();
     this.FETCH_EXTRA_WORKS();

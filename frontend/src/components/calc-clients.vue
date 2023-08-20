@@ -17,7 +17,7 @@
             <thead>
               <tr>
                 <th scope="col">№</th>
-                <th scope="col">Имя пользователя</th>
+                <th scope="col">Имя Клиента</th>
                 <th scope="col">Почта</th>
                 <th scope="col">Номер телефона</th>
                 <th scope="col">Заказы</th>
@@ -29,15 +29,15 @@
               <template v-for="(client, index) in CLIENTS" :key="index">
                 <tr>
                   <td data-label="№">{{ index }}</td>
-                  <td data-label="Имя пользователя">{{ client.name }}</td>
+                  <td data-label="Имя пользователя">{{ client.fullName }}</td>
                   <td data-label="Почта">
                     <a href="mailto:mail@mail.com" class="table__link">{{
-                      client.mail
+                      client.email
                     }}</a>
                   </td>
                   <td data-label="Номер телефона">
                     <a href="tel:${89234583593}" class="table__link">{{
-                      client.tel
+                      client.phone
                     }}</a>
                   </td>
                   <td data-label="Заказы">
@@ -47,32 +47,16 @@
                         { active: showOrders },
                       ]"
                       data-target="order-panel-1"
-                      @click.capture="toggleOrders"
+                      @click="openOrdersModal(client)"
                     >
                       Заказы
                     </button>
                   </td>
                   <td>
-                    <button class="btn-reset btn btn--mini">
-                      <font-awesome-icon :icon="['fas', 'xmark']" />
-                    </button>
-                  </td>
-                </tr>
-                <!-- заказы -->
-                <tr
-                  id="order-panel-1"
-                  class="table-order-panel"
-                  v-if="showOrders"
-                >
-                  <td></td>
-                  <td data-label="Дата:&nbsp;">{{ client.date }}</td>
-                  <td data-label="Время:&nbsp;">{{ client.time }}</td>
-                  <td data-label="Адрес:&nbsp;">{{ client.address }}</td>
-                  <td data-label="">
-                    <button class="btn-reset btn btn--mini">Калькулятор</button>
-                  </td>
-                  <td>
-                    <button class="btn-reset btn btn--mini">
+                    <button
+                      class="btn-reset btn btn--mini"
+                      @click="deleteClient(client.id)"
+                    >
                       <font-awesome-icon :icon="['fas', 'xmark']" />
                     </button>
                   </td>
@@ -85,11 +69,11 @@
     </div>
   </section>
 
-  <calc-modal :is-open="isModalOpen" @close="isModalOpen = false" />
+  <calc-modal :is-open="isModalOpen" @close="isModalOpen = false" :selected-client="selectedClient" />
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import calcModal from "./calc-modal.vue";
 
 export default {
@@ -101,20 +85,37 @@ export default {
     return {
       isModalOpen: false,
       showOrders: false,
+      selectedClient: null,
     };
   },
   computed: {
     ...mapGetters(["CLIENTS"]),
   },
   methods: {
+    ...mapActions(["FETCH_CLIENTS", "DELETE_CLIENT"]),
+
     toggleOrders() {
       this.showOrders = !this.showOrders;
     },
+
+    // Удаление клиента
+    deleteClient(id) {
+      this.DELETE_CLIENT(id);
+    },
+
+    openOrdersModal(client) {
+      this.selectedClient = client; // Сохраните выбранного клиента
+      this.isModalOpen = true; // Откройте модальное окно
+    },
+  },
+  mounted() {
+    // получаем список клиентов
+    this.FETCH_CLIENTS();
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .clients {
   &__top {
     display: flex;

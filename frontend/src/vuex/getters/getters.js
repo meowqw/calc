@@ -37,6 +37,10 @@ export default {
   GET_CROWNS(state) {
     return state.crowns;
   },
+  // коронки для второго калькулятора
+  GET_CROWNS_TWO(state) {
+    return state.crownsTwo;
+  },
   // материалы стены
   GET_MATERIALS(state) {
     return state.materials;

@@ -13,19 +13,22 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 import { useAccordion } from "vue3-rich-accordion";
 import "vue3-rich-accordion/accordion-library-styles.scss";
 // tabs-component
-import {Tabs, Tab} from 'vue3-tabs-component';
+import { Tabs, Tab } from "vue3-tabs-component";
 // vue-select
-import Multiselect from '@vueform/multiselect'
-import "@vueform/multiselect/themes/default.scss"
+import Multiselect from "@vueform/multiselect";
+import "@vueform/multiselect/themes/default.scss";
+// mask
+import VueTheMask from "vue-the-mask";
 
 dom.watch();
 
 library.add(fas, fab, far);
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
-  .component('tabs', Tabs)
-  .component('tab', Tab)
-  .component('Multiselect', Multiselect)
+  .component("tabs", Tabs)
+  .component("tab", Tab)
+  .component("Multiselect", Multiselect)
+  .use(VueTheMask)
   .use(store)
   .use(router)
   .use(useAccordion)

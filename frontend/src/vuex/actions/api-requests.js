@@ -15,6 +15,23 @@ export default {
     }
   },
 
+  // получаем коронки для второго калькулятора
+  async FETCH_CROWNS_TWO({ commit }) {
+    try {
+      const crowns = await axios(
+        "http://37.46.134.113:2041/api/v1/crowns/two",
+        {
+          methods: "GET",
+          headers: {},
+        }
+      );
+
+      commit("SET_CROWNS_TWO", crowns.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   // получаем материалы стены
   async FETCH_MATERIALS({ commit }) {
     try {
@@ -103,15 +120,13 @@ export default {
   // получаем клиентов
   async FETCH_CLIENTS({ commit }) {
     try {
-      const clients = await axios(
-        "",
-        {
-          methods: "GET",
-          headers: {},
-        }
-      );
+      const clients = await axios("http://37.46.134.113:2041/api/v1/clients", {
+        methods: "GET",
+        headers: {},
+      });
+      
 
-      commit("CLIENTS", clients);
+      commit("SET_CLIENTS", clients.data.data);
     } catch (error) {
       console.log(error);
     }

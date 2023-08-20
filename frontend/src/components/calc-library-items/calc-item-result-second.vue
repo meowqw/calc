@@ -13,7 +13,7 @@
               <span class="result-item__value">{{ quantityHoles }}</span>
             </div>
             <div class="result-item__price">
-              отверстие: {{ quantityHoles / 100 }} руб
+              отверстие: {{ quantityHoles }} руб
             </div>
           </li>
           <li class="result-block__item result-item">
@@ -29,7 +29,9 @@
                 {{ selectedCheckbox.name }}
               </span>
             </div>
-            <div class="result-item__price">{{ selectedCheckbox.id }} руб</div>
+            <div class="result-item__price">
+              {{ selectedCheckbox.cost }} руб
+            </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -52,7 +54,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "calc-item-result",
@@ -88,28 +90,31 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["GET_CROWNS_TWO"]),
+
     resultSecondCalc() {
       // формула
       return Math.round(
         this.quantityHoles *
-          this.valueSlider *
-          this.selectedCheckbox.id *
+          (this.valueSlider * this.selectedCheckbox.cost) *
           this.counterValue
       );
     },
 
     // количество отверстий
     quantityHoles() {
-      return this.inputValue / (100 / 10);
+      return Math.round(this.inputValue / (this.GET_CROWNS_TWO.size / 10));
     },
   },
   methods: {
     ...mapMutations(["UPDATE_RESULT_SECOND_CALC"]),
+
     // отправка значения в мутацию
     sendResultSecondCalc() {
       this.$emit("sendResult", this.index, this.resultSecondCalc);
       let itemResultObject = {};
       itemResultObject[this.id] = this.resultSecondCalc;
+
       this.UPDATE_RESULT_SECOND_CALC(itemResultObject);
     },
   },

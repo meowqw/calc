@@ -31,6 +31,17 @@ export default {
     state.clients.push(client);
   },
 
+  // мутация удаления клиента 
+  SET_DELETE_CLIENT(state, id) {
+    // Находим индекс клиента в массиве clients по ID
+    const index = state.clients.findIndex(client => client.id === id);
+
+    if (index !== -1) {
+      // удаление клиента из массива по индексу
+      state.clients.splice(index, 1);
+    }
+  },
+
   // мутация добавления данных первого калькулятора
   UPDATE_RESULT_FIRST_CALC(state, value) {
     let key = Object.keys(value)[0];
@@ -57,6 +68,10 @@ export default {
   // обновление состояния коронок
   SET_CROWNS(state, data) {
     state.crowns = data;
+  },
+  // обновление состояния коронок для второго калькулятора
+  SET_CROWNS_TWO(state, data) {
+    state.crownsTwo = data;
   },
   // обновление состояния материалов
   SET_MATERIALS(state, data) {
@@ -87,4 +102,8 @@ export default {
   UPDATE_MAX_COEF(state, value) {
     state.maxCoef = value;
   },
+  // обновление клиентов
+  SET_CLIENTS(state, value) {
+    state.clients = value;
+  }
 };
