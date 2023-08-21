@@ -20,6 +20,7 @@
             v-model.number="inputValue"
             placeholder="0"
             @input="updateSliderValue"
+            @focus="clearInput"
           />
           <div class="tooltip">
             <font-awesome-icon class="icon" :icon="['fas', 'circle-info']" />
@@ -36,7 +37,7 @@ export default {
   name: "calc-item-value-slider",
   data() {
     return {
-      inputValue: null, // значение числового инпута
+      inputValue: 0, // значение числового инпута
       sliderValue: 0, // значение слайдера
     };
   },
@@ -57,8 +58,12 @@ export default {
 
     // Метод, который генерирует событие с передачей значения родителю
     emitValue(value) {
-      this.$emit("inputChanged", value)
-    }
+      this.$emit("inputChanged", value);
+    },
+
+    clearInput() {
+      this.inputValue = "";
+    },
   },
 };
 </script>

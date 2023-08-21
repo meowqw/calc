@@ -11,6 +11,7 @@
           placeholder="0"
           v-model.number="value"
           @input="updateInputValue"
+          @focus="clearInput"
         />
         <div class="tooltip">
           <font-awesome-icon class="icon" :icon="['fas', 'circle-info']" />
@@ -26,7 +27,7 @@ export default {
   name: "calc-item-input",
   data() {
     return {
-      value: null,
+      value: 0,
     };
   },
   props: {
@@ -38,6 +39,10 @@ export default {
     // отправка значения родителю
     updateInputValue() {
       this.$emit("inputChanged", this.value);
+    },
+
+    clearInput() {
+      this.value = "";
     },
   },
 };

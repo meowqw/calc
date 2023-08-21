@@ -6,9 +6,11 @@
     <input
       v-model="localQuantity"
       @input="updateQuantity"
+      @focus="clearInput"
       class="input-reset counter__input input"
       type="number"
       name="quantity"
+      placeholder="0"
     />
     <button class="btn-reset btn counter__btn" @click.prevent="incrementItem">
       <font-awesome-icon :icon="['fas', 'plus']" />
@@ -50,6 +52,10 @@ export default {
 
     updateQuantity() {
       this.emitQuantityChanged();
+    },
+
+    clearInput() {
+      this.localQuantity = "";
     },
   },
   watch: {
