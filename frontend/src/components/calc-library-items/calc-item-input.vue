@@ -8,7 +8,7 @@
           :name="title"
           min="0"
           class="input-reset input form__input"
-          placeholder="Длина реза"
+          placeholder="0"
           v-model.number="value"
           @input="updateInputValue"
         />
@@ -26,7 +26,7 @@ export default {
   name: "calc-item-input",
   data() {
     return {
-      value: 0,
+      value: null,
     };
   },
   props: {

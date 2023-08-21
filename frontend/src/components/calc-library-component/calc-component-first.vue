@@ -4,11 +4,12 @@
       <h2 class="calc-component__title title title--h3">
         Расчет стоимости бурения
       </h2>
-      <AccordionList>
+      <AccordionList :openMultipleItems="true">
         <calc-accordion-item-first
           v-for="(item, index) in ACCORDION_LIST_FIRST"
           :key="index"
           :index="index"
+          :defaultOpened="true"
           @deleteItem="deleteItem(index)"
           @addNewItem="addNewAccordionItem()"
         />

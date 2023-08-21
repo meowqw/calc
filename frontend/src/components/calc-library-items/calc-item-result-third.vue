@@ -36,7 +36,7 @@
               Количество отверстий:
               <span class="result-item__value">{{ counterValue }}</span>
             </div>
-            <div class="result-item__price">{{ counterValue * 150 }} руб</div>
+            <!-- <div class="result-item__price">{{ counterValue * 150 }} руб</div> -->
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
@@ -111,10 +111,10 @@ export default {
 
     // логика отправки значения без зарезов, либо с зарезами
     resultThirdCalc() {
-      if (this.counterValue <= 1) {
+      if (this.counterValue < 1) {
         // формула
         return Math.round(this.inputValue * (this.valueSlider / 100) * 12000);
-      } else {
+      } else if (this.sumValueSelectValues > 0) {
         return (
           // формула
           Math.round(
@@ -123,6 +123,16 @@ export default {
               12000 *
               this.counterValue *
               this.sumValueSelectValues
+          )
+        );
+      } else {
+        return (
+          // формула
+          Math.round(
+            this.inputValue *
+              (this.valueSlider / 100) *
+              12000 *
+              this.counterValue
           )
         );
       }
@@ -146,8 +156,8 @@ export default {
       deep: true, // Глубокое наблюдение за изменением в массиве
       handler() {
         this.UPDATE_MAX_COEF(this.maxStartPriceSelectValues);
-      }
-    }
+      },
+    },
   },
 };
 </script>

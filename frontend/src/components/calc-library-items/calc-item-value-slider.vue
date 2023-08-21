@@ -18,6 +18,7 @@
             id="amount"
             type="number"
             v-model.number="inputValue"
+            placeholder="0"
             @input="updateSliderValue"
           />
           <div class="tooltip">
@@ -35,7 +36,7 @@ export default {
   name: "calc-item-value-slider",
   data() {
     return {
-      inputValue: 0, // значение числового инпута
+      inputValue: null, // значение числового инпута
       sliderValue: 0, // значение слайдера
     };
   },

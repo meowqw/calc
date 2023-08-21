@@ -5,6 +5,7 @@
     </button>
     <input
       v-model="localQuantity"
+      @input="updateQuantity"
       class="input-reset counter__input input"
       type="number"
       name="quantity"
@@ -27,13 +28,11 @@ export default {
     quantity: {
       type: Number,
       required: true,
-    }
-  },
-  computed: {
+    },
   },
   methods: {
     decrementItem() {
-      if (this.localQuantity > 1) {
+      if (this.localQuantity >= 1) {
         this.localQuantity--;
         this.emitQuantityChanged();
       }
@@ -48,12 +47,16 @@ export default {
     emitQuantityChanged() {
       this.$emit("quantityChanged", this.localQuantity);
     },
+
+    updateQuantity() {
+      this.emitQuantityChanged();
+    },
   },
   watch: {
     localQuantity(newQuantity) {
       this.localQuantity = newQuantity;
-    }
-  }
+    },
+  },
 };
 </script>
 

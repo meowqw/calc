@@ -117,13 +117,21 @@ export default {
     },
     // получаем общую стоимость первого калькулятора
     resultFirstCalc() {
-      // формула
-      return Math.round(
-        this.valueSlider *
-          this.selectedCheckboxSecond.cost *
-          this.sumValueSelectValues *
-          this.counterValue
-      );
+      if (this.sumValueSelectValues > 0) {
+        // формула
+        return Math.round(
+          this.valueSlider *
+            this.selectedCheckboxSecond.cost *
+            this.sumValueSelectValues *
+            this.counterValue
+        );
+      } else {
+        return Math.round(
+          this.valueSlider *
+            this.selectedCheckboxSecond.cost *
+            this.counterValue
+        );
+      }
     },
   },
   methods: {

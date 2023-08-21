@@ -30,7 +30,7 @@
           v-for="(item, index) in this.phoneSelect"
           :key="index"
         >
-          <li class="form-tel__item" @click="addPhoneNumber(item.phone)">
+          <li class="form-tel__item" @click="addPhoneNumber(item)">
             {{ item.phone }}
           </li>
         </ul>
@@ -138,7 +138,7 @@
 
 <script>
 import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "calc-add-client",
@@ -156,6 +156,9 @@ export default {
       phoneSelect: [],
       maxPhoneLength: 18,
     };
+  },
+  computed: {
+    ...mapGetters(["GET_CLIENT_BY_ID"]),
   },
   methods: {
     ...mapActions(["ADD_CLIENT", "SUBMIT_NEW_USER"]),
@@ -208,8 +211,19 @@ export default {
     },
 
     // добавление номера телефона из списка в инпут
-    addPhoneNumber(phone) {
-      this.formData.phone = phone;
+    addPhoneNumber(item) {
+      this.formData.phone = item.phone;
+
+      this.findClientById(item.id);
+    },
+
+    // ищем клиента по id номера телефона и добавляем данные в форму
+    findClientById(clientId) {
+      const client = this.GET_CLIENT_BY_ID(clientId);
+      if (client) {
+        this.formData.fullName = client.fullName;
+        this.formData.email = client.email;
+      }
     },
   },
 };

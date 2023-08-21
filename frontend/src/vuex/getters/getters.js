@@ -14,6 +14,10 @@ export default {
   CLIENTS(state) {
     return state.clients;
   },
+  // поиск клиента по id для добавления информации в форму
+  GET_CLIENT_BY_ID: (state) => (id) => {
+    return state.clients.find((client) => client.id === id);
+  },
 
   // результат первого калькулятора
   GET_RESULT_FIRST_CALC(state) {

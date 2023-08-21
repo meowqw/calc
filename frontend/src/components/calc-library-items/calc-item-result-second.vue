@@ -12,9 +12,9 @@
               Кол-во отверстий
               <span class="result-item__value">{{ quantityHoles }}</span>
             </div>
-            <div class="result-item__price">
+            <!-- <div class="result-item__price">
               отверстие: {{ quantityHoles }} руб
-            </div>
+            </div> -->
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
@@ -93,17 +93,28 @@ export default {
     ...mapGetters(["GET_CROWNS_TWO"]),
 
     resultSecondCalc() {
-      // формула
-      return Math.round(
-        this.quantityHoles *
-          (this.valueSlider * this.selectedCheckbox.cost) *
-          this.counterValue
-      );
+      if (this.counterValue === 0) {
+        // формула
+        return Math.round(
+          this.quantityHoles * (this.valueSlider * this.selectedCheckbox.cost)
+        );
+      } else {
+        // формула
+        return Math.round(
+          this.quantityHoles *
+            (this.valueSlider * this.selectedCheckbox.cost) *
+            this.counterValue
+        );
+      }
     },
 
     // количество отверстий
     quantityHoles() {
-      return Math.round(this.inputValue / (this.GET_CROWNS_TWO.size / 10));
+      if (this.inputValue < 7) {
+        return 1;
+      } else {
+        return Math.round(this.inputValue / (this.GET_CROWNS_TWO.size / 10));
+      }
     },
   },
   methods: {

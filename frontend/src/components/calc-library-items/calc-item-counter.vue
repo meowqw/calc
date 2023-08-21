@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      quantity: 1,
+      quantity: 0,
     };
   },
   methods: {

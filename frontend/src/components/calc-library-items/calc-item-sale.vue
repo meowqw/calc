@@ -29,7 +29,7 @@ export default {
   name: "calc-item-sale",
   data() {
     return {
-      sale: 0,
+      sale: null,
     };
   },
   methods: {

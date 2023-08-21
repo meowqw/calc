@@ -1,7 +1,7 @@
 <template>
   <div class="calc-accordion-item">
     <div class="calc-accordion-item__top">
-      <AccordionItem>
+      <AccordionItem :defaultOpened="defaultOpened">
         <template #summary
           ><div class="calc-accordion-item__name">Стоимость: {{ result }}</div>
         </template>
@@ -94,7 +94,7 @@ export default {
       itemInputTitle: "Периметр проема",
       itemCheckboxTitle: "Материал стены",
       // переменная для хранения значения счетчика
-      counterValue: 1,
+      counterValue: 0,
       // переменная для хранения периметра проема
       inputValue: 0,
       // переменная для хранения значения valueSlider
@@ -109,6 +109,10 @@ export default {
     index: {
       type: Number,
     },
+    defaultOpened: {
+      type: Boolean,
+      default: true,
+    }
   },
   computed: {
     ...mapGetters(["GET_CROWNS_TWO", "GET_RESULT_SECOND_CALC"]),

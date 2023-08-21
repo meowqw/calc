@@ -1,7 +1,7 @@
 <template>
   <div class="calc-accordion-item">
     <div class="calc-accordion-item__top">
-      <AccordionItem>
+      <AccordionItem :defaultOpened="defaultOpened">
         <template #summary
           ><div class="calc-accordion-item__name">
             Стоимость: {{ result }}
@@ -126,6 +126,10 @@ export default {
     index: {
       type: Number,
     },
+    defaultOpened: {
+      type: Boolean,
+      default: true,
+    }
   },
   computed: {
     ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),

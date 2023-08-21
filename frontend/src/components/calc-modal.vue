@@ -85,7 +85,7 @@ export default {
 .modal {
   position: fixed;
   left: 0;
-  bottom: -100%;
+  bottom: -120%;
   z-index: 9999;
   width: 100%;
   height: 100%;
@@ -94,6 +94,7 @@ export default {
 
   &.open {
     bottom: 0;
+    overflow: auto;
   }
 
   &__container {
@@ -101,14 +102,14 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    top: 0;
     overflow: auto;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     border-radius: $border-radius $border-radius 0 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     box-shadow: $box-shadow;
     background-color: $light-color;
   }
