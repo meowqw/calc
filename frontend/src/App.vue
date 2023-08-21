@@ -7,6 +7,7 @@
       </main>
     </div>
   </div>
+  <notifications width="100%" />
 </template>
 
 <script>

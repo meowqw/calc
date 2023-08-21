@@ -85,7 +85,7 @@ export default {
 .modal {
   position: fixed;
   left: 0;
-  bottom: -120%;
+  bottom: -200%;
   z-index: 9999;
   width: 100%;
   height: 100%;

@@ -23,7 +23,7 @@
 
   &__label {
     grid-column: 6 span;
-    max-width: 525px;
+    max-width: initial;
 
     @include small-tablet {
       grid-column: 12 span;

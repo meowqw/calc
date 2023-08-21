@@ -18,6 +18,7 @@
             <li class="calc-component-content__item">
               <calc-item-value-slider
                 @inputChanged="handleValueSliderChanged"
+                :title="itemValueSliderTitle"
               />
             </li>
             <!-- материал стены -->
@@ -46,7 +47,10 @@
             </li>
             <!-- количество отверстий -->
             <li class="calc-accordion-item__item" v-if="isActive">
-              <calc-item-counter @quantityUpdate="onQuantityUpdated" :title="itemCounterTitle" />
+              <calc-item-counter
+                @quantityUpdate="onQuantityUpdated"
+                :title="itemCounterTitle"
+              />
             </li>
             <!-- коэффициенты -->
             <li class="calc-accordion-item__item" v-if="isActive">
@@ -99,6 +103,7 @@ export default {
       itemInputTilte: "Длина реза",
       itemCheckboxTitle: "Материал стены",
       itemCounterTitle: "Количество отверстий",
+      itemValueSliderTitle: "Толщина стены (м)",
       // переменная для хранения длины реза
       inputValue: 0,
       // переменная для хранения значения valueSlider

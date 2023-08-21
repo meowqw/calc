@@ -40,12 +40,15 @@
           <h3 class="result-block__title result-block__title--total">
             Итоговая стоимость:
           </h3>
-          <span class="result-block__price result-block__price--total" v-if="this.GET_SALE > 0"
-            >{{ Math.round(finalResult / this.GET_SALE) }} руб</span
+          <span
+            class="result-block__price result-block__price--total"
+            v-if="this.GET_SALE > 0"
           >
-          <span class="result-block__price result-block__price--total" v-else
-            >{{ finalResult }} руб</span
-          >
+            {{ finalResultWithSale }} руб
+          </span>
+          <span class="result-block__price result-block__price--total" v-else>
+            {{ finalResult }} руб
+          </span>
         </div>
       </div>
     </div>
@@ -65,7 +68,7 @@ export default {
       "GET_EXTRA_WORKS",
       "GET_SETTINGS",
       "GET_SALE",
-      "GET_MAX_COEF"
+      "GET_MAX_COEF",
     ]),
     // получение значения первого калькулятора
     resultFirstCalc() {
@@ -104,15 +107,21 @@ export default {
       // Максимальный выбранный коеффициент
       const maxCoef = this.GET_MAX_COEF;
 
-
       // Если максимальный коэф. больше, чем минимальная стоимость, возвращаем макс.коеф + результат
       if (maxCoef > minResult) {
         return maxCoef + rawResult;
       } else {
-      // Если суммарная стоимость меньше минимальной, вернем минимальную стоимость, 
-      // иначе вернем суммарную стоимость
+        // Если суммарная стоимость меньше минимальной, вернем минимальную стоимость,
+        // иначе вернем суммарную стоимость
         return rawResult < minResult ? minResult : rawResult;
       }
+    },
+
+    // высчитываем результат с учетом скидки
+    finalResultWithSale() {
+      // получили сумму скидки
+      const sale = (this.finalResult * this.GET_SALE) / 100;
+      return this.finalResult - sale;
     },
   },
 };

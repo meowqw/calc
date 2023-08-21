@@ -45,6 +45,7 @@
               <li class="calc-accordion-item__item">
                 <calc-item-value-slider
                   @inputChanged="handleValueSliderChanged"
+                  :title="itemValueSliderTitle"
                 />
               </li>
               <!-- количество отверстий -->
@@ -108,6 +109,7 @@ export default {
       itemCouterTitle: "Количество отверстий",
       itemCheckboxTitle: "Диаметр коронки",
       itemCheckboxTitleSecond: "Материал стены",
+      itemValueSliderTitle: "Толщина стены (см)",
       // переменная для хранения значения счетчика
       counterValue: 1,
       // переменная для хранения значения valueSlider

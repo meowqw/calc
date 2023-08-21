@@ -37,14 +37,14 @@
             <div class="result-item__name">
               Толщина стены
               <span class="result-item__value">
-                {{ valueSlider }}
+                {{ valueSlider }} см
               </span>
             </div>
           </li>
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Количество проемов
-              <span class="result-item__value">{{ counterValue }} см</span>
+              <span class="result-item__value">{{ counterValue }}</span>
             </div>
           </li>
         </ul>

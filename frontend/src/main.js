@@ -19,6 +19,8 @@ import Multiselect from "@vueform/multiselect";
 import "@vueform/multiselect/themes/default.scss";
 // mask
 import VueTheMask from "vue-the-mask";
+// Уведомления
+import Notifications from "@kyvg/vue3-notification";
 
 dom.watch();
 
@@ -32,4 +34,5 @@ createApp(App)
   .use(store)
   .use(router)
   .use(useAccordion)
+  .use(Notifications)
   .mount("#app");

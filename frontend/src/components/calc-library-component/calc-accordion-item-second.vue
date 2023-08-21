@@ -22,6 +22,7 @@
               <!-- толщина стены -->
               <li class="calc-accordion-item__item">
                 <calc-item-value-slider
+                :title="itemValueSliderTitle"
                   @inputChanged="handleValueSliderChanged"
                 />
               </li>
@@ -91,8 +92,9 @@ export default {
   data() {
     return {
       itemCouterTitle: "Количество проемов",
-      itemInputTitle: "Периметр проема",
+      itemInputTitle: "Периметр проема (см)",
       itemCheckboxTitle: "Материал стены",
+      itemValueSliderTitle: "Толщина стены (см)",
       // переменная для хранения значения счетчика
       counterValue: 0,
       // переменная для хранения периметра проема

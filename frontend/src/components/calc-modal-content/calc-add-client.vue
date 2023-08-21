@@ -13,6 +13,7 @@
           v-model="formData.phone"
           v-on:input="enterPhone"
           v-mask="'+7 (###) ###-##-##'"
+          required
         />
         <button
           type="button"
@@ -44,6 +45,7 @@
           class="input-reset input form__input"
           placeholder="Фамилия, Имя, Отчество"
           v-model="formData.fullName"
+          required
         />
         <button
           type="button"
@@ -64,6 +66,7 @@
           placeholder="Почта"
           id="mail"
           v-model="formData.email"
+          required
         />
         <button
           type="button"
@@ -89,11 +92,12 @@
           class="btn-reset form__btn-clean"
           style="display: none"
           id="notes-btn"
+          required
         >
           <font-awesome-icon :icon="['fas', 'xmark']" />
         </button>
       </label>
-      <!-- дата -->
+      <!-- адрес -->
       <label class="form__label label">
         <span>Адрес</span>
         <input
@@ -115,6 +119,7 @@
           placeholder="Дата"
           id="date"
           v-model="formData.date"
+          required
         />
       </label>
       <!-- время -->
@@ -127,6 +132,7 @@
           placeholder="Время"
           id="time"
           v-model="formData.time"
+          required
         />
       </label>
       <button class="btn-reset btn form__btn" type="sumbit">
@@ -163,12 +169,23 @@ export default {
   methods: {
     ...mapActions(["ADD_CLIENT", "SUBMIT_NEW_USER"]),
 
-    async addClient(event) {
-      event.preventDefault();
+    async addClient() {
+      try {
+        await this.SUBMIT_NEW_USER(this.formData);
+        this.clearForm();
 
-      await this.SUBMIT_NEW_USER(this.formData);
-
-      this.clearForm();
+        this.$notify({
+            title: "Клиент успешно добавлен",
+            type: "success",
+          });
+      } catch (error) {
+        if (error.response.status === 422) {
+          this.$notify({
+            title: "Введены не все данные необходимые для сервера",
+            type: "error",
+          });
+        }
+      }
     },
 
     clearForm() {

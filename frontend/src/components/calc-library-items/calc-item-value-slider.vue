@@ -1,6 +1,6 @@
 <template>
   <div class="calc-item-value-slider calc-item block block--second">
-    <h3 class="calc-item__title title title--h3">Толщина стены</h3>
+    <h3 class="calc-item__title title title--h3">{{ title }}</h3>
     <form class="calc-item-value-slider__form form" @submit.prevent>
       <div class="range">
         <input
@@ -40,6 +40,11 @@ export default {
       inputValue: 0, // значение числового инпута
       sliderValue: 0, // значение слайдера
     };
+  },
+  props: {
+    title: {
+      type: String,
+    },
   },
   methods: {
     // Метод вызывается при изменении значения числового инпута

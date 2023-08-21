@@ -15,7 +15,7 @@ export default {
 
       return console.log(response);
     } catch (error) {
-      return error;
+      return Promise.reject(error);
     }
   },
 };
