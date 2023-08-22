@@ -2,7 +2,7 @@
   <div class="calc-component">
     <div class="calc-component__container">
       <h2 class="calc-component__title title title--h3">Расчет периметра</h2>
-      <AccordionList :openMultipleItems="true">
+      <AccordionList :openMultipleItems="false">
         <calc-accordion-item-second
           v-for="(item, index) in ACCORDION_LIST_SECOND"
           :index="index"

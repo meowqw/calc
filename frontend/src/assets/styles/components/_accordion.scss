@@ -66,6 +66,13 @@
   background: $light-color;
 }
 
-.accordion-list .accordion-item > .accordion-item__summary > .accordion-item__summary-icon--default::before {
+.accordion-list
+  .accordion-item
+  > .accordion-item__summary
+  > .accordion-item__summary-icon--default::before {
+  display: none;
+}
+
+summary::-webkit-details-marker {
   display: none;
 }

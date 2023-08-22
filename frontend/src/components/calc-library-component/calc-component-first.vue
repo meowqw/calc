@@ -4,14 +4,14 @@
       <h2 class="calc-component__title title title--h3">
         Расчет стоимости бурения
       </h2>
-      <AccordionList :openMultipleItems="true">
+      <AccordionList :openMultipleItems="openMultipleItems">
         <calc-accordion-item-first
           v-for="(item, index) in ACCORDION_LIST_FIRST"
           :key="index"
           :index="index"
-          :defaultOpened="true"
+          :defaultOpened="defaultOpened"
           @deleteItem="deleteItem(index)"
-          @addNewItem="addNewAccordionItem()"
+          @addNewItem="addNewAccordionItem(item)"
         />
       </AccordionList>
       <div class="calc-component__bottom">
@@ -33,6 +33,12 @@ export default {
   components: {
     calcAccordionItemFirst,
   },
+  data() {
+    return {
+      defaultOpened: false,
+      openMultipleItems: false,
+    };
+  },
   computed: {
     ...mapGetters(["ACCORDION_LIST_FIRST"]),
   },
@@ -42,8 +48,10 @@ export default {
       "REMOVE_ITEM_FIRST_ACCORDION_LIST",
     ]),
     // функция добавления нового элемента в список
-    addNewAccordionItem() {
-      this.ADD_ITEM_FIRST_ACCORDION_LIST();
+    addNewAccordionItem(item) {
+      this.ADD_ITEM_FIRST_ACCORDION_LIST(item, 1);
+      this.defaultOpened = true;
+
     },
     // логика удаления элемента из списка
     deleteItem(index) {

@@ -29,7 +29,8 @@
 
 .tabs-component-tab-a.is-active {
   background-color: #1b6aff;
-  box-shadow: $shadow-btn--active;
+  box-shadow: none;
+  outline: 3px solid #003cff91;
 }
 
 .tabs-component-tab {
