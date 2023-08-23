@@ -100,10 +100,10 @@ export default {
   data() {
     return {
       isActive: false,
-      itemInputTilte: "Длина реза",
+      itemInputTilte: "Длина реза (м)",
       itemCheckboxTitle: "Материал стены",
       itemCounterTitle: "Количество отверстий",
-      itemValueSliderTitle: "Толщина стены (м)",
+      itemValueSliderTitle: "Толщина стены (см)",
       // переменная для хранения длины реза
       inputValue: 0,
       // переменная для хранения значения valueSlider
