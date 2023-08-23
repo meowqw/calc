@@ -1,7 +1,7 @@
 <template>
   <div class="calc-item-input calc-item block block--second">
     <h3 class="calc-item__title title title--h3">{{ title }}</h3>
-    <form action="#" class="calc-item__form form">
+    <form action="#" class="calc-item__form form" @submit.prevent>
       <label class="form__label label calc-item__label">
         <input
           type="number"

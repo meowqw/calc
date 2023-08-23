@@ -36,9 +36,7 @@
           <li class="result-block__item result-item">
             <div class="result-item__name">
               Толщина стены
-              <span class="result-item__value">
-                {{ valueSlider }} см
-              </span>
+              <span class="result-item__value"> {{ valueSlider }} см </span>
             </div>
           </li>
           <li class="result-block__item result-item">
@@ -93,18 +91,22 @@ export default {
     ...mapGetters(["GET_CROWNS_TWO"]),
 
     resultSecondCalc() {
-      if (this.counterValue === 0) {
-        // формула
-        return Math.round(
-          this.quantityHoles * (this.valueSlider * this.selectedCheckbox.cost)
-        );
+      if (!this.selectedCheckbox.cost) {
+        return 0;
       } else {
-        // формула
-        return Math.round(
-          this.quantityHoles *
-            (this.valueSlider * this.selectedCheckbox.cost) *
-            this.counterValue
-        );
+        if (this.counterValue === 0) {
+          // формула
+          return Math.round(
+            this.quantityHoles * (this.valueSlider * this.selectedCheckbox.cost)
+          );
+        } else {
+          // формула
+          return Math.round(
+            this.quantityHoles *
+              (this.valueSlider * this.selectedCheckbox.cost) *
+              this.counterValue
+          );
+        }
       }
     },
 

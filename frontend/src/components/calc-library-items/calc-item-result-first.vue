@@ -117,20 +117,27 @@ export default {
     },
     // получаем общую стоимость первого калькулятора
     resultFirstCalc() {
-      if (this.sumValueSelectValues > 0) {
-        // формула
-        return Math.round(
-          this.valueSlider *
-            this.selectedCheckboxSecond.cost *
-            this.sumValueSelectValues *
-            this.counterValue
-        );
+      if (
+        !this.selectedCheckbox.materials ||
+        !this.selectedCheckboxSecond.cost
+      ) {
+        return 0;
       } else {
-        return Math.round(
-          this.valueSlider *
-            this.selectedCheckboxSecond.cost *
-            this.counterValue
-        );
+        if (this.sumValueSelectValues > 0) {
+          // формула
+          return Math.round(
+            this.valueSlider *
+              this.selectedCheckboxSecond.cost *
+              this.sumValueSelectValues *
+              this.counterValue
+          );
+        } else {
+          return Math.round(
+            this.valueSlider *
+              this.selectedCheckboxSecond.cost *
+              this.counterValue
+          );
+        }
       }
     },
   },
