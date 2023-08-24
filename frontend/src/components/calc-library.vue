@@ -40,7 +40,7 @@
 import { mapActions } from "vuex";
 import calcItemAddition from "@/components/calc-library-items/calc-item-addition";
 import calcItemDistance from "@/components/calc-library-items/calc-item-distance";
-import calcItemResult from "@/components/calc-library-items/calc-item-result";
+import calcItemResult from "../components/calc-result/calc-item-result.vue";
 import calcItemSale from "@/components/calc-library-items/calc-item-sale";
 import calcComponentFirst from "@/components/calc-library-component/calc-component-first";
 import calcComponentSecond from "@/components/calc-library-component/calc-component-second";

@@ -72,7 +72,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import calcItemResultSecond from "../calc-library-items/calc-item-result-second";
+import calcItemResultSecond from "../calc-result/calc-item-result-second";
 import calcItemRowResult from "../calc-library-items/calc-item-row-result";
 import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";

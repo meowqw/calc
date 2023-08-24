@@ -87,7 +87,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import calcItemResultFirst from "../calc-library-items/calc-item-result-first";
+import calcItemResultFirst from "../calc-result/calc-item-result-first";
 import calcItemRowResult from "../calc-library-items/calc-item-row-result";
 import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
@@ -131,7 +131,7 @@ export default {
     defaultOpened: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   computed: {
     ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),
