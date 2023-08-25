@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import calcAccordionItemSecond from './calc-accordion-item-second.vue';
+import { mapGetters, mapMutations } from "vuex";
+import calcAccordionItemSecond from "./calc-accordion-item-second.vue";
 
 export default {
   name: "calc-component-second",
   components: {
-    calcAccordionItemSecond
+    calcAccordionItemSecond,
   },
   computed: {
     ...mapGetters(["ACCORDION_LIST_SECOND"]),
@@ -46,8 +46,8 @@ export default {
     // логика удаления элемента из списка
     deleteItem(index) {
       this.REMOVE_ITEM_SECOND_ACCORDION_LIST(index, 1);
-    }
-  }
+    },
+  },
 };
 </script>
 

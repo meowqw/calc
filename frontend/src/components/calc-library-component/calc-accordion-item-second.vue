@@ -2,13 +2,20 @@
   <div class="calc-accordion-item">
     <div class="calc-accordion-item__top">
       <AccordionItem :defaultOpened="defaultOpened">
-        <template #summary
-          ><div class="calc-accordion-item__name">Стоимость: {{ result }}</div>
+        <template #summary>
+          <div class="calc-accordion-item__name">Стоимость: {{ result }}</div>
+          <!-- кнопка удаления итема -->
+          <button
+            class="btn-reset btn btn--mini calc-accordion-item__btn"
+            @click="deleteItem"
+          >
+            <font-awesome-icon :icon="['fa', 'fa-trash']" />
+          </button>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
-        <!-- accordion-content -->
+        <!-- контент итема -->
         <div class="calc-accordion-item__content">
           <div class="calc-accordion-item__left">
             <ul class="list-reset calc-accordion-item__list">
@@ -22,7 +29,7 @@
               <!-- толщина стены -->
               <li class="calc-accordion-item__item">
                 <calc-item-value-slider
-                :title="itemValueSliderTitle"
+                  :title="itemValueSliderTitle"
                   @inputChanged="handleValueSliderChanged"
                 />
               </li>
@@ -43,8 +50,8 @@
               </li>
             </ul>
           </div>
-          <!-- result -->
           <div class="calc-accordion-item__right">
+            <!-- высчитывание результат -->
             <calc-item-result-second
               :index="index"
               :inputValue="inputValue"
@@ -56,13 +63,6 @@
           </div>
         </div>
       </AccordionItem>
-      <!-- btn-delete -->
-      <button
-        class="btn-reset btn btn--mini calc-accordion-item__btn"
-        @click="deleteItem"
-      >
-        <font-awesome-icon :icon="['fa', 'fa-trash']" />
-      </button>
     </div>
     <div class="calc-accordion-item__bottom">
       <calc-item-row-result style="display: none" />
@@ -114,12 +114,13 @@ export default {
     defaultOpened: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   computed: {
-    ...mapGetters(["GET_CROWNS_TWO", "GET_RESULT_SECOND_CALC"]),
+    ...mapGetters(["GET_CROWNS_TWO"]),
   },
   methods: {
+    // событие удаление итема
     deleteItem() {
       this.$emit("deleteItem", this.index);
     },
@@ -140,7 +141,7 @@ export default {
       this.counterValue = value;
     },
     // получение данных результата
-    receiveResult(index, value) {
+    receiveResult(value) {
       this.result = value;
     },
   },
@@ -231,9 +232,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    width: 40px;
-    height: 40px;
+    margin-top: 0;
+    width: 30px;
+    height: 30px;
   }
 }
 </style>

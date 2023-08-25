@@ -4,18 +4,19 @@
       <h2 class="calc-component__title title title--h3">
         Расчет стоимости бурения
       </h2>
-      <AccordionList :openMultipleItems="openMultipleItems">
+      <AccordionList :openMultipleItems="false">
         <calc-accordion-item-first
           v-for="(item, index) in ACCORDION_LIST_FIRST"
           :key="index"
           :index="index"
-          :defaultOpened="defaultOpened"
+          :defaultOpened="true"
           @deleteItem="deleteItem(index)"
-          @addNewItem="addNewAccordionItem(item)"
+          @addNewItem="addNewAccordionItem()"
         />
       </AccordionList>
       <div class="calc-component__bottom">
-        <button class="btn-reset btn" @click="addNewAccordionItem()">
+        <!-- кнопка добавления калькулятора -->
+        <button class="btn-reset btn" @click="addNewAccordionItem(item)">
           <font-awesome-icon :icon="['fas', 'plus']" />
           Добавить отверстие
         </button>
@@ -33,12 +34,6 @@ export default {
   components: {
     calcAccordionItemFirst,
   },
-  data() {
-    return {
-      defaultOpened: false,
-      openMultipleItems: false,
-    };
-  },
   computed: {
     ...mapGetters(["ACCORDION_LIST_FIRST"]),
   },
@@ -48,10 +43,8 @@ export default {
       "REMOVE_ITEM_FIRST_ACCORDION_LIST",
     ]),
     // функция добавления нового элемента в список
-    addNewAccordionItem(item) {
-      this.ADD_ITEM_FIRST_ACCORDION_LIST(item, 1);
-      this.defaultOpened = true;
-
+    addNewAccordionItem() {
+      this.ADD_ITEM_FIRST_ACCORDION_LIST();
     },
     // логика удаления элемента из списка
     deleteItem(index) {

@@ -21,14 +21,6 @@
                 :title="itemValueSliderTitle"
               />
             </li>
-            <!-- материал стены -->
-            <!-- <li class="calc-component-content__item">
-              <calc-item-checkbox
-                :title="itemCheckboxTitle"
-                :checkboxList="checkboxList"
-                @checkboxSelected="handleCheckboxSelected"
-              />
-            </li> -->
             <!-- чекбокс для отображения итемов при условии "без зарезов"-->
             <li
               class="calc-component-content__item"
@@ -81,7 +73,6 @@
 import { mapGetters } from "vuex";
 
 import calcItemResultThird from "../calc-result/calc-item-result-third";
-// import calcItemCheckbox from "../calc-library-items/calc-item-checkbox";
 import calcItemValueSlider from "../calc-library-items/calc-item-value-slider";
 import calcItemInput from "../calc-library-items/calc-item-input";
 import calcItemCounter from "../calc-library-items/calc-item-counter.vue";
@@ -91,7 +82,6 @@ export default {
   name: "calc-component-third",
   components: {
     calcItemResultThird,
-    // calcItemCheckbox,
     calcItemValueSlider,
     calcItemInput,
     calcItemCounter,
@@ -101,7 +91,6 @@ export default {
     return {
       isActive: false,
       itemInputTilte: "Длина реза (м)",
-      itemCheckboxTitle: "Материал стены",
       itemCounterTitle: "Количество отверстий",
       itemValueSliderTitle: "Толщина стены (см)",
       // переменная для хранения длины реза
@@ -128,10 +117,6 @@ export default {
     handleValueSliderChanged(value) {
       this.valueSlider = value;
     },
-    // получение выбранного чекбокса материала стены
-    // handleCheckboxSelected(item) {
-    //   this.selectedCheckbox = item;
-    // },
     // получение значения счетчика
     onQuantityUpdated(value) {
       this.counterValue = value;

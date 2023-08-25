@@ -58,6 +58,7 @@
 }
 
 .accordion-list .accordion-item > .accordion-item__summary {
+  gap: 10px;
   padding: 6px;
 }
 
@@ -75,4 +76,11 @@
 
 summary::-webkit-details-marker {
   display: none;
+}
+
+.accordion-item__summary-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }

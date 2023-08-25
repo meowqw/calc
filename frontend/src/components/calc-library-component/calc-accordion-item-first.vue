@@ -2,19 +2,26 @@
   <div class="calc-accordion-item">
     <div class="calc-accordion-item__top">
       <AccordionItem :defaultOpened="defaultOpened">
-        <template #summary
-          ><div class="calc-accordion-item__name">
+        <template #summary>
+          <div class="calc-accordion-item__name">
             Стоимость: {{ result }}
             <span>
               Кол-во:
               <span>{{ counterValue }}</span>
             </span>
           </div>
+          <!-- кнопка удаления итема -->
+          <button
+            class="btn-reset btn btn--mini calc-accordion-item__btn"
+            @click="deleteItem"
+          >
+            <font-awesome-icon :icon="['fa', 'fa-trash']" />
+          </button>
         </template>
         <template #icon>
           <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </template>
-        <!-- accordion-content -->
+        <!-- контент итема -->
         <div class="calc-accordion-item__content">
           <div class="calc-accordion-item__left">
             <ul class="list-reset calc-accordion-item__list">
@@ -57,8 +64,8 @@
               </li>
             </ul>
           </div>
-          <!-- result -->
           <div class="calc-accordion-item__right">
+            <!-- результат -->
             <calc-item-result-first
               :index="index"
               :counterValue="counterValue"
@@ -71,13 +78,6 @@
           </div>
         </div>
       </AccordionItem>
-      <!-- btn-delete -->
-      <button
-        class="btn-reset btn btn--mini calc-accordion-item__btn"
-        @click="deleteItem"
-      >
-        <font-awesome-icon :icon="['fa', 'fa-trash']" />
-      </button>
     </div>
     <div class="calc-accordion-item__bottom">
       <calc-item-row-result style="display: none" />
@@ -134,9 +134,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS", "GET_RESULT_FIRST_CALC"]),
+    ...mapGetters(["GET_CROWNS", "GET_COEFFICIENTS"]),
   },
   methods: {
+    // событие удаления итема
     deleteItem() {
       this.$emit("deleteItem", this.index);
     },
@@ -161,7 +162,7 @@ export default {
       this.selectedCheckboxSecond = item;
     },
     // получение данных результата
-    receiveResult(index, value) {
+    receiveResult(value) {
       this.result = value;
     },
   },
@@ -252,9 +253,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    width: 40px;
-    height: 40px;
+    margin-top: 0;
+    width: 30px;
+    height: 30px;
   }
 }
 </style>

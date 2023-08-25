@@ -4,7 +4,6 @@
       <h2 class="calc-item__title title title--h3">Удаленность от МКАД</h2>
       <form action="#" class="calc-item__form distance__form">
         <label class="form__label label calc-item__label">
-          <!-- <span>Название НП</span> -->
           <input
             type="text"
             name="название"
@@ -16,7 +15,9 @@
             <div class="tooltip__text">Название населенного пункта до МКАД</div>
           </div>
         </label>
-        <button class="btn-reset btn calc-item__btn">Рассчитать</button>
+        <button class="btn-reset btn calc-item__btn" @submit.prevent>
+          Рассчитать
+        </button>
       </form>
     </div>
   </div>

@@ -15,9 +15,8 @@
           :value="item"
           @change="handleCheckboxChange(item)"
         />
-        <span
-          class="custom-checkbox__content custom-checkbox__content--radio"
-        ></span>
+        <span class="custom-checkbox__content custom-checkbox__content--radio">
+        </span>
         {{ item.name }}
       </label>
     </form>
