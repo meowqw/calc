@@ -26,10 +26,11 @@ class CrownController extends Controller
      * Получить коронку для второго калькулятора
      *
      * @param CrownService $crownService
-     * @return CrownTwoCalcResource
+     * @return CrownResource
      */
-    public function getCrownTwoCalc(CrownService $crownService): CrownTwoCalcResource
+    public function getCrownTwoCalc(CrownService $crownService): CrownResource
     {
-        return new CrownTwoCalcResource(1);
+        $data = $crownService->getCrownTwoCalc();
+        return new CrownResource($data);
     }
 }

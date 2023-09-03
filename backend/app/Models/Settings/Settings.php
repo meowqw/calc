@@ -7,12 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $start_price
- * @property int $logistic_price
+ * @property string $value
+ * @property int $code
  */
 class Settings extends Model
 {
     use HasFactory;
+
+    const
+        CODE_LOGISTIC_PRICE = 'logistic',
+        CODE_START_PRICE = 'start',
+        CODE_PERIMETER_PRICE = 'perimeter',
+        CODE_CUTTING_PRICE = 'cutting';
+
+    const
+        CODE_LOGISTIC_PRICE_NAME = 'Логистика',
+        CODE_START_PRICE_NAME = 'Начальная цена',
+        CODE_CUTTING_PRICE_NAME = 'Цена Резка за 1 см';
+
+    const CODE_NAMES = [
+        self::CODE_LOGISTIC_PRICE => self::CODE_LOGISTIC_PRICE_NAME,
+        self::CODE_START_PRICE => self::CODE_START_PRICE_NAME,
+        self::CODE_CUTTING_PRICE => self::CODE_CUTTING_PRICE_NAME
+    ];
 
     /**
      * @return int
@@ -23,34 +40,40 @@ class Settings extends Model
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getStartPrice(): int
+    public function getValue(): string
     {
-        return $this->start_price;
+        return $this->value;
     }
 
     /**
-     * @param int $startPrice
+     * @param string $value
+     * @return Settings
      */
-    public function setStartPrice(int $startPrice): void
+    public function setValue(string $value): Settings
     {
-        $this->start_price = $startPrice;
+        $this->value = $value;
+        return $this;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getLogisticPrice(): int
+    public function getCode(): string
     {
-        return $this->logistic_price;
+        return $this->code;
     }
 
     /**
-     * @param int $logisticPrice
+     * @param string $code
+     * @return Settings
      */
-    public function setLogisticPrice(int $logisticPrice): void
+    public function setCode(string $code): Settings
     {
-        $this->logistic_price = $logisticPrice;
+        $this->code = $code;
+        return $this;
     }
+
+
 }

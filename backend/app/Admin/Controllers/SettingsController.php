@@ -28,8 +28,8 @@ class SettingsController extends AdminController
         $grid = new Grid(new Settings());
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('start_price', __('Начальная цена'))->sortable();
-        $grid->column('logistic_price', __('Логистика'))->sortable();
+        $grid->column('value', __('Значение'))->sortable();
+        $grid->column('code', __('Тип'))->sortable()->select(Settings::CODE_NAMES);
 
         return $grid;
     }
@@ -45,8 +45,8 @@ class SettingsController extends AdminController
         $show = new Show(Settings::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('start_price', __('Начальная цена'));
-        $show->field('logistic_price', __('Логистика'));
+        $show->field('value', __('Значение'));
+        $show->field('code', __('Тип'));
 
         return $show;
     }
@@ -61,8 +61,8 @@ class SettingsController extends AdminController
         $form = new Form(new Settings());
 
         $form->display('id', __('ID'));
-        $form->number('start_price', __('Начальная цена'));
-        $form->number('logistic_price', __('Логистика'));
+        $form->number('value', __('Значение'));
+        $form->select('code', __('Тип'))->options(Settings::CODE_NAMES);
 
         $form->saving(function (Form $form) {});
 

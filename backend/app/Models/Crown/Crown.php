@@ -17,6 +17,19 @@ class Crown extends Model
 {
     use HasFactory;
 
+    const
+        CODE_ONE_CALC = 'one',
+        CODE_TWO_CALC = 'two';
+
+    const
+        CODE_ONE_CALC_NAME = 'Бурение',
+        CODE_TWO_CALC_NAME = 'Периметр';
+
+    const CODE_NAMES = [
+        self::CODE_ONE_CALC => self::CODE_ONE_CALC_NAME,
+        self::CODE_TWO_CALC => self::CODE_TWO_CALC_NAME
+    ];
+
     /**
      * @return int
      */

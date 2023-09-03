@@ -20,8 +20,8 @@ class SettingsResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'startPrice' => $this->resource->getStartPrice(),
-            'logisticPrice' => $this->resource->getLogisticPrice()
+            'value' => $this->resource->getValue(),
+            'code' => $this->resource->getCode()
         ];
     }
 }

@@ -15,7 +15,7 @@ class CrownService
      */
     public function getCrownList(): Collection|array
     {
-        return Crown::all();
+        return Crown::query()->where('code', Crown::CODE_ONE_CALC)->get();
     }
 
     /**
@@ -25,6 +25,6 @@ class CrownService
      */
     public function getCrownTwoCalc(): object
     {
-        return TwoCalcCrown::query()->first();
+        return Crown::query()->where('code', Crown::CODE_TWO_CALC)->first();
     }
 }

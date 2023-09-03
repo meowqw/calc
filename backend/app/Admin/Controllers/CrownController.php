@@ -33,6 +33,7 @@ class CrownController extends AdminController
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Наименование'))->sortable();
+        $grid->column('code', __('Тип'))->sortable()->select(Crown::CODE_NAMES);
 
         return $grid;
     }
@@ -49,6 +50,7 @@ class CrownController extends AdminController
 
         $show->field('id', __('ID'));
         $show->field('name', __('Наименование'));
+        $show->field('code', __('Тип'));
 
         return $show;
     }
@@ -64,6 +66,9 @@ class CrownController extends AdminController
 
         $form->display('id', __('ID'));
         $form->text('name', __('Наименование'));
+        $form->select('code', __('Тип'))
+            ->options(Crown::CODE_NAMES)
+            ->default(Crown::CODE_TWO_CALC);
 
         $materials = Material::all();
 
@@ -98,6 +103,7 @@ class CrownController extends AdminController
     {
         $crown = new Crown();
         $crown->setName(request('name'));
+        $crown->setName(request('code'));
         $crown->save();
 
         $selectedMaterials = request('materials', []);

@@ -15,7 +15,7 @@ class SettingsService
      */
     public function getSettings(): object
     {
-        return Settings::query()->first();
+        return Settings::all();
     }
 
 }
