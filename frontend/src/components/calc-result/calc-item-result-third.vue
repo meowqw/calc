@@ -36,7 +36,7 @@
               Количество отверстий:
               <span class="result-item__value">{{ counterValue }}</span>
             </div>
-            <!-- <div class="result-item__price">{{ counterValue * 150 }} руб</div> -->
+            <!-- <div class="result-item__price">{{ counterValue * GET_SETTINGS }} руб</div> -->
           </li>
           <li class="result-block__item result-item" v-if="isActive">
             <div class="result-item__name">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "calc-item-result",
@@ -96,6 +96,8 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["GET_SETTINGS"]),
+
     // получаем наибольший коэффициент
     maxStartPriceSelectValues() {
       return this.selectValues.reduce(
