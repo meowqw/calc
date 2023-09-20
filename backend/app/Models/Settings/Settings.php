@@ -18,17 +18,20 @@ class Settings extends Model
         CODE_LOGISTIC_PRICE = 'logistic',
         CODE_START_PRICE = 'start',
         CODE_PERIMETER_PRICE = 'perimeter',
-        CODE_CUTTING_PRICE = 'cutting';
+        CODE_CUTTING_PRICE = 'cutting',
+        CODE_PRICE_HOLE = 'hole';
 
     const
         CODE_LOGISTIC_PRICE_NAME = 'Логистика',
         CODE_START_PRICE_NAME = 'Начальная цена',
-        CODE_CUTTING_PRICE_NAME = 'Цена Резка за 1 см';
+        CODE_CUTTING_PRICE_NAME = 'Цена Резка за 1 м2',
+        CODE_PRICE_HOLE_NAME = 'Цена Резка за 1 Отверстие';
 
     const CODE_NAMES = [
         self::CODE_LOGISTIC_PRICE => self::CODE_LOGISTIC_PRICE_NAME,
         self::CODE_START_PRICE => self::CODE_START_PRICE_NAME,
-        self::CODE_CUTTING_PRICE => self::CODE_CUTTING_PRICE_NAME
+        self::CODE_CUTTING_PRICE => self::CODE_CUTTING_PRICE_NAME,
+        self::CODE_PRICE_HOLE => self::CODE_PRICE_HOLE_NAME,
     ];
 
     /**

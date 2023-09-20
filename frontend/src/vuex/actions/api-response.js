@@ -1,10 +1,11 @@
 import axios from "axios";
+import {API_URL} from "../../../config";
 
 export default {
   async SUBMIT_NEW_USER({ commit }, data) {
     try {
       const response = await axios.post(
-        "http://37.46.134.113:2041/api/v1/orders",
+        API_URL + "/api/v1/orders",
         data,
         {
           headers: {},
