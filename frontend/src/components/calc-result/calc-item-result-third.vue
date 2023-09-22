@@ -1,186 +1,194 @@
 <template>
-    <div class="result">
-        <div class="container result__container">
-            <div class="result-block block">
-                <div class="result-block__top">
-                    <h3 class="result-block__title">Стоимость</h3>
-                    <span class="result-block__price">
+  <div class="result">
+    <div class="container result__container">
+      <div class="result-block block">
+        <div class="result-block__top">
+          <h3 class="result-block__title">Стоимость</h3>
+          <span class="result-block__price">
             {{ resultThirdCalc }}
             руб
           </span>
-                </div>
-                <ul class="list-reset result-block__list">
-                    <li class="result-block__item result-item">
-                        <div class="result-item__name">
-                            Длина реза:
-                            <span class="result-item__value"> {{ inputValue }} м</span>
-                        </div>
-                    </li>
-                    <li class="result-block__item result-item">
-                        <div class="result-item__name">
-                            Толщина стены:
-                            <span class="result-item__value">{{ valueSlider / 100 }} м</span>
-                        </div>
-                    </li>
-                    <li class="result-block__item result-item">
-                        <div class="result-item__name">
-                            Квадратных метров:
-                            <span class="result-item__value"
-                            >{{ Math.round(inputValue * (valueSlider / 100)) }} м2</span
-                            >
-                        </div>
-                        <div class="result-item__price">1 м2 = {{ getSettingCutting }} руб</div>
-                    </li>
-                    <li class="result-block__item result-item" v-if="isActive">
-                        <div class="result-item__name">
-                            Количество отверстий:
-                            <span class="result-item__value">{{ counterValue }} (Цена за 1 {{ getSettingHole }} р.)</span>
-                        </div>
-                        <!-- <div class="result-item__price">{{ counterValue * GET_SETTINGS }} руб</div> -->
-                    </li>
-                    <li class="result-block__item result-item" v-if="isActive">
-                        <div class="result-item__name">
-                            Коэффициенты:
-                            <span
-                                    class="result-item__value"
-                                    v-for="(item, index) in selectValues"
-                                    :key="index"
-                            >{{ item.name }} ({{ item.value }})</span
-                            >
-                        </div>
-                        <div class="result-item__price">
-                            {{ sumValueSelectValues }}
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
+        <ul class="list-reset result-block__list">
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Длина реза:
+              <span class="result-item__value"> {{ inputValue }} м</span>
+            </div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Толщина стены:
+              <span class="result-item__value">{{ valueSlider / 100 }} м</span>
+            </div>
+          </li>
+          <li class="result-block__item result-item">
+            <div class="result-item__name">
+              Квадратных метров:
+              <span class="result-item__value"
+                >{{ Math.round(inputValue * (valueSlider / 100)) }} м2</span
+              >
+            </div>
+            <div class="result-item__price">
+              1 м2 = {{ getSettingCutting }} руб
+            </div>
+          </li>
+          <li class="result-block__item result-item" v-if="isActive">
+            <div class="result-item__name">
+              Количество отверстий:
+              <span class="result-item__value"
+                >{{ counterValue }} (Цена за 1 {{ getSettingHole }} р.)</span
+              >
+            </div>
+            <!-- <div class="result-item__price">{{ counterValue * GET_SETTINGS }} руб</div> -->
+          </li>
+          <li class="result-block__item result-item" v-if="isActive">
+            <div class="result-item__name">
+              Коэффициенты:
+              <span
+                class="result-item__value"
+                v-for="(item, index) in selectValues"
+                :key="index"
+                >{{ item.name }} ({{ item.value }})</span
+              >
+            </div>
+            <div class="result-item__price">
+              {{ sumValueSelectValues }}
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-    name: "calc-item-result",
-    props: {
-        // чекбокс "без зарезов"
-        isActive: {
-            type: Boolean,
-        },
-        // длина реза
-        inputValue: {
-            type: [Number, String],
-            required: true,
-            return: 0,
-        },
-        // толщина стены
-        valueSlider: {
-            type: Number,
-            required: true,
-            return: 0,
-        },
-        // материал стены
-        // selectedCheckbox: {
-        //   type: String,
-        //   return: null,
-        // },
-        // количество отверстий
-        counterValue: {
-            type: Number,
-            required: true,
-        },
-        // коэффициенты
-        selectValues: {
-            type: Array,
-        },
+  name: "calc-item-result",
+  props: {
+    // чекбокс "без зарезов"
+    isActive: {
+      type: Boolean,
     },
-    computed: {
-        ...mapGetters(["GET_SETTINGS"]),
-
-        // получить значение настройки для отверстий
-        getSettingHole() {
-            if (this.GET_SETTINGS.length) {
-                return Number(this.GET_SETTINGS.find(el => el.code === 'hole').value);
-            } else {
-                return 0;
-            }
-        },
-
-        // получить значение настройки для цена за 1 м2
-        getSettingCutting() {
-            if (this.GET_SETTINGS.length) {
-                return Number(this.GET_SETTINGS.find(el => el.code === 'cutting').value);
-            } else {
-                return 0;
-            }
-        },
-
-        // получаем наибольший коэффициент
-        maxStartPriceSelectValues() {
-            return this.selectValues.reduce(
-                (startPrice, item) => Math.max(startPrice, item.startPrice),
-                0
-            );
-        },
-
-        // получаем сумму value всех коэффициентов
-        sumValueSelectValues() {
-            return this.selectValues.reduce((sum, item) => sum + item.value, 0);
-        },
-
-        // логика отправки значения без зарезов, либо с зарезами
-        resultThirdCalc() {
-            if (this.counterValue < 1) {
-                // формула
-                return Math.round(this.inputValue * (this.valueSlider / 100) * this.getSettingCutting);
-            } else if (this.sumValueSelectValues > 0) {
-                return (
-                    // формула
-                    Math.round(
-                        (this.inputValue *
-                            (this.valueSlider / 100) *
-                            this.getSettingCutting *
-                            this.sumValueSelectValues) +
-                        (this.counterValue * this.getSettingHole)
-                    )
-                );
-            } else if (this.inputValue > 0 && this.valueSlider > 0) {
-                return (
-                    // формула
-                    Math.round(
-                        (this.inputValue *
-                            (this.valueSlider / 100) *
-                            this.getSettingCutting) +
-                        (this.counterValue * this.getSettingHole)
-                    )
-                );
-            } else {
-                return 0;
-            }
-        },
+    // длина реза
+    inputValue: {
+      type: [Number, String],
+      required: true,
+      return: 0,
     },
-    methods: {
-        ...mapMutations(["UPDATE_RESULT_THIRD_CALC", "UPDATE_MAX_COEF"]),
+    // толщина стены
+    valueSlider: {
+      type: Number,
+      required: true,
+      return: 0,
+    },
+    // материал стены
+    // selectedCheckbox: {
+    //   type: String,
+    //   return: null,
+    // },
+    // количество отверстий
+    counterValue: {
+      type: Number,
+      required: true,
+    },
+    // коэффициенты
+    selectValues: {
+      type: Array,
+    },
+  },
+  computed: {
+    ...mapGetters(["GET_SETTINGS"]),
 
-        // отправка значения в мутацию
-        sendResultThirdCalc() {
-            this.UPDATE_RESULT_THIRD_CALC(this.resultThirdCalc);
-        },
+    // получить значение настройки для отверстий
+    getSettingHole() {
+      if (this.GET_SETTINGS.length) {
+        return Number(this.GET_SETTINGS.find((el) => el.code === "hole").value);
+      } else {
+        return 0;
+      }
     },
-    watch: {
-        // отслеживание значения в компоненте и обновление в мутации
-        resultThirdCalc() {
-            this.sendResultThirdCalc();
-        },
-        // обновляем данные отслеживая изменения в массиве
-        selectValues: {
-            deep: true, // Глубокое наблюдение за изменением в массиве
-            handler() {
-                this.UPDATE_MAX_COEF(this.maxStartPriceSelectValues);
-            },
-        },
+
+    // получить значение настройки для цена за 1 м2
+    getSettingCutting() {
+      if (this.GET_SETTINGS.length) {
+        return Number(
+          this.GET_SETTINGS.find((el) => el.code === "cutting").value
+        );
+      } else {
+        return 0;
+      }
     },
+
+    // получаем наибольший коэффициент
+    maxStartPriceSelectValues() {
+      return this.selectValues.reduce(
+        (startPrice, item) => Math.max(startPrice, item.startPrice),
+        0
+      );
+    },
+
+    // получаем сумму value всех коэффициентов
+    sumValueSelectValues() {
+      return this.selectValues.reduce((sum, item) => sum + item.value, 0);
+    },
+
+    // логика отправки значения без зарезов, либо с зарезами
+    resultThirdCalc() {
+      if (this.counterValue < 1) {
+        // формула
+        return Math.round(
+          this.inputValue * (this.valueSlider / 100) * this.getSettingCutting
+        );
+      } else if (this.sumValueSelectValues > 0) {
+        return (
+          // формула
+          Math.round(
+            this.inputValue *
+              (this.valueSlider / 100) *
+              this.getSettingCutting *
+              this.sumValueSelectValues +
+              this.counterValue * this.getSettingHole
+          )
+        );
+      } else if (this.inputValue > 0 && this.valueSlider > 0) {
+        return (
+          // формула
+          Math.round(
+            this.inputValue *
+              (this.valueSlider / 100) *
+              this.getSettingCutting +
+              this.counterValue * this.getSettingHole
+          )
+        );
+      } else {
+        return 0;
+      }
+    },
+  },
+  methods: {
+    ...mapMutations(["UPDATE_RESULT_THIRD_CALC", "UPDATE_MAX_COEF"]),
+
+    // отправка значения в мутацию
+    sendResultThirdCalc() {
+      this.UPDATE_RESULT_THIRD_CALC(this.resultThirdCalc);
+    },
+  },
+  watch: {
+    // отслеживание значения в компоненте и обновление в мутации
+    resultThirdCalc() {
+      this.sendResultThirdCalc();
+    },
+    // обновляем данные отслеживая изменения в массиве
+    selectValues: {
+      deep: true, // Глубокое наблюдение за изменением в массиве
+      handler() {
+        this.UPDATE_MAX_COEF(this.maxStartPriceSelectValues);
+      },
+    },
+  },
 };
 </script>
 
